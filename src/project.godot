@@ -23,6 +23,12 @@ window/stretch/aspect="expand"
 
 project/assembly_name="Loot Goblin"
 
+[file_customization]
+
+folder_colors={
+"res://level-generation/": "green"
+}
+
 [physics]
 
 3d/physics_engine="Jolt Physics"
