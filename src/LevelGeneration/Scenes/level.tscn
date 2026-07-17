@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dur8aqb0jjm56"]
 
 [ext_resource type="Script" uid="uid://dkbrrmeyksun" path="res://LevelGeneration/GeneratePartitionTree.cs" id="1_gtnax"]
+[ext_resource type="PackedScene" uid="uid://cytylylmxd12d" path="res://LevelGeneration/Scenes/observer_camera.tscn" id="2_gxjyh"]
+[ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/Scenes/tilemap.tscn" id="3_io35g"]
+[ext_resource type="Script" uid="uid://clv47kfb32sle" path="res://LevelGeneration/GenerateRooms.cs" id="3_tvw60"]
 
 [node name="Level" type="Node2D" unique_id=1154545649]
-
-[node name="GeneratePartitionTree" type="Node2D" parent="." unique_id=926255918]
-script = ExtResource("1_gtnax")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=734058329]
 
@@ -19,5 +19,15 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 5
 text = "Generate"
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=92201047]
-anchor_mode = 0
+[node name="ObserverCamera" parent="." unique_id=535179323 instance=ExtResource("2_gxjyh")]
+position = Vector2(160, 90)
+
+[node name="GeneratePartitionTree" type="Node2D" parent="." unique_id=926255918]
+script = ExtResource("1_gtnax")
+
+[node name="GenerateRooms" type="Node2D" parent="." unique_id=34019179 node_paths=PackedStringArray("_generatePartitionTree", "_levelTileMap")]
+script = ExtResource("3_tvw60")
+_generatePartitionTree = NodePath("../GeneratePartitionTree")
+_levelTileMap = NodePath("../LevelTileMap")
+
+[node name="LevelTileMap" parent="." unique_id=934304012 instance=ExtResource("3_io35g")]

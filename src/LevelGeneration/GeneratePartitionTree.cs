@@ -5,7 +5,9 @@ namespace LootGoblin.LevelGeneration;
 
 public partial class GeneratePartitionTree : Node2D
 {
-	[Export] private Vector2I _levelSize = new(100, 100);
+	[Signal] public delegate void PartitionsGeneratedEventHandler();
+	
+	[Export] private Vector2I _levelSize = new(50, 50);
 	[Export] private int _minPartitionSize = 10;
 	[Export] private int _maxPartitionDivision = 4; // this is the most a partition can be divided by
 	private int _minDivisiblePartitionSize;
@@ -15,6 +17,8 @@ public partial class GeneratePartitionTree : Node2D
 	private TreeNode _root;
 	private readonly List<TreeNode> _nodes = [];
 	private readonly List<TreeNode> _leafNodes = [];
+
+	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -27,12 +31,17 @@ public partial class GeneratePartitionTree : Node2D
 
 	public override void _Draw()
 	{
-		DrawRect(new Rect2(new Vector2(0,0), _levelSize * 16), new (0,0,0));
+		DrawRect(new Rect2(new Vector2(0,0), _levelSize * LevelTileMap.TileSize), new (0,0,0));
 
 		for (int i = 0; i < _leafNodes.Count; i++)
 		{
-			DrawRect(new Rect2(_leafNodes[i].Position * 16, _leafNodes[i].Dimensions * 16), new Color(GD.Randf(), GD.Randf(), GD.Randf()));
-			DrawString(ThemeDB.FallbackFont, (_leafNodes[i].Position + _leafNodes[i].Dimensions / 2) * 16, _leafNodes[i].Dimensions.ToString());
+			DrawRect(new Rect2(_leafNodes[i].Position * LevelTileMap.TileSize, 
+				_leafNodes[i].Dimensions * LevelTileMap.TileSize), 
+				new Color(GD.Randf(), GD.Randf(), GD.Randf()));
+			
+			DrawString(ThemeDB.FallbackFont, 
+				(_leafNodes[i].Position + _leafNodes[i].Dimensions / 2) * LevelTileMap.TileSize, 
+				_leafNodes[i].Dimensions.ToString());
 		}
 	}
 
@@ -43,7 +52,8 @@ public partial class GeneratePartitionTree : Node2D
 		_root = new(new(0, 0), _levelSize, 0);
 		SplitRecursive(_root);
 		FindLeafNodes(_root);
-		QueueRedraw();
+		// QueueRedraw();
+		EmitSignalPartitionsGenerated();
 	}
 
 	private void SplitRecursive(TreeNode node)
@@ -115,9 +125,13 @@ public partial class GeneratePartitionTree : Node2D
 
 	private void Clear()
 	{
-		GD.Print("Clear Partition Tree");
 		_nodes.Clear();
 		_leafNodes.Clear();
+	}
+
+	public List<TreeNode> GetLeafNodes()
+	{
+		return _leafNodes;
 	}
 }
 

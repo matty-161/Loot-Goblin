@@ -11,10 +11,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4f8301b4-9648-4c3d-8e63-780ca9506c66" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.idea.Loot Goblin/.idea/libraries/GdSdk.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Loot Goblin/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Loot Goblin/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/LevelGeneration/GeneratePartitionTree.cs" beforeDir="false" afterPath="$PROJECT_DIR$/LevelGeneration/GeneratePartitionTree.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Loot Goblin.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/Loot Goblin.csproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LevelGeneration/Scenes/level.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/LevelGeneration/Scenes/level.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -26,10 +25,30 @@
     <option name="firstShow" value="false" />
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/.." value="main" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+  "lastFilter": {
+    "state": "OPEN",
+    "assignee": "matty-161"
+  }
+}]]></component>
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/matty-161/Loot-Goblin.git",
+    "accountId": "85610e91-5ee1-4dbf-9969-ffd97738460f"
+  }
+}]]></component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$USER_HOME$/AppData/Local/Temp/SourceGeneratedDocuments/8A9BACA5C98439E65F95A8CE/Godot.SourceGenerators/Godot.SourceGenerators.ScriptMethodsGenerator/LootGoblin.LevelGeneration.GeneratePartitionTree_ScriptMethods.generated.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/SourcesCache/e675a33b4e13b2ad0a0601e8c474ca3d8d17ff29e5b88ce1c8862355d32f0/Node2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LevelGeneration/GenerateRooms.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LevelGeneration/LevelTileMap.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/LevelGeneration/ObserverCamera.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/LevelGeneration/TreeNode.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
   <component name="MetaFilesCheckinStateConfiguration" checkMetaFiles="true" />
@@ -54,14 +73,14 @@
     "RunOnceActivity.typescript.service.memoryLimit.init": "true",
     "cidr.known.project.marker": "true",
     "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "level-generation",
     "ignore.virus.scanning.warn.message": "true",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "Inspections-C#",
+    "settings.editor.selected.configurable": "preferences.sourceCode.C#",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -115,8 +134,17 @@
       <option name="presentableId" value="Default" />
       <updated>1784242318474</updated>
       <workItem from="1784242321291" duration="3655000" />
-      <workItem from="1784246028869" duration="11922000" />
+      <workItem from="1784246028869" duration="23036000" />
     </task>
+    <task id="LOCAL-00001" summary="implemented partition generation">
+      <option name="closed" value="true" />
+      <created>1784309574093</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1784309574093</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,6 +165,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+    <MESSAGE value="implemented partition generation" />
+    <option name="LAST_COMMIT_MESSAGE" value="implemented partition generation" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

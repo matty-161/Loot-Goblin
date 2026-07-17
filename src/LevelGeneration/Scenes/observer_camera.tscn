@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://cytylylmxd12d"]
+
+[ext_resource type="Script" uid="uid://chrwyfbnuhu18" path="res://LevelGeneration/ObserverCamera.cs" id="1_reap8"]
+
+[node name="ObserverCamera" type="Camera2D" unique_id=535179323]
+script = ExtResource("1_reap8")
