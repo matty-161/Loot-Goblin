@@ -29,8 +29,8 @@ public partial class GenerateRooms : Node2D
         for (int i = 0; i < leafNodes.Count; i++)
         {
             Vector2I roomPositionTopLeft = new(
-                (int)GD.Randi() % (leafNodes[i].Dimensions.X / 2) + leafNodes[i].Position.X,
-                (int)GD.Randi() % (leafNodes[i].Dimensions.Y / 2) + leafNodes[i].Position.Y
+                (int)(GD.Randi() % (leafNodes[i].Dimensions.X / 2) + leafNodes[i].Position.X),
+                (int)(GD.Randi() % (leafNodes[i].Dimensions.Y / 2) + leafNodes[i].Position.Y)
             );
 
             Vector2I partitionPosBotRight = leafNodes[i].Position + leafNodes[i].Dimensions;
