@@ -5,7 +5,4 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>LootGoblin</RootNamespace>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="LevelGeneration\scripts\" />
-  </ItemGroup>
 </Project>
