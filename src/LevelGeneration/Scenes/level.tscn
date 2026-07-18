@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://cytylylmxd12d" path="res://LevelGeneration/Scenes/observer_camera.tscn" id="2_gxjyh"]
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/Scenes/tilemap.tscn" id="3_io35g"]
 [ext_resource type="Script" uid="uid://clv47kfb32sle" path="res://LevelGeneration/GenerateRooms.cs" id="3_tvw60"]
+[ext_resource type="Script" uid="uid://qfyda2antryt" path="res://LevelGeneration/GenerateCorridors.cs" id="4_uy5vo"]
 
 [node name="Level" type="Node2D" unique_id=1154545649]
 
@@ -29,5 +30,8 @@ script = ExtResource("1_gtnax")
 script = ExtResource("3_tvw60")
 _generatePartitionTree = NodePath("../GeneratePartitionTree")
 _levelTileMap = NodePath("../LevelTileMap")
+
+[node name="GenerateCorridors" type="Node2D" parent="." unique_id=856172750]
+script = ExtResource("4_uy5vo")
 
 [node name="LevelTileMap" parent="." unique_id=934304012 instance=ExtResource("3_io35g")]

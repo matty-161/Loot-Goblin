@@ -10,22 +10,22 @@ public struct Room(Vector2I positionTopLeft, Vector2I positionBotRight)
     public Vector2I PositionBotRight = positionBotRight;
 }
 
-public partial class GenerateRooms : Node2D
+public partial class RoomGenerator : Node2D
 {
-    [Export] private GeneratePartitionTree _generatePartitionTree;
+    [Export] private PartitionTreeGenerator _partitionTreeGenerator;
     [Export] private LevelTileMap _levelTileMap;
 
     private readonly List<Room> _rooms = [];
 
     public override void _Ready()
     {
-        _generatePartitionTree.PartitionsGenerated += Generate;
+        _partitionTreeGenerator.PartitionsGenerated += GenerateRooms;
     }
 
-    private void Generate()
+    private void GenerateRooms()
     {
         Clear();
-        List<TreeNode> leafNodes = _generatePartitionTree.GetLeafNodes();
+        List<TreeNode> leafNodes = _partitionTreeGenerator.GetLeafNodes();
         for (int i = 0; i < leafNodes.Count; i++)
         {
             Vector2I roomPositionTopLeft = new(

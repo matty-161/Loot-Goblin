@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 namespace LootGoblin.LevelGeneration;
 
-public partial class GeneratePartitionTree : Node2D
+public partial class PartitionTreeGenerator : Node2D
 {
 	[Signal] public delegate void PartitionsGeneratedEventHandler();
 	
@@ -127,6 +127,11 @@ public partial class GeneratePartitionTree : Node2D
 	{
 		_nodes.Clear();
 		_leafNodes.Clear();
+	}
+
+	public TreeNode GetRoot()
+	{
+		return _root;
 	}
 
 	public List<TreeNode> GetLeafNodes()
