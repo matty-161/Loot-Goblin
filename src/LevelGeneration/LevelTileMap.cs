@@ -7,6 +7,7 @@ namespace LootGoblin.LevelGeneration;
 
 public partial class LevelTileMap : TileMapLayer
 {
+	
 	public const int TileSize = 16;
 
 	public void PlaceRoom(Room room)
@@ -24,7 +25,13 @@ public partial class LevelTileMap : TileMapLayer
 				cells.Add(new Vector2I(room.PositionTopLeft.X + x, room.PositionTopLeft.Y + y));
 			}
 		}
-		SetCellsTerrainConnect(cells, 0, 0, true);
+		SetCellsTerrainConnect(cells, 0, 0);
+		NotifyRuntimeTileDataUpdate();
+	}
+
+	public void PlaceCorridor(Array<Vector2I> cells)
+	{
+		SetCellsTerrainConnect(cells, 0, 0);
 		NotifyRuntimeTileDataUpdate();
 	}
 }

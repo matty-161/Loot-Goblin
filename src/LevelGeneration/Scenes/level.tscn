@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://dur8aqb0jjm56"]
 
-[ext_resource type="Script" uid="uid://dkbrrmeyksun" path="res://LevelGeneration/GeneratePartitionTree.cs" id="1_gtnax"]
 [ext_resource type="PackedScene" uid="uid://cytylylmxd12d" path="res://LevelGeneration/Scenes/observer_camera.tscn" id="2_gxjyh"]
+[ext_resource type="Script" uid="uid://dkbrrmeyksun" path="res://LevelGeneration/PartitionTreeGenerator.cs" id="2_uy5vo"]
+[ext_resource type="Script" uid="uid://clv47kfb32sle" path="res://LevelGeneration/RoomGenerator.cs" id="3_2rsjs"]
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/Scenes/tilemap.tscn" id="3_io35g"]
-[ext_resource type="Script" uid="uid://clv47kfb32sle" path="res://LevelGeneration/GenerateRooms.cs" id="3_tvw60"]
-[ext_resource type="Script" uid="uid://qfyda2antryt" path="res://LevelGeneration/GenerateCorridors.cs" id="4_uy5vo"]
+[ext_resource type="Script" uid="uid://qfyda2antryt" path="res://LevelGeneration/CorridorGenerator.cs" id="4_xos0k"]
 
 [node name="Level" type="Node2D" unique_id=1154545649]
 
@@ -23,15 +23,19 @@ text = "Generate"
 [node name="ObserverCamera" parent="." unique_id=535179323 instance=ExtResource("2_gxjyh")]
 position = Vector2(160, 90)
 
-[node name="GeneratePartitionTree" type="Node2D" parent="." unique_id=926255918]
-script = ExtResource("1_gtnax")
-
-[node name="GenerateRooms" type="Node2D" parent="." unique_id=34019179 node_paths=PackedStringArray("_generatePartitionTree", "_levelTileMap")]
-script = ExtResource("3_tvw60")
-_generatePartitionTree = NodePath("../GeneratePartitionTree")
+[node name="PartitionTreeGenerator" type="Node2D" parent="." unique_id=926255918 node_paths=PackedStringArray("_levelTileMap")]
+script = ExtResource("2_uy5vo")
 _levelTileMap = NodePath("../LevelTileMap")
 
-[node name="GenerateCorridors" type="Node2D" parent="." unique_id=856172750]
-script = ExtResource("4_uy5vo")
+[node name="RoomGenerator" type="Node2D" parent="." unique_id=34019179 node_paths=PackedStringArray("_partitionTreeGenerator", "_levelTileMap")]
+script = ExtResource("3_2rsjs")
+_partitionTreeGenerator = NodePath("../PartitionTreeGenerator")
+_levelTileMap = NodePath("../LevelTileMap")
+
+[node name="CorridorGenerator" type="Node2D" parent="." unique_id=856172750 node_paths=PackedStringArray("_partitionTreeGenerator", "_roomGenerator", "_levelTileMap")]
+script = ExtResource("4_xos0k")
+_partitionTreeGenerator = NodePath("../PartitionTreeGenerator")
+_roomGenerator = NodePath("../RoomGenerator")
+_levelTileMap = NodePath("../LevelTileMap")
 
 [node name="LevelTileMap" parent="." unique_id=934304012 instance=ExtResource("3_io35g")]

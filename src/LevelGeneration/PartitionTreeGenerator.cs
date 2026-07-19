@@ -10,6 +10,7 @@ public partial class PartitionTreeGenerator : Node2D
 	[Export] private Vector2I _levelSize = new(50, 50);
 	[Export] private int _minPartitionSize = 10;
 	[Export] private int _maxPartitionDivision = 4; // this is the most a partition can be divided by
+	[Export] private LevelTileMap _levelTileMap;
 	private int _minDivisiblePartitionSize;
 
 	private Button _generateButton;
@@ -25,7 +26,7 @@ public partial class PartitionTreeGenerator : Node2D
 	{
 		_generateButton =  GetNode<Button>("%GenerateButton");
 
-		_generateButton.Pressed += GenerateTree;
+		_generateButton.Pressed += GeneratePartitionTree;
 
 	}
 
@@ -45,9 +46,10 @@ public partial class PartitionTreeGenerator : Node2D
 		}
 	}
 
-	private void GenerateTree()
+	private void GeneratePartitionTree()
 	{
 		Clear();
+		_levelTileMap.Clear();
 		_minDivisiblePartitionSize = _minPartitionSize * (_maxPartitionDivision - 1);
 		_root = new(new(0, 0), _levelSize, 0);
 		SplitRecursive(_root);
@@ -69,9 +71,16 @@ public partial class PartitionTreeGenerator : Node2D
 	private void SplitCell(TreeNode node)
 	{
 		if (node.Dimensions.X > node.Dimensions.Y)
+		{
 			SplitCellVertical(node);
+			node.IsSplitVertical = true;
+		}
+
 		else
+		{
 			SplitCellHorizontal(node);
+			node.IsSplitVertical = false;
+		}
 	}
 
 	private void SplitCellVertical(TreeNode node)

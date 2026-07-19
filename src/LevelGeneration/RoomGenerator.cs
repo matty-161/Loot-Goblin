@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace LootGoblin.LevelGeneration;
 
-public struct Room(Vector2I positionTopLeft, Vector2I positionBotRight)
+public class Room(Vector2I positionTopLeft, Vector2I positionBotRight)
 {
     public Vector2I PositionTopLeft = positionTopLeft;
     public Vector2I PositionBotRight = positionBotRight;
@@ -12,6 +12,8 @@ public struct Room(Vector2I positionTopLeft, Vector2I positionBotRight)
 
 public partial class RoomGenerator : Node2D
 {
+    [Signal] public delegate void RoomsGeneratedEventHandler();
+    
     [Export] private PartitionTreeGenerator _partitionTreeGenerator;
     [Export] private LevelTileMap _levelTileMap;
 
@@ -44,7 +46,9 @@ public partial class RoomGenerator : Node2D
             Room room = new(roomPositionTopLeft, roomPositionBotRight);
             _rooms.Add(room);
             _levelTileMap.PlaceRoom(room);
+            leafNodes[i].Room = room;
         }
+        EmitSignalRoomsGenerated();
     }
 
     private void Clear()
