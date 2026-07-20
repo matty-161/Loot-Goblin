@@ -6,25 +6,27 @@ namespace LootGoblin.LevelGeneration;
 
 public class Room(Vector2I positionTopLeft, Vector2I positionBotRight)
 {
+    public enum RoomType
+    {
+        Spawn,
+        Boss,
+        Treasure
+    }
+
+    public RoomType Type;
     public Vector2I PositionTopLeft = positionTopLeft;
     public Vector2I PositionBotRight = positionBotRight;
 }
 
 public partial class RoomGenerator : Node2D
 {
-    [Signal] public delegate void RoomsGeneratedEventHandler();
     
     [Export] private PartitionTreeGenerator _partitionTreeGenerator;
     [Export] private LevelTileMap _levelTileMap;
 
     private readonly List<Room> _rooms = [];
 
-    public override void _Ready()
-    {
-        _partitionTreeGenerator.PartitionsGenerated += GenerateRooms;
-    }
-
-    private void GenerateRooms()
+    public void GenerateRooms()
     {
         Clear();
         List<TreeNode> leafNodes = _partitionTreeGenerator.GetLeafNodes();
@@ -48,7 +50,6 @@ public partial class RoomGenerator : Node2D
             _levelTileMap.PlaceRoom(room);
             leafNodes[i].Room = room;
         }
-        EmitSignalRoomsGenerated();
     }
 
     private void Clear()

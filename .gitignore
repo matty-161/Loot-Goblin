@@ -21,6 +21,7 @@ mono_crash.*.json
 # Rider ignored files
 /modules.xml
 src/.idea/.idea.Loot Goblin.iml
+/src/Loot Goblin.sln.DotSettings.user
 /contentModel.xml
 /projectSettingsUpdater.xml
 # Editor-based HTTP Client requests

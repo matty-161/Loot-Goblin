@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://brui0obmqftby"]
+
+[ext_resource type="Texture2D" uid="uid://uohprxs845kp" path="res://Player/Assets/gobu walk.png" id="1_i823h"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vmh55"]
+atlas = ExtResource("1_i823h")
+region = Rect2(0, 0, 32, 32)
+
+[node name="Player" type="Sprite2D" unique_id=2096669170]
+texture = SubResource("AtlasTexture_vmh55")

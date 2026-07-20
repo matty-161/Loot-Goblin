@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://b155plm47e5w0"]
+
+[ext_resource type="Texture2D" uid="uid://b16abj1ewh5uh" path="res://LevelGeneration/Assets/gold_coin.png" id="1_ibj7t"]
+
+[node name="Coin" type="Sprite2D" unique_id=2023437646]
+texture = ExtResource("1_ibj7t")

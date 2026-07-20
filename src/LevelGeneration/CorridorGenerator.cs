@@ -7,23 +7,17 @@ namespace LootGoblin.LevelGeneration;
 
 public partial class CorridorGenerator : Node2D
 {
+	
 	[Export] private PartitionTreeGenerator _partitionTreeGenerator;
 	[Export] private RoomGenerator _roomGenerator;
 	[Export] private LevelTileMap _levelTileMap;
 
 	private TreeNode _root;
 
-	public override void _Ready()
+	public void GenerateCorridors()
 	{
-		_roomGenerator.RoomsGenerated += GenerateCorridors;
-	}
-
-	private void GenerateCorridors()
-	{
-
 		_root = _partitionTreeGenerator.GetRoot();
 		TraverseTree(_root);
-
 	}
 
 	private void TraverseTree(TreeNode node)
@@ -58,6 +52,7 @@ public partial class CorridorGenerator : Node2D
 			{
 				cells.Add(new Vector2I(x, leftChildCentre.Y));
 				cells.Add(new Vector2I(x, leftChildCentre.Y + 1));
+				cells.Add(new Vector2I(x, leftChildCentre.Y - 1));
 			}
 		}
 		else // else the partitions are split horizontally, make vertical corridors 
@@ -65,6 +60,7 @@ public partial class CorridorGenerator : Node2D
 			for (int y = leftChildCentre.Y; y < rightChildCentre.Y; y++)
 			{
 				cells.Add(new Vector2I(rightChildCentre.X, y));
+				cells.Add(new Vector2I(rightChildCentre.X + 1, y));
 				cells.Add(new Vector2I(rightChildCentre.X - 1, y));
 			}
 		}

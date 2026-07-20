@@ -3,8 +3,13 @@
 [ext_resource type="PackedScene" uid="uid://cytylylmxd12d" path="res://LevelGeneration/Scenes/observer_camera.tscn" id="2_gxjyh"]
 [ext_resource type="Script" uid="uid://dkbrrmeyksun" path="res://LevelGeneration/PartitionTreeGenerator.cs" id="2_uy5vo"]
 [ext_resource type="Script" uid="uid://clv47kfb32sle" path="res://LevelGeneration/RoomGenerator.cs" id="3_2rsjs"]
+[ext_resource type="Script" uid="uid://ctag0ftyb4xgx" path="res://LevelGeneration/LevelGenerationManager.cs" id="3_cuk5g"]
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/Scenes/tilemap.tscn" id="3_io35g"]
 [ext_resource type="Script" uid="uid://qfyda2antryt" path="res://LevelGeneration/CorridorGenerator.cs" id="4_xos0k"]
+[ext_resource type="Script" uid="uid://dyjr70hbhvpj7" path="res://LevelGeneration/InteriorGenerator.cs" id="6_2rsjs"]
+[ext_resource type="PackedScene" uid="uid://brui0obmqftby" path="res://Player/Scenes/player.tscn" id="7_4xot5"]
+[ext_resource type="PackedScene" uid="uid://dx8krqjvxapad" path="res://Enemies/Scenes/basic_enemy.tscn" id="8_cuk5g"]
+[ext_resource type="PackedScene" uid="uid://b155plm47e5w0" path="res://LevelGeneration/Scenes/Treasure/coin.tscn" id="9_3urvs"]
 
 [node name="Level" type="Node2D" unique_id=1154545649]
 
@@ -23,19 +28,39 @@ text = "Generate"
 [node name="ObserverCamera" parent="." unique_id=535179323 instance=ExtResource("2_gxjyh")]
 position = Vector2(160, 90)
 
-[node name="PartitionTreeGenerator" type="Node2D" parent="." unique_id=926255918 node_paths=PackedStringArray("_levelTileMap")]
-script = ExtResource("2_uy5vo")
-_levelTileMap = NodePath("../LevelTileMap")
+[node name="LevelTileMap" parent="." unique_id=934304012 instance=ExtResource("3_io35g")]
 
-[node name="RoomGenerator" type="Node2D" parent="." unique_id=34019179 node_paths=PackedStringArray("_partitionTreeGenerator", "_levelTileMap")]
+[node name="LevelGenerationManager" type="Node2D" parent="." unique_id=1820116607 node_paths=PackedStringArray("_levelTileMap", "_partitionTreeGenerator", "_roomGenerator", "_corridorGenerator", "_interiorGenerator")]
+script = ExtResource("3_cuk5g")
+_levelTileMap = NodePath("../LevelTileMap")
+_partitionTreeGenerator = NodePath("PartitionTreeGenerator")
+_roomGenerator = NodePath("RoomGenerator")
+_corridorGenerator = NodePath("CorridorGenerator")
+_interiorGenerator = NodePath("InteriorGenerator")
+
+[node name="PartitionTreeGenerator" type="Node2D" parent="LevelGenerationManager" unique_id=926255918]
+z_index = -1
+script = ExtResource("2_uy5vo")
+
+[node name="RoomGenerator" type="Node2D" parent="LevelGenerationManager" unique_id=34019179 node_paths=PackedStringArray("_partitionTreeGenerator", "_levelTileMap")]
 script = ExtResource("3_2rsjs")
 _partitionTreeGenerator = NodePath("../PartitionTreeGenerator")
-_levelTileMap = NodePath("../LevelTileMap")
+_levelTileMap = NodePath("../../LevelTileMap")
 
-[node name="CorridorGenerator" type="Node2D" parent="." unique_id=856172750 node_paths=PackedStringArray("_partitionTreeGenerator", "_roomGenerator", "_levelTileMap")]
+[node name="CorridorGenerator" type="Node2D" parent="LevelGenerationManager" unique_id=856172750 node_paths=PackedStringArray("_partitionTreeGenerator", "_roomGenerator", "_levelTileMap")]
 script = ExtResource("4_xos0k")
 _partitionTreeGenerator = NodePath("../PartitionTreeGenerator")
 _roomGenerator = NodePath("../RoomGenerator")
-_levelTileMap = NodePath("../LevelTileMap")
+_levelTileMap = NodePath("../../LevelTileMap")
 
-[node name="LevelTileMap" parent="." unique_id=934304012 instance=ExtResource("3_io35g")]
+[node name="InteriorGenerator" type="Node2D" parent="LevelGenerationManager" unique_id=1235197597 node_paths=PackedStringArray("_roomGenerator", "_corridorGenerator")]
+script = ExtResource("6_2rsjs")
+_roomTypes = Dictionary[StringName, int]({
+&"boss": 1,
+&"spawn": 1
+})
+_roomGenerator = NodePath("../RoomGenerator")
+_corridorGenerator = NodePath("../CorridorGenerator")
+_playerScene = ExtResource("7_4xot5")
+_bossScene = ExtResource("8_cuk5g")
+_coinScene = ExtResource("9_3urvs")

@@ -5,35 +5,20 @@ namespace LootGoblin.LevelGeneration;
 
 public partial class PartitionTreeGenerator : Node2D
 {
-	[Signal] public delegate void PartitionsGeneratedEventHandler();
 	
 	[Export] private Vector2I _levelSize = new(50, 50);
 	[Export] private int _minPartitionSize = 10;
 	[Export] private int _maxPartitionDivision = 4; // this is the most a partition can be divided by
-	[Export] private LevelTileMap _levelTileMap;
 	private int _minDivisiblePartitionSize;
-
-	private Button _generateButton;
 	
 	private TreeNode _root;
 	private readonly List<TreeNode> _nodes = [];
 	private readonly List<TreeNode> _leafNodes = [];
 
-	
-	
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		_generateButton =  GetNode<Button>("%GenerateButton");
-
-		_generateButton.Pressed += GeneratePartitionTree;
-
-	}
-
 	public override void _Draw()
 	{
 		DrawRect(new Rect2(new Vector2(0,0), _levelSize * LevelTileMap.TileSize), new (0,0,0));
-
+	
 		for (int i = 0; i < _leafNodes.Count; i++)
 		{
 			DrawRect(new Rect2(_leafNodes[i].Position * LevelTileMap.TileSize, 
@@ -46,16 +31,14 @@ public partial class PartitionTreeGenerator : Node2D
 		}
 	}
 
-	private void GeneratePartitionTree()
+	public void GeneratePartitionTree()
 	{
 		Clear();
-		_levelTileMap.Clear();
 		_minDivisiblePartitionSize = _minPartitionSize * (_maxPartitionDivision - 1);
 		_root = new(new(0, 0), _levelSize, 0);
 		SplitRecursive(_root);
 		FindLeafNodes(_root);
 		// QueueRedraw();
-		EmitSignalPartitionsGenerated();
 	}
 
 	private void SplitRecursive(TreeNode node)
