@@ -18,17 +18,19 @@ public class Room(Vector2I positionTopLeft, Vector2I positionBotRight)
     public Vector2I PositionBotRight = positionBotRight;
 }
 
-public partial class RoomGenerator : Node2D
+public partial class RoomGenerator : Node
 {
     
     [Export] private PartitionTreeGenerator _partitionTreeGenerator;
-    [Export] private LevelTileMap _levelTileMap;
+    
+    private LevelTileMap _levelTileMap;
 
     private readonly List<Room> _rooms = [];
 
-    public void GenerateRooms()
+    public void GenerateRooms(LevelTileMap ltm)
     {
         Clear();
+        _levelTileMap = ltm;
         List<TreeNode> leafNodes = _partitionTreeGenerator.GetLeafNodes();
         for (int i = 0; i < leafNodes.Count; i++)
         {

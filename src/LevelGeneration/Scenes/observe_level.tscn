@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dur8aqb0jjm56"]
+
+[ext_resource type="PackedScene" uid="uid://cytylylmxd12d" path="res://LevelGeneration/Scenes/observer_camera.tscn" id="1_5rwqj"]
+[ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/Scenes/tilemap.tscn" id="2_hhjse"]
+[ext_resource type="PackedScene" uid="uid://bckrlmbkfl5ds" path="res://LevelGeneration/Scenes/level_generation_manager.tscn" id="3_0vwig"]
+
+[node name="ObserveLevel" type="Node2D" unique_id=1154545649]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=734058329]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=1915393476]
+offset_right = 31.0
+offset_bottom = 36.0
+
+[node name="GenerateButton" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=1018931279]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "Generate"
+
+[node name="ObserverCamera" parent="." unique_id=535179323 instance=ExtResource("1_5rwqj")]
+position = Vector2(160, 90)
+
+[node name="LevelTileMap" parent="." unique_id=934304012 instance=ExtResource("2_hhjse")]
+
+[node name="LevelGenerationManager" parent="." unique_id=1425433263 node_paths=PackedStringArray("_levelTileMap") instance=ExtResource("3_0vwig")]
+_levelTileMap = NodePath("../LevelTileMap")

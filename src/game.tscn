@@ -1,0 +1,85 @@
+[gd_scene format=3 uid="uid://dgs7dxfh2mat2"]
+
+[ext_resource type="PackedScene" uid="uid://bckrlmbkfl5ds" path="res://LevelGeneration/Scenes/level_generation_manager.tscn" id="1_80nbo"]
+[ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/Scenes/tilemap.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://2xuc5762q6rs" path="res://Menus/MainMenu.cs" id="3_feb5d"]
+
+[node name="Game" type="Node" unique_id=1125093093]
+
+[node name="Systems" type="Node" parent="." unique_id=511504243]
+
+[node name="LevelGenerationManager" parent="Systems" unique_id=487379704 node_paths=PackedStringArray("_levelTileMap", "_entitiesRoot") instance=ExtResource("1_80nbo")]
+_levelTileMap = NodePath("../../World/Level/LevelTileMap")
+_entitiesRoot = NodePath("../../World/Entities")
+
+[node name="World" type="Node2D" parent="." unique_id=1023422311]
+
+[node name="Level" type="Node2D" parent="World" unique_id=1263073047]
+
+[node name="LevelTileMap" parent="World/Level" unique_id=934304012 instance=ExtResource("2_e2o6t")]
+
+[node name="Entities" type="Node2D" parent="World" unique_id=2100609374]
+
+[node name="Effects" type="Node2D" parent="World" unique_id=798018412]
+
+[node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1640094315]
+layer = 10
+
+[node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1741614205]
+layer = 20
+
+[node name="MainMenu" type="Control" parent="MenuLayer" unique_id=345926528 node_paths=PackedStringArray("_levelGenerationManager")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_feb5d")
+_levelGenerationManager = NodePath("../../Systems/LevelGenerationManager")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenu" unique_id=551474706]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -35.0
+offset_top = -64.0
+offset_right = 35.0
+offset_bottom = 64.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MenuLayer/MainMenu/VBoxContainer" unique_id=2001358918]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Loot Goblin"
+
+[node name="PlayButton" type="Button" parent="MenuLayer/MainMenu/VBoxContainer" unique_id=1660161155]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Play"
+
+[node name="SettingsButton" type="Button" parent="MenuLayer/MainMenu/VBoxContainer" unique_id=632633234]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Settings"
+
+[node name="QuitButton" type="Button" parent="MenuLayer/MainMenu/VBoxContainer" unique_id=1849060577]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Quit"
+
+[node name="PauseMenu" type="Control" parent="MenuLayer" unique_id=1263264259]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=855070657]
+layer = 30
+
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=391513325]
+layer = 40

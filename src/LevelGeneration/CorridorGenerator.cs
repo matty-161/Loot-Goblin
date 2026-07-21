@@ -5,17 +5,19 @@ using Range = System.Range;
 
 namespace LootGoblin.LevelGeneration;
 
-public partial class CorridorGenerator : Node2D
+public partial class CorridorGenerator : Node
 {
 	
 	[Export] private PartitionTreeGenerator _partitionTreeGenerator;
 	[Export] private RoomGenerator _roomGenerator;
-	[Export] private LevelTileMap _levelTileMap;
+	
+	private LevelTileMap _levelTileMap;
 
 	private TreeNode _root;
 
-	public void GenerateCorridors()
+	public void GenerateCorridors(LevelTileMap ltm)
 	{
+		_levelTileMap = ltm;
 		_root = _partitionTreeGenerator.GetRoot();
 		TraverseTree(_root);
 	}

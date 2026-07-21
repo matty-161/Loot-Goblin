@@ -16,10 +16,10 @@ public partial class InteriorGenerator : Node
     [Export] private PackedScene _bossScene;
     [Export] private PackedScene _coinScene;
 
-    public void GenerateInteriors()
+    public void GenerateInteriors(Node2D entitiesRoot)
     {
         SelectRooms();
-        PlaceRoomStuff();
+        PlaceRoomStuff(entitiesRoot);
     }
 
     private void SelectRooms()
@@ -44,7 +44,7 @@ public partial class InteriorGenerator : Node
         }
     }
 
-    private void PlaceRoomStuff()
+    private void PlaceRoomStuff(Node2D entitiesRoot)
     {
         List<Room> rooms = _roomGenerator.GetRooms();
         
@@ -53,18 +53,18 @@ public partial class InteriorGenerator : Node
             switch (room.Type)
             {
                 case Room.RoomType.Spawn:
-                    Sprite2D player = _playerScene.Instantiate<Sprite2D>();
-                    AddChild(player);
+                    CharacterBody2D player = _playerScene.Instantiate<CharacterBody2D>();
+                    entitiesRoot.AddChild(player);
                     player.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     break;
                 case Room.RoomType.Boss:
                     Sprite2D boss = _bossScene.Instantiate<Sprite2D>();
-                    AddChild(boss);
+                    entitiesRoot.AddChild(boss);
                     boss.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     break;
                 case Room.RoomType.Treasure:
                     Sprite2D coin = _coinScene.Instantiate<Sprite2D>();
-                    AddChild(coin);
+                    entitiesRoot.AddChild(coin);
                     coin.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     break;
                 default:

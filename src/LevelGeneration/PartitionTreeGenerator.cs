@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using Godot;
 namespace LootGoblin.LevelGeneration;
 
-public partial class PartitionTreeGenerator : Node2D
+public partial class PartitionTreeGenerator : Node
 {
 	
 	[Export] private Vector2I _levelSize = new(50, 50);
@@ -15,21 +15,21 @@ public partial class PartitionTreeGenerator : Node2D
 	private readonly List<TreeNode> _nodes = [];
 	private readonly List<TreeNode> _leafNodes = [];
 
-	public override void _Draw()
-	{
-		DrawRect(new Rect2(new Vector2(0,0), _levelSize * LevelTileMap.TileSize), new (0,0,0));
-	
-		for (int i = 0; i < _leafNodes.Count; i++)
-		{
-			DrawRect(new Rect2(_leafNodes[i].Position * LevelTileMap.TileSize, 
-				_leafNodes[i].Dimensions * LevelTileMap.TileSize), 
-				new Color(GD.Randf(), GD.Randf(), GD.Randf()));
-			
-			DrawString(ThemeDB.FallbackFont, 
-				(_leafNodes[i].Position + _leafNodes[i].Dimensions / 2) * LevelTileMap.TileSize, 
-				_leafNodes[i].Dimensions.ToString());
-		}
-	}
+	// public override void _Draw()
+	// {
+	// 	DrawRect(new Rect2(new Vector2(0,0), _levelSize * LevelTileMap.TileSize), new (0,0,0));
+	//
+	// 	for (int i = 0; i < _leafNodes.Count; i++)
+	// 	{
+	// 		DrawRect(new Rect2(_leafNodes[i].Position * LevelTileMap.TileSize, 
+	// 			_leafNodes[i].Dimensions * LevelTileMap.TileSize), 
+	// 			new Color(GD.Randf(), GD.Randf(), GD.Randf()));
+	// 		
+	// 		DrawString(ThemeDB.FallbackFont, 
+	// 			(_leafNodes[i].Position + _leafNodes[i].Dimensions / 2) * LevelTileMap.TileSize, 
+	// 			_leafNodes[i].Dimensions.ToString());
+	// 	}
+	// }
 
 	public void GeneratePartitionTree()
 	{
