@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
+using LootGoblin.LevelGeneration.Scenes.Treasure;
 
 namespace LootGoblin.LevelGeneration;
 
@@ -63,7 +64,7 @@ public partial class InteriorGenerator : Node
                     boss.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     break;
                 case Room.RoomType.Treasure:
-                    Sprite2D coin = _coinScene.Instantiate<Sprite2D>();
+                    LootCollectable coin = _coinScene.Instantiate<LootCollectable>();
                     entitiesRoot.AddChild(coin);
                     coin.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     break;

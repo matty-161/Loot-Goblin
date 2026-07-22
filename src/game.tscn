@@ -2,7 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://bckrlmbkfl5ds" path="res://LevelGeneration/Scenes/level_generation_manager.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/Scenes/tilemap.tscn" id="2_e2o6t"]
+[ext_resource type="Script" uid="uid://dk0smpsl2qomi" path="res://Systems/TreasureManager.cs" id="2_fc0e3"]
 [ext_resource type="Script" uid="uid://2xuc5762q6rs" path="res://Menus/MainMenu.cs" id="3_feb5d"]
+[ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/TreasureLabel.cs" id="4_7jktm"]
 
 [node name="Game" type="Node" unique_id=1125093093]
 
@@ -11,6 +13,9 @@
 [node name="LevelGenerationManager" parent="Systems" unique_id=487379704 node_paths=PackedStringArray("_levelTileMap", "_entitiesRoot") instance=ExtResource("1_80nbo")]
 _levelTileMap = NodePath("../../World/Level/LevelTileMap")
 _entitiesRoot = NodePath("../../World/Entities")
+
+[node name="TreasureManager" type="Node" parent="Systems" unique_id=129810786]
+script = ExtResource("2_fc0e3")
 
 [node name="World" type="Node2D" parent="." unique_id=1023422311]
 
@@ -24,6 +29,22 @@ _entitiesRoot = NodePath("../../World/Entities")
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1640094315]
 layer = 10
+
+[node name="HUDRoot" type="Control" parent="HUDLayer" unique_id=1563786998]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TreasureLabel" type="Label" parent="HUDLayer/HUDRoot" unique_id=1196518641]
+layout_mode = 1
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 26.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 8
+text = "Loot: "
+script = ExtResource("4_7jktm")
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1741614205]
 layer = 20
@@ -71,12 +92,6 @@ text = "Settings"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
-
-[node name="PauseMenu" type="Control" parent="MenuLayer" unique_id=1263264259]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=855070657]
 layer = 30

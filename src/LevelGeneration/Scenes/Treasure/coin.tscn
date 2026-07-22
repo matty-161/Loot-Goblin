@@ -1,6 +1,25 @@
 [gd_scene format=3 uid="uid://b155plm47e5w0"]
 
+[ext_resource type="Script" uid="uid://cm5mbj131x3xk" path="res://LevelGeneration/Scenes/Treasure/LootCollectable.cs" id="1_hhchb"]
 [ext_resource type="Texture2D" uid="uid://b16abj1ewh5uh" path="res://LevelGeneration/Assets/gold_coin.png" id="1_ibj7t"]
+[ext_resource type="Script" uid="uid://go3ni8dhnt17" path="res://LevelGeneration/Scenes/Treasure/LootResource.cs" id="2_hh114"]
 
-[node name="Coin" type="Sprite2D" unique_id=2023437646]
+[sub_resource type="Resource" id="Resource_7jktm"]
+script = ExtResource("2_hh114")
+Amount = 1
+metadata/_custom_type_script = "uid://go3ni8dhnt17"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jfmy4"]
+radius = 8.0
+
+[node name="Coin" type="Area2D" unique_id=1660724771]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_hhchb")
+LootResource = SubResource("Resource_7jktm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=470284286]
+shape = SubResource("CircleShape2D_jfmy4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2023437646]
 texture = ExtResource("1_ibj7t")

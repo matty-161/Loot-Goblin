@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dhf1w00kgcvmi" path="res://Player/PlayerController.cs" id="1_rg7kn"]
 [ext_resource type="Texture2D" uid="uid://2i5iufxwo1pi" path="res://Player/Assets/goblin-Sheet.png" id="2_rg7kn"]
+[ext_resource type="Script" uid="uid://c4u7dv88x1exk" path="res://Player/TreasureCollectionComponent.cs" id="3_52sos"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfmy4"]
 size = Vector2(6, 14)
@@ -61,6 +62,9 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rg7kn"]
+radius = 8.0
+
 [node name="Player" type="CharacterBody2D" unique_id=118906777]
 motion_mode = 1
 script = ExtResource("1_rg7kn")
@@ -77,3 +81,11 @@ frame_progress = 0.91222256
 offset = Vector2(0, -6)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=669672191]
+
+[node name="TreasureCollectionComponent" type="Area2D" parent="." unique_id=148509588]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_52sos")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureCollectionComponent" unique_id=86428857]
+shape = SubResource("CircleShape2D_rg7kn")
