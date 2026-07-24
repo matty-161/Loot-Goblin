@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dhf1w00kgcvmi" path="res://Player/PlayerController.cs" id="1_rg7kn"]
 [ext_resource type="Texture2D" uid="uid://2i5iufxwo1pi" path="res://Player/Assets/goblin-Sheet.png" id="2_rg7kn"]
-[ext_resource type="Script" uid="uid://c4u7dv88x1exk" path="res://Player/TreasureCollectionComponent.cs" id="3_52sos"]
+[ext_resource type="Script" uid="uid://c4u7dv88x1exk" path="res://Player/LootCollectionComponent.cs" id="3_52sos"]
+[ext_resource type="Script" uid="uid://b2ugtxlkkh7sf" path="res://Player/WeaponSlot.cs" id="4_bw35f"]
+[ext_resource type="PackedScene" uid="uid://cpod8kcdxhpqm" path="res://Weapons/Scenes/dagger.tscn" id="4_omv0o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jfmy4"]
 size = Vector2(6, 14)
@@ -89,3 +91,9 @@ script = ExtResource("3_52sos")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureCollectionComponent" unique_id=86428857]
 shape = SubResource("CircleShape2D_rg7kn")
+
+[node name="WeaponSlot" type="Node2D" parent="." unique_id=284987682 node_paths=PackedStringArray("_weapon")]
+script = ExtResource("4_bw35f")
+_weapon = NodePath("Dagger")
+
+[node name="Dagger" parent="WeaponSlot" unique_id=267982652 instance=ExtResource("4_omv0o")]
