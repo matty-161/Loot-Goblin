@@ -24,7 +24,7 @@ public partial class WeaponSlot : Node2D
 			LookAt(GetGlobalMousePosition());
 			_weapon.SetWeaponSlotRotation(Rotation);
 		}
-		GD.Print(Rotation % (Math.PI * 2));
+		// GD.Print(Rotation % (Math.PI * 2));
 	}
 
 	public override void _ExitTree()

@@ -9,17 +9,27 @@ namespace LootGoblin.LevelGeneration;
 
 public partial class InteriorGenerator : Node
 {
-    [Export] private Godot.Collections.Dictionary<StringName, int> _roomTypes = new();
+    
+    private RoomGenerator _roomGenerator;
+    private CorridorGenerator _corridorGenerator;
 
-    [Export] private RoomGenerator _roomGenerator;
-    [Export] private CorridorGenerator _corridorGenerator;
+    private PackedScene _playerScene;
+    private PackedScene _bossScene;
+    private PackedScene _coinScene;
 
-    [Export] private PackedScene _playerScene;
-    [Export] private PackedScene _bossScene;
-    [Export] private PackedScene _coinScene;
-
-    public void GenerateInteriors(Node2D entitiesRoot)
+    public void GenerateInteriors(
+        Node2D entitiesRoot,
+        RoomGenerator rg,
+        CorridorGenerator cg,
+        PackedScene playerScene,
+        PackedScene bossScene,
+        PackedScene coinScene)
     {
+        _roomGenerator = rg;
+        _corridorGenerator = cg;
+        _playerScene = playerScene;
+        _bossScene = bossScene;
+        _coinScene = coinScene;
         SelectRooms();
         PlaceRoomStuff(entitiesRoot);
     }

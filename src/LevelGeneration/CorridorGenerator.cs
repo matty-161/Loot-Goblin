@@ -8,16 +8,18 @@ namespace LootGoblin.LevelGeneration;
 public partial class CorridorGenerator : Node
 {
 	
-	[Export] private PartitionTreeGenerator _partitionTreeGenerator;
-	[Export] private RoomGenerator _roomGenerator;
+	private PartitionTreeGenerator _partitionTreeGenerator;
+	private RoomGenerator _roomGenerator;
 	
 	private LevelTileMap _levelTileMap;
 
 	private TreeNode _root;
 
-	public void GenerateCorridors(LevelTileMap ltm)
+	public void GenerateCorridors(LevelTileMap ltm, PartitionTreeGenerator ptg, RoomGenerator rg)
 	{
 		_levelTileMap = ltm;
+		_partitionTreeGenerator = ptg;
+		_roomGenerator = rg;
 		_root = _partitionTreeGenerator.GetRoot();
 		TraverseTree(_root);
 	}

@@ -13,17 +13,10 @@ public partial class LootCollectionComponent : Area2D
 		AreaEntered += OnAreaEntered;
 	}
 
-	public override void _ExitTree()
-	{
-		AreaExited -= OnAreaEntered;
-	}
-
 	private void OnAreaEntered(Area2D area)
 	{
-		if (area is LootCollectable collectable)
-		{
-			GameplaySignalBus.Instance.EmitSignal("LootCollected", collectable.LootResource.Amount);
-			collectable.QueueFree();
-		}
+		if (area is not LootCollectable collectable) return;
+		GameplaySignalBus.Instance.LootCollectedEvent?.Invoke(collectable.LootResource.Amount);
+		collectable.QueueFree();
 	}
 }

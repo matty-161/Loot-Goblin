@@ -6,9 +6,10 @@ namespace LootGoblin.LevelGeneration;
 public partial class PartitionTreeGenerator : Node
 {
 	
-	[Export] private Vector2I _levelSize = new(50, 50);
-	[Export] private int _minPartitionSize = 10;
-	[Export] private int _maxPartitionDivision = 4; // this is the most a partition can be divided by
+	private Vector2I _levelSize = new(50, 50);
+	private int _minPartitionSize = 10;
+	private int _maxPartitionDivision = 4; // this is the most a partition can be divided by
+	
 	private int _minDivisiblePartitionSize;
 	
 	private TreeNode _root;
@@ -31,9 +32,14 @@ public partial class PartitionTreeGenerator : Node
 	// 	}
 	// }
 
-	public void GeneratePartitionTree()
+	public void GeneratePartitionTree(Vector2I levelSize, int minPartitionSize, int maxPartitionDivision)
 	{
 		Clear();
+		
+		_levelSize = levelSize;
+		_minPartitionSize = minPartitionSize;
+		_maxPartitionDivision = maxPartitionDivision;
+		
 		_minDivisiblePartitionSize = _minPartitionSize * (_maxPartitionDivision - 1);
 		_root = new(new(0, 0), _levelSize, 0);
 		SplitRecursive(_root);

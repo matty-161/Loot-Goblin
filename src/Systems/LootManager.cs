@@ -14,7 +14,7 @@ public partial class LootManager : Node
         set
         {
             _lootTotal = value;
-            GameplaySignalBus.Instance.EmitSignal("LootChanged", _lootTotal);
+            GameplaySignalBus.Instance.LootChangedEvent?.Invoke(_lootTotal);
         }
     }
 
@@ -30,7 +30,7 @@ public partial class LootManager : Node
     
     private void OnLootCollectedEvent(int amount)
     {
-        LootTotal -= amount;
+        LootTotal += amount;
     }
 
 }

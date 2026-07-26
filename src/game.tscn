@@ -2,15 +2,21 @@
 
 [ext_resource type="PackedScene" uid="uid://bckrlmbkfl5ds" path="res://LevelGeneration/Scenes/level_generation_manager.tscn" id="1_80nbo"]
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/Scenes/tilemap.tscn" id="2_e2o6t"]
-[ext_resource type="Script" uid="uid://dk0smpsl2qomi" path="res://Systems/TreasureManager.cs" id="2_fc0e3"]
+[ext_resource type="Script" uid="uid://dk0smpsl2qomi" path="res://Systems/LootManager.cs" id="2_fc0e3"]
+[ext_resource type="PackedScene" uid="uid://brui0obmqftby" path="res://Player/Scenes/player.tscn" id="2_j5wjh"]
 [ext_resource type="Script" uid="uid://2xuc5762q6rs" path="res://Menus/MainMenu.cs" id="3_feb5d"]
-[ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/TreasureLabel.cs" id="4_7jktm"]
+[ext_resource type="PackedScene" uid="uid://dx8krqjvxapad" path="res://Enemies/Scenes/boss_enemy.tscn" id="3_vef74"]
+[ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="4_7jktm"]
+[ext_resource type="PackedScene" uid="uid://b155plm47e5w0" path="res://LevelGeneration/Scenes/Treasure/coin.tscn" id="4_hve3p"]
 
 [node name="Game" type="Node" unique_id=1125093093]
 
 [node name="Systems" type="Node" parent="." unique_id=511504243]
 
 [node name="LevelGenerationManager" parent="Systems" unique_id=487379704 node_paths=PackedStringArray("_levelTileMap", "_entitiesRoot") instance=ExtResource("1_80nbo")]
+_playerScene = ExtResource("2_j5wjh")
+_bossScene = ExtResource("3_vef74")
+_coinScene = ExtResource("4_hve3p")
 _levelTileMap = NodePath("../../World/Level/LevelTileMap")
 _entitiesRoot = NodePath("../../World/Entities")
 
