@@ -1,6 +1,0 @@
-[gd_scene format=3 uid="uid://dx8krqjvxapad"]
-
-[ext_resource type="Texture2D" uid="uid://dh6ua4gaib7q0" path="res://Enemies/Assets/placeholder_enemy.png" id="1_0hqd8"]
-
-[node name="BasicEnemy" type="Sprite2D" unique_id=73863645]
-texture = ExtResource("1_0hqd8")

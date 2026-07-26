@@ -6,7 +6,7 @@
 [ext_resource type="Script" uid="uid://qfyda2antryt" path="res://LevelGeneration/CorridorGenerator.cs" id="4_4vdp3"]
 [ext_resource type="Script" uid="uid://dyjr70hbhvpj7" path="res://LevelGeneration/InteriorGenerator.cs" id="5_mqi8a"]
 [ext_resource type="PackedScene" uid="uid://brui0obmqftby" path="res://Player/Scenes/player.tscn" id="6_f4ey4"]
-[ext_resource type="PackedScene" uid="uid://dx8krqjvxapad" path="res://Enemies/Scenes/basic_enemy.tscn" id="7_g6vag"]
+[ext_resource type="PackedScene" uid="uid://dx8krqjvxapad" path="res://Enemies/Scenes/boss_enemy.tscn" id="7_g6vag"]
 [ext_resource type="PackedScene" uid="uid://b155plm47e5w0" path="res://LevelGeneration/Scenes/Treasure/coin.tscn" id="8_a54ll"]
 
 [node name="LevelGenerationManager" type="Node" unique_id=487379704 node_paths=PackedStringArray("_partitionTreeGenerator", "_roomGenerator", "_corridorGenerator", "_interiorGenerator")]
@@ -18,7 +18,6 @@ _interiorGenerator = NodePath("InteriorGenerator")
 
 [node name="PartitionTreeGenerator" type="Node" parent="." unique_id=362483173]
 script = ExtResource("2_77ivo")
-_levelSize = Vector2i(100, 100)
 
 [node name="RoomGenerator" type="Node" parent="." unique_id=218902398 node_paths=PackedStringArray("_partitionTreeGenerator")]
 script = ExtResource("3_afkop")
