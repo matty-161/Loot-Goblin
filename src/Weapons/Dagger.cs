@@ -6,11 +6,9 @@ namespace LootGoblin.Weapons;
 
 public partial class Dagger : Node2D
 {
-	[Signal]
-	public delegate void AttackStartedEventHandler();
+	public Action AttackStartedEvent;
 
-	[Signal]
-	public delegate void AttackEndedEventHandler();
+	public Action AttackEndedEvent;
 	
 	[Export] private int _damage = 1;
 	
@@ -30,7 +28,7 @@ public partial class Dagger : Node2D
 
 	private void Attack()
 	{
-		EmitSignalAttackStarted();
+		AttackStartedEvent?.Invoke();
 		_sprite.Hide();
 		_tween?.Kill();
 		Rotation = 0;
@@ -50,7 +48,8 @@ public partial class Dagger : Node2D
 		}
 		
 		_tween.TweenProperty(_sprite, "visible", false, 0);
-		_tween.TweenCallback(Callable.From(EmitSignalAttackEnded));
+		if (AttackEndedEvent != null)
+			_tween.TweenCallback(Callable.From(AttackEndedEvent.Invoke));
 	}
 
 	public override void _UnhandledInput(InputEvent @event)

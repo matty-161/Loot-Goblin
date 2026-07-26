@@ -12,15 +12,9 @@ public partial class WeaponSlot : Node2D
 
 	public override void _Ready()
 	{
-		_weapon.AttackStarted += () =>
-		{
-			LookAt(GetGlobalMousePosition());
-			_weapon.SetWeaponSlotRotation(Rotation);
-			_isAttacking = true;
-		};
-		_weapon.AttackEnded +=  () => _isAttacking = false;
+		_weapon.AttackStartedEvent += OnAttackStartedEvent;
+		_weapon.AttackEndedEvent += OnAttackEndedEvent;
 	}
-
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
@@ -31,5 +25,23 @@ public partial class WeaponSlot : Node2D
 			_weapon.SetWeaponSlotRotation(Rotation);
 		}
 		GD.Print(Rotation % (Math.PI * 2));
+	}
+
+	public override void _ExitTree()
+	{
+		_weapon.AttackStartedEvent -= OnAttackStartedEvent;
+		_weapon.AttackEndedEvent -= OnAttackEndedEvent;
+	}
+
+	private void OnAttackStartedEvent()
+	{
+		LookAt(GetGlobalMousePosition());
+		_weapon.SetWeaponSlotRotation(Rotation);
+		_isAttacking = true;
+	}
+
+	private void OnAttackEndedEvent()
+	{
+		_isAttacking = false;
 	}
 }

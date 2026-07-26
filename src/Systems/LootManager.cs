@@ -20,10 +20,17 @@ public partial class LootManager : Node
 
     public override void _Ready()
     {
-        GameplaySignalBus.Instance.LootCollected += (int amount) =>
-        {
-            LootTotal += amount;
-        };
+        GameplaySignalBus.Instance.LootCollectedEvent += OnLootCollectedEvent;
+    }
+
+    public override void _ExitTree()
+    {
+        GameplaySignalBus.Instance.LootCollectedEvent -= OnLootCollectedEvent;
+    }
+    
+    private void OnLootCollectedEvent(int amount)
+    {
+        LootTotal -= amount;
     }
 
 }

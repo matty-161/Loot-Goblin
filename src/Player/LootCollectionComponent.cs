@@ -13,6 +13,11 @@ public partial class LootCollectionComponent : Area2D
 		AreaEntered += OnAreaEntered;
 	}
 
+	public override void _ExitTree()
+	{
+		AreaExited -= OnAreaEntered;
+	}
+
 	private void OnAreaEntered(Area2D area)
 	{
 		if (area is LootCollectable collectable)

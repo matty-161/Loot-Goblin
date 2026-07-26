@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace LootGoblin.Autoloads;
@@ -12,6 +13,6 @@ public partial class GameplaySignalBus : Node
     }
     
     // loot events
-    [Signal] public delegate void LootChangedEventHandler(int amount);
-    [Signal] public delegate void LootCollectedEventHandler(int amount);
+    public Action<int> LootChangedEvent;
+    public Action<int> LootCollectedEvent;
 }

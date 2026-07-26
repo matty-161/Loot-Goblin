@@ -16,6 +16,11 @@ public partial class MainMenu : Control
 		_playButton.Pressed += StartGame;
 	}
 
+	public override void _ExitTree()
+	{
+		_playButton.Pressed -= StartGame;
+	}
+
 	private void StartGame()
 	{
 		GD.Print("Game started");
