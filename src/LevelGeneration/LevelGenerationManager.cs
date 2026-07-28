@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using LootGoblin.Autoloads;
 
 namespace LootGoblin.LevelGeneration;
 
@@ -13,6 +14,7 @@ public partial class LevelGenerationManager : Node
     [ExportCategory("Spawnable Scenes")]
     [Export] private PackedScene _playerScene;
     [Export] private PackedScene _bossScene;
+    [Export] private PackedScene _levelExitScene;
     [Export] private PackedScene _coinScene;
     
     [ExportCategory("Node References")]
@@ -25,14 +27,19 @@ public partial class LevelGenerationManager : Node
     [Export] private CorridorGenerator _corridorGenerator;
     [Export] private InteriorGenerator _interiorGenerator;
     
-    private Button _generateButton;
     
-    // // Called when the node enters the scene tree for the first time.
-    // public override void _Ready()
-    // {
-    //     _generateButton =  GetNode<Button>("%GenerateButton");
-    //     _generateButton.Pressed += GenerateLevel;
-    // }
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        GameplaySignalBus.Instance.LevelTransitionEvent += ClearLevel;
+        GameplaySignalBus.Instance.LevelTransitionFadeInEvent += GenerateLevel;
+    }
+
+    public override void _ExitTree()
+    {
+        GameplaySignalBus.Instance.LevelTransitionEvent -= ClearLevel;
+        GameplaySignalBus.Instance.LevelTransitionFadeInEvent -= GenerateLevel;
+    }
 
     public void GenerateLevel()
     {
@@ -41,6 +48,11 @@ public partial class LevelGenerationManager : Node
         _corridorGenerator.GenerateCorridors(_levelTileMap, _partitionTreeGenerator, _roomGenerator);
         _interiorGenerator.GenerateInteriors(
             _entitiesRoot, _roomGenerator, _corridorGenerator,
-            _playerScene, _bossScene, _coinScene);
+            _playerScene, _bossScene, _levelExitScene, _coinScene);
+    }
+
+    private void ClearLevel()
+    {
+        _levelTileMap.Clear();
     }
 }

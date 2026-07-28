@@ -1,7 +1,7 @@
 using Godot;
 using System;
 using LootGoblin.Autoloads;
-using LootGoblin.LevelGeneration.Scenes.Treasure;
+using LootGoblin.LevelGeneration.LevelContents.Treasure;
 
 namespace LootGoblin.Player;
 

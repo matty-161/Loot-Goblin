@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
 using LootGoblin.Enemies;
-using LootGoblin.LevelGeneration.Scenes.Treasure;
+using LootGoblin.LevelGeneration.LevelContents;
+using LootGoblin.LevelGeneration.LevelContents.Treasure;
 
 namespace LootGoblin.LevelGeneration;
 
@@ -15,6 +16,7 @@ public partial class InteriorGenerator : Node
 
     private PackedScene _playerScene;
     private PackedScene _bossScene;
+    private PackedScene _levelExitScene;
     private PackedScene _coinScene;
 
     public void GenerateInteriors(
@@ -23,12 +25,14 @@ public partial class InteriorGenerator : Node
         CorridorGenerator cg,
         PackedScene playerScene,
         PackedScene bossScene,
+        PackedScene levelExitScene,
         PackedScene coinScene)
     {
         _roomGenerator = rg;
         _corridorGenerator = cg;
         _playerScene = playerScene;
         _bossScene = bossScene;
+        _levelExitScene = levelExitScene;
         _coinScene = coinScene;
         SelectRooms();
         PlaceRoomStuff(entitiesRoot);
@@ -73,6 +77,10 @@ public partial class InteriorGenerator : Node
                     BossEnemy boss = _bossScene.Instantiate<BossEnemy>();
                     entitiesRoot.AddChild(boss);
                     boss.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
+                    
+                    LevelExit exit = _levelExitScene.Instantiate<LevelExit>();
+                    entitiesRoot.AddChild(exit);
+                    exit.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     break;
                 case Room.RoomType.Treasure:
                     LootCollectable coin = _coinScene.Instantiate<LootCollectable>();

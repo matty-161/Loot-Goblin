@@ -1,12 +1,12 @@
 using System;
 using Godot;
+using LootGoblin.Autoloads;
 using LootGoblin.Globals;
 
 namespace LootGoblin.Enemies;
 
 public partial class BossEnemy : CharacterBody2D, IDamageable
 {
-	public event Action<IDamageable> DeathEvent;
 	
 	[Export] public int Health { get; set; }
 	[Export] public Hurtbox2D Hurtbox { get; set; }
@@ -29,7 +29,7 @@ public partial class BossEnemy : CharacterBody2D, IDamageable
 
 	public void OnDeath()
 	{
-		DeathEvent?.Invoke(this);
+		GameplaySignalBus.Instance.LevelBossDiedEvent?.Invoke();
 		QueueFree();
 	}
 }

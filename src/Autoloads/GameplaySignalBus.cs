@@ -15,4 +15,10 @@ public partial class GameplaySignalBus : Node
     // loot events
     public Action<int> LootChangedEvent;
     public Action<int> LootCollectedEvent;
+    
+    // level events
+    public Action LevelBossDiedEvent;
+    public Action LevelTransitionFadeOutEvent;
+    public Action LevelTransitionEvent;
+    public Action LevelTransitionFadeInEvent;
 }

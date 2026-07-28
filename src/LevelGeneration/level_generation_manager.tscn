@@ -5,9 +5,6 @@
 [ext_resource type="Script" uid="uid://clv47kfb32sle" path="res://LevelGeneration/RoomGenerator.cs" id="3_afkop"]
 [ext_resource type="Script" uid="uid://qfyda2antryt" path="res://LevelGeneration/CorridorGenerator.cs" id="4_4vdp3"]
 [ext_resource type="Script" uid="uid://dyjr70hbhvpj7" path="res://LevelGeneration/InteriorGenerator.cs" id="5_mqi8a"]
-[ext_resource type="PackedScene" uid="uid://brui0obmqftby" path="res://Player/Scenes/player.tscn" id="6_f4ey4"]
-[ext_resource type="PackedScene" uid="uid://dx8krqjvxapad" path="res://Enemies/Scenes/boss_enemy.tscn" id="7_g6vag"]
-[ext_resource type="PackedScene" uid="uid://b155plm47e5w0" path="res://LevelGeneration/Scenes/Treasure/coin.tscn" id="8_a54ll"]
 
 [node name="LevelGenerationManager" type="Node" unique_id=487379704 node_paths=PackedStringArray("_partitionTreeGenerator", "_roomGenerator", "_corridorGenerator", "_interiorGenerator")]
 script = ExtResource("1_kkkhv")
@@ -19,23 +16,11 @@ _interiorGenerator = NodePath("InteriorGenerator")
 [node name="PartitionTreeGenerator" type="Node" parent="." unique_id=362483173]
 script = ExtResource("2_77ivo")
 
-[node name="RoomGenerator" type="Node" parent="." unique_id=218902398 node_paths=PackedStringArray("_partitionTreeGenerator")]
+[node name="RoomGenerator" type="Node" parent="." unique_id=218902398]
 script = ExtResource("3_afkop")
-_partitionTreeGenerator = NodePath("../PartitionTreeGenerator")
 
-[node name="CorridorGenerator" type="Node" parent="." unique_id=873639820 node_paths=PackedStringArray("_partitionTreeGenerator", "_roomGenerator")]
+[node name="CorridorGenerator" type="Node" parent="." unique_id=873639820]
 script = ExtResource("4_4vdp3")
-_partitionTreeGenerator = NodePath("../PartitionTreeGenerator")
-_roomGenerator = NodePath("../RoomGenerator")
 
-[node name="InteriorGenerator" type="Node" parent="." unique_id=554409190 node_paths=PackedStringArray("_roomGenerator", "_corridorGenerator")]
+[node name="InteriorGenerator" type="Node" parent="." unique_id=554409190]
 script = ExtResource("5_mqi8a")
-_roomTypes = Dictionary[StringName, int]({
-&"boss": 1,
-&"spawn": 1
-})
-_roomGenerator = NodePath("../RoomGenerator")
-_corridorGenerator = NodePath("../CorridorGenerator")
-_playerScene = ExtResource("6_f4ey4")
-_bossScene = ExtResource("7_g6vag")
-_coinScene = ExtResource("8_a54ll")

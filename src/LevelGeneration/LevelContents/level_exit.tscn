@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://3i1xxyq8gmqj"]
+
+[ext_resource type="Script" uid="uid://bfadbt6mp4hj1" path="res://LevelGeneration/LevelContents/LevelExit.cs" id="1_0qv6v"]
+[ext_resource type="Texture2D" uid="uid://c1gsoofw57i7a" path="res://LevelGeneration/Assets/ladder.png" id="1_p74l8"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jfmy4"]
+
+[node name="LevelExit" type="Area2D" unique_id=1864362194]
+collision_layer = 0
+script = ExtResource("1_0qv6v")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=68968492]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_jfmy4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=769747301]
+position = Vector2(0, -16)
+texture = ExtResource("1_p74l8")

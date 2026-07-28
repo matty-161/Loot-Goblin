@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://b155plm47e5w0"]
 
-[ext_resource type="Script" uid="uid://cm5mbj131x3xk" path="res://LevelGeneration/Scenes/Treasure/LootCollectable.cs" id="1_hhchb"]
+[ext_resource type="Script" uid="uid://cm5mbj131x3xk" path="res://LevelGeneration/LevelContents/Treasure/LootCollectable.cs" id="1_hhchb"]
 [ext_resource type="Texture2D" uid="uid://b16abj1ewh5uh" path="res://LevelGeneration/Assets/gold_coin.png" id="1_ibj7t"]
-[ext_resource type="Script" uid="uid://go3ni8dhnt17" path="res://LevelGeneration/Scenes/Treasure/LootResource.cs" id="2_hh114"]
+[ext_resource type="Script" uid="uid://go3ni8dhnt17" path="res://LevelGeneration/LevelContents/Treasure/LootResource.cs" id="2_hh114"]
+
 
 [sub_resource type="Resource" id="Resource_7jktm"]
 script = ExtResource("2_hh114")
