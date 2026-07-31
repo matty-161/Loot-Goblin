@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uohprxs845kp"
-path="res://.godot/imported/gobu walk.png-10220ea85ad6f0403c5379d38caa8b15.ctex"
+uid="uid://nojw1k7idsp2"
+path="res://.godot/imported/Spritesheet_with_Shadows.png-d0c7c6d26e36cde2455c095ea14790b7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Assets/gobu walk.png"
-dest_files=["res://.godot/imported/gobu walk.png-10220ea85ad6f0403c5379d38caa8b15.ctex"]
+source_file="res://Characters/Enemies/Assets/Free Pixel Knight/Spritesheet_with_Shadows.png"
+dest_files=["res://.godot/imported/Spritesheet_with_Shadows.png-d0c7c6d26e36cde2455c095ea14790b7.ctex"]
 
 [params]
 

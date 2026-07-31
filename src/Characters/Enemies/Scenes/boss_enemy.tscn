@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://dx8krqjvxapad"]
+
+[ext_resource type="Texture2D" uid="uid://dh6ua4gaib7q0" path="res://Characters/Enemies/Assets/placeholder_enemy.png" id="1_epwo5"]
+[ext_resource type="Script" uid="uid://bnp7n1mim41sl" path="res://Characters/CharacterMotor.cs" id="1_gktnw"]
+[ext_resource type="Script" uid="uid://dbsxq7dhwxfww" path="res://Globals/Hurtbox2D.cs" id="2_dfsrm"]
+[ext_resource type="Script" uid="uid://bli2kchxbqx7j" path="res://Characters/HealthComponent.cs" id="4_gktnw"]
+[ext_resource type="Script" uid="uid://bxongo3q27sci" path="res://Characters/Enemies/BossComponent.cs" id="5_gsbuv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jfmy4"]
+radius = 7.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2ina"]
+radius = 7.0
+
+[node name="BossEnemy" type="CharacterBody2D" unique_id=505043303]
+script = ExtResource("1_gktnw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=73863645]
+texture = ExtResource("1_epwo5")
+
+[node name="Hurtbox2D" type="Area2D" parent="Sprite2D" unique_id=1385725663]
+script = ExtResource("2_dfsrm")
+metadata/_custom_type_script = "uid://dbsxq7dhwxfww"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hurtbox2D" unique_id=1805896195]
+shape = SubResource("CircleShape2D_jfmy4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=903971116]
+shape = SubResource("CircleShape2D_g2ina")
+
+[node name="HealthComponent" type="Node" parent="." unique_id=813182510 node_paths=PackedStringArray("Hurtbox")]
+script = ExtResource("4_gktnw")
+Health = 3
+Hurtbox = NodePath("../Sprite2D/Hurtbox2D")
+metadata/_custom_type_script = "uid://bli2kchxbqx7j"
+
+[node name="BossComponent" type="Node" parent="." unique_id=1025905892]
+script = ExtResource("5_gsbuv")

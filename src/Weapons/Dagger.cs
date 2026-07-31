@@ -12,6 +12,7 @@ public partial class Dagger : Node2D
 	
 	[Export] private int _damage = 1;
 	
+	
 	private Sprite2D _sprite;
 	private Hitbox2D _hitbox;
 	
@@ -24,6 +25,8 @@ public partial class Dagger : Node2D
 		_sprite.Hide();
 		_hitbox = GetNode<Hitbox2D>("%Hitbox2D");
 		_hitbox.Damage = _damage;
+		_hitbox.Monitorable = false;
+		_hitbox.Monitoring = false;
 	}
 
 	private void Attack()
@@ -34,7 +37,9 @@ public partial class Dagger : Node2D
 		Rotation = 0;
 		_tween = GetTree().CreateTween();
 		_tween.SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
-		_tween.TweenProperty(_sprite, "visible", true, 0);
+		_tween.TweenProperty(_sprite, "visible", true, 0); // make sprite visible
+		_tween.TweenProperty(_hitbox, "monitorable", true, 0); // enable hitbox monitorable
+		_tween.TweenProperty(_hitbox, "monitoring", true, 0); // enable hitbox monitoring
 
 		if ((Math.Abs(_weaponSlotRotation) + Math.PI / 2) % (2 * Math.PI) < Math.PI)
 		{
@@ -47,7 +52,10 @@ public partial class Dagger : Node2D
 			_tween.TweenProperty(this, "rotation", 0, .25f);
 		}
 		
-		_tween.TweenProperty(_sprite, "visible", false, 0);
+		_tween.TweenProperty(_sprite, "visible", false, 0); // make sprite invisible
+		_tween.TweenProperty(_hitbox, "monitorable", false, 0); // disable hitbox monitorable
+		_tween.TweenProperty(_hitbox, "monitoring", false, 0); // disable hitbox monitoring
+		
 		if (AttackEndedEvent != null)
 			_tween.TweenCallback(Callable.From(AttackEndedEvent.Invoke));
 	}

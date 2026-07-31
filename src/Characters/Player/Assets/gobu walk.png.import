@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2i5iufxwo1pi"
-path="res://.godot/imported/goblin-Sheet.png-995afee687dc1eaf80f9ca08f24d2bf8.ctex"
+uid="uid://uohprxs845kp"
+path="res://.godot/imported/gobu walk.png-17014978b557cd22b9d125b3db414080.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Assets/goblin-Sheet.png"
-dest_files=["res://.godot/imported/goblin-Sheet.png-995afee687dc1eaf80f9ca08f24d2bf8.ctex"]
+source_file="res://Characters/Player/Assets/gobu walk.png"
+dest_files=["res://.godot/imported/gobu walk.png-17014978b557cd22b9d125b3db414080.ctex"]
 
 [params]
 

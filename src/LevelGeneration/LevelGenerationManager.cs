@@ -11,12 +11,6 @@ public partial class LevelGenerationManager : Node
     [Export] private int _minPartitionSize = 10;
     [Export] private int _maxPartitionDivision = 4; // this is the most a partition can be divided by
     
-    [ExportCategory("Spawnable Scenes")]
-    [Export] private PackedScene _playerScene;
-    [Export] private PackedScene _bossScene;
-    [Export] private PackedScene _levelExitScene;
-    [Export] private PackedScene _coinScene;
-    
     [ExportCategory("Node References")]
     [Export] private LevelTileMap _levelTileMap;
     [Export] private Node2D _entitiesRoot;
@@ -46,9 +40,7 @@ public partial class LevelGenerationManager : Node
         _partitionTreeGenerator.GeneratePartitionTree(_levelSize, _minPartitionSize, _maxPartitionDivision);
         _roomGenerator.GenerateRooms(_levelTileMap, _partitionTreeGenerator);
         _corridorGenerator.GenerateCorridors(_levelTileMap, _partitionTreeGenerator, _roomGenerator);
-        _interiorGenerator.GenerateInteriors(
-            _entitiesRoot, _roomGenerator, _corridorGenerator,
-            _playerScene, _bossScene, _levelExitScene, _coinScene);
+        _interiorGenerator.GenerateInteriors(_entitiesRoot, _roomGenerator, _corridorGenerator);
     }
 
     private void ClearLevel()

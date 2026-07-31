@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cmc3jkcqopgyx"
-path="res://.godot/imported/gobu Hurt.png-c24dfca1f5fc4a95cca0770aae9e4a9c.ctex"
+path="res://.godot/imported/gobu Hurt.png-b107370ab99dc4eb5ee9e4fbb43f63d9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Player/Assets/gobu Hurt.png"
-dest_files=["res://.godot/imported/gobu Hurt.png-c24dfca1f5fc4a95cca0770aae9e4a9c.ctex"]
+source_file="res://Characters/Player/Assets/gobu Hurt.png"
+dest_files=["res://.godot/imported/gobu Hurt.png-b107370ab99dc4eb5ee9e4fbb43f63d9.ctex"]
 
 [params]
 

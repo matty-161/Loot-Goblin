@@ -37,6 +37,8 @@ project/assembly_name="Loot Goblin"
 
 folder_colors={
 "res://Autoloads/": "pink",
+"res://Characters/Enemies/": "red",
+"res://Characters/Player/": "blue",
 "res://Enemies/": "red",
 "res://Globals/": "teal",
 "res://LevelGeneration/": "green",
@@ -101,6 +103,7 @@ attack={
 2d_physics/layer_3="Loot"
 2d_physics/layer_5="Hitboxes"
 2d_physics/layer_6="Hurtboxes"
+2d_physics/layer_7="LevelExit"
 
 [physics]
 

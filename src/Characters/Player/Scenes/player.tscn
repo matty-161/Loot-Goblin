@@ -1,13 +1,16 @@
 [gd_scene format=3 uid="uid://brui0obmqftby"]
 
-[ext_resource type="Script" uid="uid://dhf1w00kgcvmi" path="res://Player/PlayerController.cs" id="1_rg7kn"]
-[ext_resource type="Texture2D" uid="uid://2i5iufxwo1pi" path="res://Player/Assets/goblin-Sheet.png" id="2_rg7kn"]
-[ext_resource type="Script" uid="uid://c4u7dv88x1exk" path="res://Player/LootCollectionComponent.cs" id="3_52sos"]
-[ext_resource type="Script" uid="uid://b2ugtxlkkh7sf" path="res://Player/WeaponSlot.cs" id="4_bw35f"]
+[ext_resource type="Script" uid="uid://bnp7n1mim41sl" path="res://Characters/CharacterMotor.cs" id="1_utetp"]
+[ext_resource type="Texture2D" uid="uid://2i5iufxwo1pi" path="res://Characters/Player/Assets/goblin-Sheet.png" id="2_rg7kn"]
+[ext_resource type="Script" uid="uid://c4u7dv88x1exk" path="res://Characters/Player/LootCollectionComponent.cs" id="3_52sos"]
+[ext_resource type="Script" uid="uid://b2ugtxlkkh7sf" path="res://Characters/Player/WeaponSlot.cs" id="4_bw35f"]
 [ext_resource type="PackedScene" uid="uid://cpod8kcdxhpqm" path="res://Weapons/Scenes/dagger.tscn" id="4_omv0o"]
+[ext_resource type="Script" uid="uid://bkbb402ove7jq" path="res://Characters/Player/PlayerInput.cs" id="6_lkihu"]
+[ext_resource type="Script" uid="uid://drshyu5huekkv" path="res://Characters/TwoDirAnimator.cs" id="7_egfbo"]
+[ext_resource type="Script" uid="uid://br8673cdv5rt2" path="res://Characters/Player/PlayerData.cs" id="8_lkihu"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jfmy4"]
-size = Vector2(6, 14)
+[sub_resource type="CircleShape2D" id="CircleShape2D_rfo2l"]
+radius = 6.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_52sos"]
 atlas = ExtResource("2_rg7kn")
@@ -69,10 +72,10 @@ radius = 8.0
 
 [node name="Player" type="CharacterBody2D" unique_id=118906777]
 motion_mode = 1
-script = ExtResource("1_rg7kn")
+script = ExtResource("1_utetp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=200531166]
-shape = SubResource("RectangleShape2D_jfmy4")
+shape = SubResource("CircleShape2D_rfo2l")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=310300674]
 unique_name_in_owner = true
@@ -97,4 +100,20 @@ script = ExtResource("4_bw35f")
 _weapon = NodePath("Dagger")
 
 [node name="Dagger" parent="WeaponSlot" unique_id=267982652 instance=ExtResource("4_omv0o")]
-rotation = 4.712389
+
+[node name="PlayerInput" type="Node" parent="." unique_id=1946154021]
+script = ExtResource("6_lkihu")
+
+[node name="Animator" type="Node" parent="." unique_id=355744227 node_paths=PackedStringArray("_sprite")]
+script = ExtResource("7_egfbo")
+_sprite = NodePath("../AnimatedSprite2D")
+
+[node name="LevelExitArea" type="Area2D" parent="." unique_id=99484229]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExitArea" unique_id=1894803610]
+shape = SubResource("CircleShape2D_rfo2l")
+
+[node name="PlayerData" type="Node" parent="." unique_id=1430533883]
+script = ExtResource("8_lkihu")

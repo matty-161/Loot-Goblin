@@ -5,4 +5,7 @@
     <EnableDynamicLoading>true</EnableDynamicLoading>
     <RootNamespace>LootGoblin</RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Folder Include="Characters\" />
+  </ItemGroup>
 </Project>

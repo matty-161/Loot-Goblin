@@ -1,6 +1,5 @@
 using Godot;
 using LootGoblin.Autoloads;
-using LootGoblin.Player;
 
 namespace LootGoblin.LevelGeneration.LevelContents;
 
@@ -11,7 +10,7 @@ public partial class LevelExit : Area2D
 	public override void _Ready()
 	{
 		Hide();
-		BodyEntered += OnAreaEntered;
+		AreaEntered += OnAreaEntered;
 		GameplaySignalBus.Instance.LevelBossDiedEvent += OnLevelBossDiedEvent;
 	}
 
@@ -20,12 +19,9 @@ public partial class LevelExit : Area2D
 		GameplaySignalBus.Instance.LevelBossDiedEvent -= OnLevelBossDiedEvent;
 	}
 
-	private void OnAreaEntered(Node2D body)
+	private void OnAreaEntered(Area2D area)
 	{
-		if (body is PlayerController)
-		{
-			GameplaySignalBus.Instance.LevelTransitionFadeOutEvent?.Invoke();
-		}
+		GameplaySignalBus.Instance.LevelTransitionFadeOutEvent?.Invoke();
 	}
 
 	private void OnLevelBossDiedEvent()
