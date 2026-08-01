@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://b8xyx5mut4sqm"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_jfmy4"]
+
+[node name="DebugPatrolTarget" type="Sprite2D" unique_id=500663390]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(16, 16)
+texture = SubResource("CanvasTexture_jfmy4")

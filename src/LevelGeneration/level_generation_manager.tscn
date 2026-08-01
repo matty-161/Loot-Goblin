@@ -5,11 +5,12 @@
 [ext_resource type="Script" uid="uid://clv47kfb32sle" path="res://LevelGeneration/RoomGenerator.cs" id="3_afkop"]
 [ext_resource type="Script" uid="uid://qfyda2antryt" path="res://LevelGeneration/CorridorGenerator.cs" id="4_4vdp3"]
 [ext_resource type="Script" uid="uid://dyjr70hbhvpj7" path="res://LevelGeneration/InteriorGenerator.cs" id="5_mqi8a"]
-[ext_resource type="PackedScene" uid="uid://brui0obmqftby" path="res://Player/Scenes/player.tscn" id="6_rfo2l"]
-[ext_resource type="PackedScene" uid="uid://dx8krqjvxapad" path="res://Enemies/Scenes/boss_enemy.tscn" id="7_dqw25"]
+[ext_resource type="PackedScene" uid="uid://brui0obmqftby" path="res://Characters/Player/Scenes/player.tscn" id="6_rfo2l"]
+[ext_resource type="PackedScene" uid="uid://dx8krqjvxapad" path="res://Characters/Enemies/Scenes/boss_enemy.tscn" id="7_dqw25"]
 [ext_resource type="PackedScene" uid="uid://3i1xxyq8gmqj" path="res://LevelGeneration/LevelContents/level_exit.tscn" id="8_wfo42"]
 [ext_resource type="PackedScene" uid="uid://b155plm47e5w0" path="res://LevelGeneration/LevelContents/Treasure/coin.tscn" id="9_lhtyt"]
-[ext_resource type="PackedScene" uid="uid://5glc003r8cgq" path="res://Enemies/Scenes/knight_enemy.tscn" id="10_s4bi3"]
+[ext_resource type="PackedScene" uid="uid://5glc003r8cgq" path="res://Characters/Enemies/Scenes/knight_enemy.tscn" id="10_s4bi3"]
+[ext_resource type="PackedScene" uid="uid://b8xyx5mut4sqm" path="res://Debug/debug_patrol_target.tscn" id="11_dqw25"]
 
 [node name="LevelGenerationManager" type="Node" unique_id=487379704 node_paths=PackedStringArray("_partitionTreeGenerator", "_roomGenerator", "_corridorGenerator", "_interiorGenerator")]
 script = ExtResource("1_kkkhv")
@@ -34,3 +35,4 @@ _bossScene = ExtResource("7_dqw25")
 _levelExitScene = ExtResource("8_wfo42")
 _coinScene = ExtResource("9_lhtyt")
 _knightEnemyScene = ExtResource("10_s4bi3")
+_debugPatrolTarget = ExtResource("11_dqw25")

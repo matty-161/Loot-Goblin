@@ -1,7 +1,7 @@
 using Godot;
 using LootGoblin.LevelGeneration;
 
-namespace LootGoblin.Characters;
+namespace LootGoblin;
 
 public partial class CharacterMotor : CharacterBody2D
 {

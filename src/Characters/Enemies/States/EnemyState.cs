@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using LootGoblin.Globals;
 
-namespace LootGoblin.Characters.Enemies.States;
+namespace LootGoblin;
 
 public abstract partial class EnemyState : State
 {

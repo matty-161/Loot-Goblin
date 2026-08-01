@@ -44,8 +44,8 @@ public partial class EnemyChase : EnemyState
             return;
         }
 
-        Vector2 nextPathPos = Motor.GlobalPosition.DirectionTo(_agent.GetNextPathPosition());
-        Motor.MoveDirection = nextPathPos;
+        Vector2 nextPathDir = Motor.GlobalPosition.DirectionTo(_agent.GetNextPathPosition());
+        Motor.MoveDirection = nextPathDir;
 
     }
     
