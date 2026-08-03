@@ -1,6 +1,7 @@
 using Godot;
 using System;
-namespace LootGoblin.LevelGeneration;
+
+namespace LootGoblin;
 
 public partial class ObserverCamera : Camera2D
 {

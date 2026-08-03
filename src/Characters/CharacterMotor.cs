@@ -1,5 +1,5 @@
 using Godot;
-using LootGoblin.LevelGeneration;
+using LootGoblin;
 
 namespace LootGoblin;
 

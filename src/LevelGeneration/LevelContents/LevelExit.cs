@@ -1,7 +1,6 @@
 using Godot;
-using LootGoblin.Autoloads;
 
-namespace LootGoblin.LevelGeneration.LevelContents;
+namespace LootGoblin;
 
 public partial class LevelExit : Area2D
 {

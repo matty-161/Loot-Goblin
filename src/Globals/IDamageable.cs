@@ -1,6 +1,6 @@
 using System;
 
-namespace LootGoblin.Globals;
+namespace LootGoblin;
 
 public interface IDamageable
 {

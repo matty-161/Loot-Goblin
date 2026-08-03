@@ -1,8 +1,7 @@
 using System;
 using Godot;
-using Godot.Collections;
 
-namespace LootGoblin.Globals;
+namespace LootGoblin;
 
 
 public abstract partial class State : Node

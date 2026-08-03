@@ -1,7 +1,6 @@
 using Godot;
-using LootGoblin.Globals;
 
-namespace LootGoblin.Characters;
+namespace LootGoblin;
 
 [GlobalClass]
 public partial class HealthComponent : Node

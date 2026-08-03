@@ -1,6 +1,6 @@
 using Godot;
 
-namespace LootGoblin.Characters.Player;
+namespace LootGoblin;
 
 public partial class PlayerData : Node
 {

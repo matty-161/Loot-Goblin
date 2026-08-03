@@ -1,7 +1,6 @@
 using Godot;
-using LootGoblin.Autoloads;
 
-namespace LootGoblin.Characters.Enemies;
+namespace LootGoblin;
 
 public partial class BossComponent : Node
 {

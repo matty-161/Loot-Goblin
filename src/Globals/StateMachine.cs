@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace LootGoblin.Globals;
+namespace LootGoblin;
 
 public partial class StateMachine : Node
 {

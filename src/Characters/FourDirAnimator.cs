@@ -1,6 +1,6 @@
 using Godot;
 
-namespace LootGoblin.Characters;
+namespace LootGoblin;
 
 public partial class FourDirAnimator : Node
 {

@@ -1,7 +1,6 @@
 using Godot;
-using LootGoblin.Weapons;
 
-namespace LootGoblin.Characters.Player;
+namespace LootGoblin;
 
 public partial class WeaponSlot : Node2D
 {

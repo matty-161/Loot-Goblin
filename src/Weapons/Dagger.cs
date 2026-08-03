@@ -1,8 +1,7 @@
 using System;
 using Godot;
-using LootGoblin.Globals;
 
-namespace LootGoblin.Weapons;
+namespace LootGoblin;
 
 public partial class Dagger : Node2D
 {

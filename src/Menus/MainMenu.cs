@@ -1,8 +1,7 @@
 using Godot;
 using System;
-using LootGoblin.LevelGeneration;
 
-namespace LootGoblin.Menus;
+namespace LootGoblin;
 
 public partial class MainMenu : Control
 {

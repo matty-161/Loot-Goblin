@@ -1,7 +1,5 @@
 using System.Threading.Tasks;
 using Godot;
-using LootGoblin.Characters;
-using LootGoblin.Characters.Player;
 
 namespace LootGoblin;
 

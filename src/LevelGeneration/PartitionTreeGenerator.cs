@@ -1,7 +1,8 @@
 using System;
 using System.Collections.Generic;
 using Godot;
-namespace LootGoblin.LevelGeneration;
+
+namespace LootGoblin;
 
 public partial class PartitionTreeGenerator : Node
 {

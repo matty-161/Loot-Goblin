@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Collections.Generic;
 
-namespace LootGoblin.LevelGeneration;
+namespace LootGoblin;
 
 public class Room(Vector2I positionTopLeft, Vector2I positionBotRight)
 {

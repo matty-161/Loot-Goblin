@@ -1,9 +1,6 @@
 using Godot;
-using LootGoblin.Characters.Enemies.States;
-using LootGoblin.Characters.Player;
-using LootGoblin.LevelGeneration;
 
-namespace LootGoblin.Characters.Enemies.States;
+namespace LootGoblin;
 
 [GlobalClass]
 public partial class EnemyIdle : EnemyState

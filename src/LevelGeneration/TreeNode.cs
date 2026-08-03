@@ -1,5 +1,6 @@
 using Godot;
-namespace LootGoblin.LevelGeneration;
+
+namespace LootGoblin;
 
 public class TreeNode(Vector2I position, Vector2I dimensions, int depth)
 {

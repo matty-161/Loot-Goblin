@@ -1,8 +1,6 @@
 using Godot;
-using LootGoblin.Autoloads;
-using LootGoblin.LevelGeneration.LevelContents.Treasure;
 
-namespace LootGoblin.Characters.Player;
+namespace LootGoblin;
 
 public partial class LootCollectionComponent : Area2D
 {

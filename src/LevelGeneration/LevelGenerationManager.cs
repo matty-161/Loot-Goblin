@@ -1,8 +1,7 @@
 using Godot;
 using System;
-using LootGoblin.Autoloads;
 
-namespace LootGoblin.LevelGeneration;
+namespace LootGoblin;
 
 public partial class LevelGenerationManager : Node
 {

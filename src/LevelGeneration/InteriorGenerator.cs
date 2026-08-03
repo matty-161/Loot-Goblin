@@ -2,11 +2,8 @@ using System;
 using System.Collections.Generic;
 using Godot;
 using Godot.Collections;
-using LootGoblin.Characters.Enemies.States;
-using LootGoblin.LevelGeneration.LevelContents;
-using LootGoblin.LevelGeneration.LevelContents.Treasure;
 
-namespace LootGoblin.LevelGeneration;
+namespace LootGoblin;
 
 public partial class InteriorGenerator : Node
 {

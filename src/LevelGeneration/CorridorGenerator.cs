@@ -3,7 +3,7 @@ using System;
 using Godot.Collections;
 using Range = System.Range;
 
-namespace LootGoblin.LevelGeneration;
+namespace LootGoblin;
 
 public partial class CorridorGenerator : Node
 {

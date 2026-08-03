@@ -1,7 +1,6 @@
 using Godot;
-using LootGoblin.Autoloads;
 
-namespace LootGoblin.Menus.HUD;
+namespace LootGoblin;
 
 public partial class LootLabel : Label
 {

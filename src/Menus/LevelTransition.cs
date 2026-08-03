@@ -1,7 +1,6 @@
 using Godot;
-using LootGoblin.Autoloads;
 
-namespace LootGoblin.Menus;
+namespace LootGoblin;
 
 public partial class LevelTransition : Control
 {

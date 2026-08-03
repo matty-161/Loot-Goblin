@@ -2,10 +2,8 @@ using Godot;
 using System;
 using System.Collections.Generic;
 using Godot.Collections;
-using LootGoblin.Autoloads;
-using LootGoblin.Systems;
 
-namespace LootGoblin.LevelGeneration;
+namespace LootGoblin;
 
 public partial class LevelTileMap : TileMapLayer
 {

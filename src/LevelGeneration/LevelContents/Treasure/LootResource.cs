@@ -1,6 +1,7 @@
 using Godot;
 
-namespace LootGoblin.LevelGeneration.LevelContents.Treasure;
+namespace LootGoblin;
+
 [GlobalClass]
 public partial class LootResource : Resource
 {

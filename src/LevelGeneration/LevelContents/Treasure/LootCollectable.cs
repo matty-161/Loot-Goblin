@@ -1,6 +1,6 @@
 using Godot;
 
-namespace LootGoblin.LevelGeneration.LevelContents.Treasure;
+namespace LootGoblin;
 
 public partial class LootCollectable : Area2D
 {

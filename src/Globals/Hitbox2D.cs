@@ -1,6 +1,6 @@
 using Godot;
 
-namespace LootGoblin.Globals;
+namespace LootGoblin;
 
 [GlobalClass]
 public partial class Hitbox2D : Area2D

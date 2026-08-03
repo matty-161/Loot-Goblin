@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace LootGoblin.Autoloads;
+namespace LootGoblin;
 
 public partial class GameplaySignalBus : Node
 {

@@ -1,8 +1,6 @@
 using Godot;
-using LootGoblin.Characters.Player;
-using LootGoblin.LevelGeneration;
 
-namespace LootGoblin.Characters.Enemies.States;
+namespace LootGoblin;
 
 [GlobalClass]
 public partial class EnemyChase : EnemyState

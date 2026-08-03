@@ -1,8 +1,7 @@
 using Godot;
 using System;
-using LootGoblin.Autoloads;
 
-namespace LootGoblin.Systems;
+namespace LootGoblin;
 
 public partial class LootManager : Node
 {
