@@ -13,6 +13,8 @@ public partial class PlayerInput : Node
 
     public override void _PhysicsProcess(double delta)
     {
+        if (GameManager.IsTest) return; // if running in test mode, don't take player input
+        
         Vector2 movementInput = Input.GetVector(
             "move_left", "move_right", 
             "move_up", "move_down");

@@ -21,6 +21,7 @@ public partial class InteriorGenerator : Node
     [Export] private PackedScene _coinScene;
     [Export] private PackedScene _knightEnemyScene;
 
+    [Export] private PackedScene _navigabilityEvaluator;
     [Export] private PackedScene _debugPatrolTarget;
     
     
@@ -35,8 +36,17 @@ public partial class InteriorGenerator : Node
         _roomGenerator = rg;
         _corridorGenerator = cg;
         _entitiesRoot = entitiesRoot;
+        Clear();
         SelectRooms();
         PlaceRoomStuff();
+    }
+
+    private void Clear()
+    {
+        foreach (Node entity in _entitiesRoot.GetChildren())
+        {
+            entity.QueueFree();
+        }
     }
 
     private void SelectRooms()
@@ -64,6 +74,12 @@ public partial class InteriorGenerator : Node
     private void PlaceRoomStuff()
     {
         List<Room> rooms = _roomGenerator.GetRooms();
+
+        // if this is a test, give the tester the list of rooms
+        if (GameManager.IsTest) 
+        {
+            LevelGenerationTest.Rooms = rooms;
+        }
         
         foreach (Room room in rooms)
         {
@@ -75,6 +91,16 @@ public partial class InteriorGenerator : Node
                     CharacterBody2D player = _playerScene.Instantiate<CharacterBody2D>();
                     _entitiesRoot.AddChild(player);
                     player.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
+
+                    // if this is a test: add a navigability evaluator and give tester a reference to it
+                    if (GameManager.IsTest)
+                    {
+                        RoomNavigabilityEvaluator evaluator = _navigabilityEvaluator.Instantiate<RoomNavigabilityEvaluator>();
+                        _entitiesRoot.AddChild(evaluator);
+                        evaluator.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
+                        LevelGenerationTest.NavigabilityEvaluator = evaluator;
+                    }
+                    
                     break;
                 case Room.RoomType.Boss:
                     CharacterBody2D boss = _bossScene.Instantiate<CharacterBody2D>();

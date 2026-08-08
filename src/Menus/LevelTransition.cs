@@ -50,7 +50,7 @@ public partial class LevelTransition : Control
 	private void OnTimerTimeout()
 	{
 		_timer.Timeout -= OnTimerTimeout;
-		GameplaySignalBus.Instance.LevelTransitionFadeInEvent?.Invoke();
+		GameplaySignalBus.Instance.LevelTransitionFadeInEvent?.Invoke(false);
 		_tween?.Kill();
 		_tween = GetTree().CreateTween();
 		_tween.TweenProperty(_colorRect, "modulate", Colors.Transparent, .5f);

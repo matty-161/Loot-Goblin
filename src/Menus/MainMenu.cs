@@ -23,7 +23,7 @@ public partial class MainMenu : Control
 	private void StartGame()
 	{
 		GD.Print("Game started");
-		_levelGenerationManager.GenerateLevel();
+		_levelGenerationManager.GenerateLevel(false);
 		Hide();
 	}
 }

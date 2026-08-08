@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cio7o2x1lncea"]
+
+[ext_resource type="Script" uid="uid://de8fas3sxs18c" path="res://Testing/RoomNavigabilityEvaluator.cs" id="1_be5jy"]
+
+[node name="RoomNavigabilityEvaluator" type="Node2D" unique_id=126920301 node_paths=PackedStringArray("_agent")]
+script = ExtResource("1_be5jy")
+_agent = NodePath("NavigationAgent2D")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1734742605]

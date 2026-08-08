@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://bjrt2j7v6wr1v"]
+
+[ext_resource type="Script" uid="uid://6fe7bsqrjkr8" path="res://Testing/LevelGenerationTest.cs" id="1_meshr"]
+[ext_resource type="PackedScene" uid="uid://bckrlmbkfl5ds" path="res://LevelGeneration/level_generation_manager.tscn" id="1_n2538"]
+[ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/tilemap.tscn" id="2_meshr"]
+[ext_resource type="Script" uid="uid://wx1hifekhryb" path="res://GameManager.cs" id="2_qhhdi"]
+[ext_resource type="FontFile" uid="uid://dulwqmd4b75tn" path="res://Menus/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="3_cq72j"]
+[ext_resource type="PackedScene" uid="uid://cytylylmxd12d" path="res://LevelGeneration/observer_camera.tscn" id="4_cq72j"]
+[ext_resource type="Script" uid="uid://c5x4h1e6a5qjk" path="res://Testing/DebugLineEdit.cs" id="7_5efeg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5efeg"]
+
+[node name="LevelGenerationTest" type="Node" unique_id=1733378957 node_paths=PackedStringArray("_testButton", "_iterationsEdit", "_generationManager")]
+script = ExtResource("1_meshr")
+_testButton = NodePath("Game/DebugLayer/Control/VBoxContainer/Button")
+_iterationsEdit = NodePath("Game/DebugLayer/Control/VBoxContainer/HBoxContainer/LineEdit")
+_generationManager = NodePath("Game/Systems/LevelGenerationManager")
+
+[node name="Game" type="Node" parent="." unique_id=1125093093]
+script = ExtResource("2_qhhdi")
+
+[node name="Systems" type="Node" parent="Game" unique_id=511504243]
+
+[node name="LevelGenerationManager" parent="Game/Systems" unique_id=487379704 node_paths=PackedStringArray("_levelTileMap", "_entitiesRoot") instance=ExtResource("1_n2538")]
+_levelTileMap = NodePath("../../World/Level/LevelTileMap")
+_entitiesRoot = NodePath("../../World/Entities")
+
+[node name="World" type="Node2D" parent="Game" unique_id=1023422311]
+
+[node name="Level" type="Node2D" parent="Game/World" unique_id=1263073047]
+
+[node name="LevelTileMap" parent="Game/World/Level" unique_id=934304012 instance=ExtResource("2_meshr")]
+
+[node name="Entities" type="Node2D" parent="Game/World" unique_id=2100609374]
+
+[node name="ObserverCamera" parent="Game/World" unique_id=535179323 instance=ExtResource("4_cq72j")]
+position = Vector2(160, 90)
+
+[node name="DebugLayer" type="CanvasLayer" parent="Game" unique_id=391513325]
+layer = 40
+
+[node name="Control" type="Control" parent="Game/DebugLayer" unique_id=1911690487]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Game/DebugLayer/Control" unique_id=772340196]
+layout_mode = 0
+offset_right = 47.0
+offset_bottom = 20.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Game/DebugLayer/Control/VBoxContainer" unique_id=60596247]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Game/DebugLayer/Control/VBoxContainer/HBoxContainer" unique_id=722067027]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cq72j")
+theme_override_font_sizes/font_size = 4
+text = "Iterations"
+
+[node name="LineEdit" type="LineEdit" parent="Game/DebugLayer/Control/VBoxContainer/HBoxContainer" unique_id=998147437]
+layout_mode = 2
+theme_override_constants/minimum_character_width = 8
+theme_override_fonts/font = ExtResource("3_cq72j")
+theme_override_font_sizes/font_size = 4
+theme_override_styles/focus = SubResource("StyleBoxEmpty_5efeg")
+text = "100"
+alignment = 2
+emoji_menu_enabled = false
+script = ExtResource("7_5efeg")
+
+[node name="Button" type="Button" parent="Game/DebugLayer/Control/VBoxContainer" unique_id=407067645]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cq72j")
+theme_override_font_sizes/font_size = 4
+text = "Run Test"

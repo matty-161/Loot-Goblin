@@ -34,8 +34,9 @@ public partial class LevelGenerationManager : Node
         GameplaySignalBus.Instance.LevelTransitionFadeInEvent -= GenerateLevel;
     }
 
-    public void GenerateLevel()
+    public void GenerateLevel(bool isTest = false)
     {
+        GameManager.IsTest = isTest;
         _partitionTreeGenerator.GeneratePartitionTree(_levelSize, _minPartitionSize, _maxPartitionDivision);
         _roomGenerator.GenerateRooms(_levelTileMap, _partitionTreeGenerator);
         _corridorGenerator.GenerateCorridors(_levelTileMap, _partitionTreeGenerator, _roomGenerator);

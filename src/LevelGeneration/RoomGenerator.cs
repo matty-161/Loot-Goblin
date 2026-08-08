@@ -29,9 +29,9 @@ public partial class RoomGenerator : Node
 
     public void GenerateRooms(LevelTileMap ltm, PartitionTreeGenerator ptg)
     {
-        Clear();
         _levelTileMap = ltm;
         _partitionTreeGenerator = ptg;
+        Clear();
         
         List<TreeNode> leafNodes = _partitionTreeGenerator.GetLeafNodes();
         for (int i = 0; i < leafNodes.Count; i++)
@@ -59,6 +59,7 @@ public partial class RoomGenerator : Node
     private void Clear()
     {
         _rooms.Clear();
+        _levelTileMap.Clear();
     }
 
     public List<Room> GetRooms()
