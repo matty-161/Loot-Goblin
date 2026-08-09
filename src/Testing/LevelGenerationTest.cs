@@ -10,6 +10,7 @@ namespace LootGoblin;
 
 public partial class LevelGenerationTest : Node
 {
+    [Export] private Button _generateOnceButton;
     [Export] private Button _testButton;
     [Export] private DebugLineEdit _iterationsEdit;
 
@@ -23,21 +24,29 @@ public partial class LevelGenerationTest : Node
 
     public override void _Ready()
     {
+        _generateOnceButton.Pressed += GenerateOnce;
         _testButton.Pressed += RunTests;
         _iterationsEdit.DebugTextChanged += OnDebugTextChanged;
     }
 
     public override void _ExitTree()
     {
+        _generateOnceButton.Pressed -= GenerateOnce;
         _testButton.Pressed -= RunTests;
         _iterationsEdit.DebugTextChanged -= OnDebugTextChanged;
+    }
+
+    private void GenerateOnce()
+    {
+        // generate the level
+        _generationManager.GenerateLevel(true);
     }
 
     private async void RunTests()
     {
         // setup csv stuff
         string directory = "Testing/Tests/";
-        string testFileName = "generation_test_v1.csv";
+        string testFileName = "generation_test_v3.csv";
         using StreamWriter writer = new(directory + testFileName);
         
         using CsvWriter csv = new(writer, CultureInfo.InvariantCulture);

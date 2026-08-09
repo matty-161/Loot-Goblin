@@ -10,8 +10,8 @@ public partial class LevelTileMap : TileMapLayer
 	[Export] private LevelProgressionManager _levelProgressionManager;
 	
 	public const int TileSize = 16;
-	
-	private int _terrainIndex = 0;
+
+	private int _terrainIndex = 1;
 
 	public override void _Ready()
 	{
@@ -46,6 +46,6 @@ public partial class LevelTileMap : TileMapLayer
 	private void ChangeTerrain()
 	{
 		// subtract 1 from CurrentLevel as CurrentLevel starts at 1, but the terrain index starts at 0
-		_terrainIndex = _levelProgressionManager.CurrentLevel - 1; 
+		_terrainIndex = _levelProgressionManager.CurrentLevel; 
 	}
 }

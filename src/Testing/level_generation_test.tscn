@@ -8,11 +8,15 @@
 [ext_resource type="PackedScene" uid="uid://cytylylmxd12d" path="res://LevelGeneration/observer_camera.tscn" id="4_cq72j"]
 [ext_resource type="Script" uid="uid://c5x4h1e6a5qjk" path="res://Testing/DebugLineEdit.cs" id="7_5efeg"]
 
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_jfmy4"]
+color = Color(0.1254902, 0.1254902, 0.1254902, 0.76862746)
+
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5efeg"]
 
-[node name="LevelGenerationTest" type="Node" unique_id=1733378957 node_paths=PackedStringArray("_testButton", "_iterationsEdit", "_generationManager")]
+[node name="LevelGenerationTest" type="Node" unique_id=1733378957 node_paths=PackedStringArray("_generateOnceButton", "_testButton", "_iterationsEdit", "_generationManager")]
 script = ExtResource("1_meshr")
-_testButton = NodePath("Game/DebugLayer/Control/VBoxContainer/Button")
+_generateOnceButton = NodePath("Game/DebugLayer/Control/VBoxContainer/GenerateOnceButton")
+_testButton = NodePath("Game/DebugLayer/Control/VBoxContainer/HBoxContainer/RunTestButton")
 _iterationsEdit = NodePath("Game/DebugLayer/Control/VBoxContainer/HBoxContainer/LineEdit")
 _generationManager = NodePath("Game/Systems/LevelGenerationManager")
 
@@ -52,6 +56,16 @@ layout_mode = 0
 offset_right = 47.0
 offset_bottom = 20.0
 
+[node name="GenerateOnceButton" type="Button" parent="Game/DebugLayer/Control/VBoxContainer" unique_id=543273242]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_cq72j")
+theme_override_font_sizes/font_size = 4
+text = "Generate Once"
+
+[node name="HSeparator" type="HSeparator" parent="Game/DebugLayer/Control/VBoxContainer" unique_id=770429184]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_jfmy4")
+
 [node name="HBoxContainer" type="HBoxContainer" parent="Game/DebugLayer/Control/VBoxContainer" unique_id=60596247]
 layout_mode = 2
 
@@ -72,7 +86,7 @@ alignment = 2
 emoji_menu_enabled = false
 script = ExtResource("7_5efeg")
 
-[node name="Button" type="Button" parent="Game/DebugLayer/Control/VBoxContainer" unique_id=407067645]
+[node name="RunTestButton" type="Button" parent="Game/DebugLayer/Control/VBoxContainer/HBoxContainer" unique_id=407067645]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_cq72j")
 theme_override_font_sizes/font_size = 4

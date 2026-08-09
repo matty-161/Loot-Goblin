@@ -38,38 +38,101 @@ public partial class CorridorGenerator : Node
 
 	private void ConnectChildren(TreeNode node)
 	{
-		Vector2I leftChildCentre = new(
-			node.Left.Position.X + node.Left.Dimensions.X / 2,
-			node.Left.Position.Y + node.Left.Dimensions.Y / 2
-		);
-		
-		Vector2I rightChildCentre = new(
-			node.Right.Position.X + node.Right.Dimensions.X / 2,
-			node.Right.Position.Y + node.Right.Dimensions.Y / 2
-		);
-		
-		
 		Array<Vector2I> cells = [];
-		if (node.IsSplitVertical) // if the partitions are split vertically, make horizontal corridors
+		
+		// if children are leaf node i.e. they contain rooms, connect the rooms
+		if (node.Left.Room != null && node.Right.Room != null)
 		{
-			for (int x = leftChildCentre.X; x < rightChildCentre.X; x++)
+			Vector2I leftRoomDimensions = node.Left.Room.PositionBotRight - node.Left.Room.PositionTopLeft;
+			Vector2I leftRoomCentre = node.Left.Room.PositionTopLeft + leftRoomDimensions / 2;
+
+			Vector2I rightRoomDimensions = node.Right.Room.PositionBotRight - node.Right.Room.PositionTopLeft;
+			Vector2I rightRoomCentre = node.Right.Room.PositionTopLeft + rightRoomDimensions / 2;
+
+			if (node.IsSplitVertical) // if the partitions are split vertically, make horizontal corridors
 			{
-				cells.Add(new Vector2I(x, leftChildCentre.Y));
-				cells.Add(new Vector2I(x, leftChildCentre.Y + 1));
-				cells.Add(new Vector2I(x, leftChildCentre.Y - 1));
+				// first go along X to right room
+				for (int x = leftRoomCentre.X; x < rightRoomCentre.X + 2; x++)
+				{
+					cells.Add(new(x, leftRoomCentre.Y));
+					cells.Add(new(x, leftRoomCentre.Y + 1));
+					cells.Add(new(x, leftRoomCentre.Y - 1));
+				}
+				// then turn a corner and go up or down
+				if (leftRoomCentre.Y < rightRoomCentre.Y) // if left room is above right room go down
+				{
+					for (int y = leftRoomCentre.Y; y < rightRoomCentre.Y; y++)
+					{
+						cells.Add(new(rightRoomCentre.X, y));
+						cells.Add(new(rightRoomCentre.X + 1, y));
+						cells.Add(new(rightRoomCentre.X - 1, y));
+					}
+				}
+				else // else go up
+				{
+					for (int y = leftRoomCentre.Y; y > rightRoomCentre.Y; y--)
+					{
+						cells.Add(new(rightRoomCentre.X, y));
+						cells.Add(new(rightRoomCentre.X + 1, y));
+						cells.Add(new(rightRoomCentre.X - 1, y));
+					}
+				}
+			}
+			else // else the partitions are split horizontally, make vertical corridors 
+			{
+				// first go along Y to right (lower) room
+				for (int y = leftRoomCentre.Y; y < rightRoomCentre.Y + 2; y++)
+				{
+					cells.Add(new(leftRoomCentre.X, y));
+					cells.Add(new(leftRoomCentre.X + 1, y));
+					cells.Add(new(leftRoomCentre.X - 1, y));
+				}
+				// then turn a corner and go left or right
+				if (leftRoomCentre.X < rightRoomCentre.X) // if left (upper) room is to the left of right (lower) room go right 
+				{
+					for (int x = leftRoomCentre.X; x < rightRoomCentre.X; x++)
+					{
+						cells.Add(new(x, rightRoomCentre.Y));
+						cells.Add(new(x, rightRoomCentre.Y + 1));
+						cells.Add(new(x, rightRoomCentre.Y - 1));
+					}
+				}
+				else // else go left
+				{
+					for (int x = leftRoomCentre.X; x > rightRoomCentre.X; x--)
+					{
+						cells.Add(new(x, rightRoomCentre.Y));
+						cells.Add(new(x, rightRoomCentre.Y + 1));
+						cells.Add(new(x, rightRoomCentre.Y - 1));
+					}
+				}
 			}
 		}
-		else // else the partitions are split horizontally, make vertical corridors 
+		else
 		{
-			for (int y = leftChildCentre.Y; y < rightChildCentre.Y; y++)
+			Vector2I leftChildCentre = node.Left.Position + node.Left.Dimensions / 2;
+			Vector2I rightChildCentre = node.Right.Position + node.Left.Dimensions / 2;
+		
+			if (node.IsSplitVertical) // if the partitions are split vertically, make horizontal corridors
 			{
-				cells.Add(new Vector2I(rightChildCentre.X, y));
-				cells.Add(new Vector2I(rightChildCentre.X + 1, y));
-				cells.Add(new Vector2I(rightChildCentre.X - 1, y));
+				for (int x = leftChildCentre.X; x < rightChildCentre.X; x++)
+				{
+					cells.Add(new(x, leftChildCentre.Y));
+					cells.Add(new(x, leftChildCentre.Y + 1));
+					cells.Add(new(x, leftChildCentre.Y - 1));
+				}
+			}
+			else // else the partitions are split horizontally, make vertical corridors 
+			{
+				for (int y = leftChildCentre.Y; y < rightChildCentre.Y; y++)
+				{
+					cells.Add(new(rightChildCentre.X, y));
+					cells.Add(new(rightChildCentre.X + 1, y));
+					cells.Add(new(rightChildCentre.X - 1, y));
+				}
 			}
 		}
 
 		_levelTileMap.PlaceCorridor(cells);
-
 	}
 }
