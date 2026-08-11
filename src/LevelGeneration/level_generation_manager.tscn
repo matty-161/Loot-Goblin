@@ -20,7 +20,7 @@ _roomGenerator = NodePath("RoomGenerator")
 _corridorGenerator = NodePath("CorridorGenerator")
 _interiorGenerator = NodePath("InteriorGenerator")
 
-[node name="PartitionTreeGenerator" type="Node" parent="." unique_id=362483173]
+[node name="PartitionTreeGenerator" type="Node2D" parent="." unique_id=741632876]
 script = ExtResource("2_77ivo")
 
 [node name="RoomGenerator" type="Node" parent="." unique_id=218902398]

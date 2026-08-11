@@ -11,4 +11,5 @@ public class TreeNode(Vector2I position, Vector2I dimensions, int depth)
     public TreeNode Right = null;
     public bool IsSplitVertical;
     public Room Room;
+    public Corridor Corridor;
 }

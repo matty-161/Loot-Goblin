@@ -4,7 +4,7 @@ using Godot;
 
 namespace LootGoblin;
 
-public partial class PartitionTreeGenerator : Node
+public partial class PartitionTreeGenerator : Node2D
 {
 	
 	private Vector2I _levelSize = new(50, 50);
@@ -17,21 +17,23 @@ public partial class PartitionTreeGenerator : Node
 	private readonly List<TreeNode> _nodes = [];
 	private readonly List<TreeNode> _leafNodes = [];
 
-	// public override void _Draw()
-	// {
-	// 	DrawRect(new Rect2(new Vector2(0,0), _levelSize * LevelTileMap.TileSize), new (0,0,0));
-	//
-	// 	for (int i = 0; i < _leafNodes.Count; i++)
-	// 	{
-	// 		DrawRect(new Rect2(_leafNodes[i].Position * LevelTileMap.TileSize, 
-	// 			_leafNodes[i].Dimensions * LevelTileMap.TileSize), 
-	// 			new Color(GD.Randf(), GD.Randf(), GD.Randf()));
-	// 		
-	// 		DrawString(ThemeDB.FallbackFont, 
-	// 			(_leafNodes[i].Position + _leafNodes[i].Dimensions / 2) * LevelTileMap.TileSize, 
-	// 			_leafNodes[i].Dimensions.ToString());
-	// 	}
-	// }
+	public override void _Draw()
+	{
+		DrawRect(new Rect2(new Vector2(0,0), _levelSize * LevelTileMap.TileSize), new (0,0,0));
+	
+		for (int i = 0; i < _leafNodes.Count; i++)
+		{
+			DrawRect(new Rect2(
+				_leafNodes[i].Position * LevelTileMap.TileSize, 
+				_leafNodes[i].Dimensions * LevelTileMap.TileSize), 
+				new Color(GD.Randf(), GD.Randf(), GD.Randf()
+				));
+			
+			DrawString(ThemeDB.FallbackFont, 
+				(_leafNodes[i].Position + _leafNodes[i].Dimensions / 2) * LevelTileMap.TileSize, 
+				_leafNodes[i].Dimensions.ToString());
+		}
+	}
 
 	public void GeneratePartitionTree(Vector2I levelSize, int minPartitionSize, int maxPartitionDivision)
 	{
@@ -45,7 +47,7 @@ public partial class PartitionTreeGenerator : Node
 		_root = new(new(0, 0), _levelSize, 0);
 		SplitRecursive(_root);
 		FindLeafNodes(_root);
-		// QueueRedraw();
+		QueueRedraw();
 	}
 
 	private void SplitRecursive(TreeNode node)
@@ -136,6 +138,20 @@ public partial class PartitionTreeGenerator : Node
 	public List<TreeNode> GetLeafNodes()
 	{
 		return _leafNodes;
+	}
+
+	public int GetMaxDepth()
+	{
+		int maxDepth = 0;
+		foreach (TreeNode leaf in _leafNodes)
+		{
+			if (leaf.Depth > 0)
+			{
+				maxDepth = leaf.Depth;
+			}
+		}
+
+		return maxDepth;
 	}
 }
 
