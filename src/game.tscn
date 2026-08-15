@@ -10,6 +10,7 @@
 [ext_resource type="Shader" uid="uid://utyovv2o6boo" path="res://Effects/background.gdshader" id="7_mfdv2"]
 [ext_resource type="Script" uid="uid://s5wxma6pf18s" path="res://Systems/LevelProgressionManager.cs" id="8_iotsf"]
 [ext_resource type="Script" uid="uid://berwficohqyja" path="res://Menus/HUD/HealthLabel.cs" id="9_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://be1dwiglgx2qd" path="res://Menus/game_over_screen.tscn" id="11_iotsf"]
 [ext_resource type="Script" uid="uid://bdhd6xprn1ln7" path="res://Menus/LevelTransition.cs" id="11_mfdv2"]
 
 [sub_resource type="Gradient" id="Gradient_hve3p"]
@@ -154,6 +155,9 @@ text = "Settings"
 unique_name_in_owner = true
 layout_mode = 2
 text = "Quit"
+
+[node name="GameOverScreen" parent="MenuLayer" unique_id=331692519 instance=ExtResource("11_iotsf")]
+visible = false
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=855070657]
 layer = 30

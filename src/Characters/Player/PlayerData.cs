@@ -24,5 +24,9 @@ public partial class PlayerData : Node
     private void OnPlayerHealthChanged(int newHealth)
     {
         GameplaySignalBus.Instance.PlayerHealthChangedEvent?.Invoke(newHealth);
+        if (newHealth <= 0)
+        {
+            GameplaySignalBus.Instance.PlayerDied?.Invoke();
+        }
     }
 }

@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://be1dwiglgx2qd"]
+
+[ext_resource type="Script" uid="uid://c415j5p4l0wir" path="res://Menus/GameOverScreen.cs" id="1_eyuld"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jfmy4"]
+
+[node name="GameOverScreen" type="Control" unique_id=331692519]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_eyuld")
+
+[node name="Panel" type="Panel" parent="." unique_id=921105002]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1786131917]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = -56.5
+offset_right = 68.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="VBoxContainer" unique_id=93133440]
+layout_mode = 2
+text = "Game Over :("
+horizontal_alignment = 1
+
+[node name="GameOverSub" type="Label" parent="VBoxContainer" unique_id=220997625]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Gobbo failed to escape with their loot"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=936409330]
+layout_mode = 2
+theme_override_constants/separation = 9
+theme_override_styles/separator = SubResource("StyleBoxEmpty_jfmy4")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer" unique_id=1035393174]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=252501261]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=435628452]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Loot: "
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1407003991]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "67"
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=243963747]
+layout_mode = 2
+theme_override_constants/separation = 17
+theme_override_styles/separator = SubResource("StyleBoxEmpty_jfmy4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=895648618]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ReturnToMenuButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=841311455]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "main menu"

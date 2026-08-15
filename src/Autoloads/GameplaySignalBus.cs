@@ -24,4 +24,5 @@ public partial class GameplaySignalBus : Node
     
     // player events
     public Action<int> PlayerHealthChangedEvent;
+    public Action PlayerDied;
 }
