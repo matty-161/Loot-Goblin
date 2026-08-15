@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using Godot;
 
 namespace LootGoblin;
 
@@ -10,6 +11,7 @@ public abstract partial class EnemyState : State
     protected const string Attack = "EnemyAttack";
 
     protected CharacterMotor Motor;
+    [Export] protected EnemyStats Stats;
 
     public override void _Ready()
     {

@@ -5,26 +5,30 @@ namespace LootGoblin;
 [GlobalClass]
 public partial class EnemyChase : EnemyState
 {
-    [ExportCategory("Chase Settings")]
-    [Export] private float _chaseQuitDistance;
-    [Export] private float _attackRange;
-
-    private float ChaseQuitPixelDistance => _chaseQuitDistance * LevelTileMap.TileSize;
-    private float AttackPixelRange => _attackRange *  LevelTileMap.TileSize;
-    
     [ExportCategory("Node References")]
     [Export] private NavigationAgent2D _agent;
+ 
+    private float _chaseQuitPixelDistance;
+    private float _attackPixelRange;
     
-    
+    public override string StateName { get; set; } = "Chase";
+
+    public override void _Ready()
+    {
+        _chaseQuitPixelDistance = Stats.ChaseQuitDistance * LevelTileMap.TileSize;
+        _attackPixelRange = Stats.AttackRange * LevelTileMap.TileSize;
+        base._Ready();
+    }
+
     public override void PhysicsUpdate(double delta)
     {
-        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) < AttackPixelRange)
+        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) < _attackPixelRange)
         {
             Finished?.Invoke(Attack);
             return;
         }
 
-        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) < ChaseQuitPixelDistance)
+        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) < _chaseQuitPixelDistance)
         {
             ChasePlayer();
         }

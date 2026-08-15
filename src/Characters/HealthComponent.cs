@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace LootGoblin;
@@ -5,7 +6,20 @@ namespace LootGoblin;
 [GlobalClass]
 public partial class HealthComponent : Node
 {
-    [Export] public int Health { get; private set; }
+    public Action<int> HealthChangedEvent;
+
+    private int _health;
+    
+    [Export]
+    public int Health
+    {
+        get => _health;
+        private set
+        {
+            HealthChangedEvent?.Invoke(value);
+            _health = value;
+        }
+    }
 	
     [Export] public Hurtbox2D Hurtbox {get; private set;}
 	

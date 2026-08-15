@@ -1,48 +1,129 @@
-using System.Threading.Tasks;
 using Godot;
+using Godot.Collections;
 
 namespace LootGoblin;
 
 [GlobalClass]
 public partial class EnemyAttack : EnemyState
 {
-    [Export] private int _damage;
-    [Export] private int _attackRange;
-    [Export] private int _attackCooldown;
-    
     [ExportCategory("Node References")]
     [Export] private FourDirAnimator _animator;
+    [Export] private Hitbox2D _hitbox;
+    [Export] private AnimatedSprite2D _animatedSprite;
 
-    private bool _isAttacking = false;
+    // locations should be in order: top, right, bottom, left
+    [Export] private Array<Node2D> _hitboxLocations;
+
+    private bool _isAttacking;
+    private bool IsAttacking
+    {
+        get => _isAttacking;
+        set
+        {
+            if (value)
+            {
+                _hitbox.Monitorable = true;
+                _hitbox.Monitoring = true;
+            }
+            else
+            {
+                _hitbox.Monitorable = false;
+                _hitbox.Monitoring = false;
+            }
+            _isAttacking = value;
+        }
+    }
+
+    private bool _canAttack;
+    
+    private float _attackDisengagePixelRange;
+
+    public override string StateName { get; set; } = "Attack";
+
+    public override void _Ready()
+    {
+        _attackDisengagePixelRange = Stats.AttackRange * LevelTileMap.TileSize;
+        _hitbox.Damage = Stats.Damage;
+        
+        base._Ready();
+    }
+
+    public override void Enter(string previousStatePath)
+    {
+        _canAttack = true;
+        Motor.MoveDirection = Vector2.Zero;
+        _animatedSprite.FrameChanged += OnFrameChanged;
+    }
+
+    public override void Exit()
+    {
+        _animatedSprite.FrameChanged -= OnFrameChanged;
+    }
 
     public override void PhysicsUpdate(double delta)
     {
-        if (_isAttacking) return;
-
-        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) > _attackRange)
+        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) > _attackDisengagePixelRange)
         {
             Finished?.Invoke(Chase);
         }
-        else
-        {
-            AttackPlayer();
-        }
+        
+        if (!_canAttack) return;
+        
+        AttackPlayer();
+        
     }
 
     private void AttackPlayer()
     {
         // TODO add attack animations
-        // _animator.PlayAttackAnimation();
+        _animator.PlayAttackAnimation();
 
-        _isAttacking = true;
+        switch (_animatedSprite.Animation)
+        {
+            case "attack_up":
+                _hitbox.Position = _hitboxLocations[0].Position;
+                break;
+            case "attack_right":
+                _hitbox.Position = _hitboxLocations[1].Position;
+                break;
+            case "attack_down":
+                _hitbox.Position = _hitboxLocations[2].Position;
+                break;
+            case "attack_left":
+                _hitbox.Position = _hitboxLocations[3].Position;
+                break;
+        }
+
+        _canAttack = false;
+        
         Timer timer = new();
         AddChild(timer);
-        timer.WaitTime = _attackCooldown;
+        timer.WaitTime = Stats.AttackCooldown;
         timer.Start();
         timer.Timeout += () =>
         {
-            _isAttacking = false;
+            _canAttack = true;
             timer.QueueFree();
         };
+    }
+
+    private void OnFrameChanged()
+    {
+        if (_animatedSprite.Animation != "attack_up" &&
+            _animatedSprite.Animation != "attack_left" &&
+            _animatedSprite.Animation != "attack_down" &&
+            _animatedSprite.Animation != "attack_right")
+        {
+            return;
+        }
+        
+        if (_animatedSprite.Frame == 4)
+        {
+            IsAttacking = true;
+        }
+        else if (_animatedSprite.Frame == 5)
+        {
+            IsAttacking = false;
+        }
     }
 }

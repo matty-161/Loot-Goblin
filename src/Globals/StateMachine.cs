@@ -6,7 +6,7 @@ namespace LootGoblin;
 public partial class StateMachine : Node
 {
     [Export] private State _initialState;
-    private State _currentState;
+    public State CurrentState;
 
     public override void _Ready()
     {
@@ -16,18 +16,19 @@ public partial class StateMachine : Node
             stateNode.Finished += TransitionToState;
         }
 
-        _currentState = _initialState;
-        _currentState.Enter("");
+        CurrentState = _initialState;
+        CurrentState.CallDeferred(State.MethodName.Enter, "");
+        // CurrentState.Enter("");
     }
 
     public override void _Process(double delta)
     {
-        _currentState.Update(delta);
+        CurrentState.Update(delta);
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        _currentState.PhysicsUpdate(delta);
+        CurrentState.PhysicsUpdate(delta);
     }
 
     private void TransitionToState(string statePath)
@@ -38,10 +39,10 @@ public partial class StateMachine : Node
             return;
         }
 
-        StringName previousStatePath = _currentState.Name;
-        _currentState.Exit();
-        _currentState = GetNode<State>(statePath);
-        _currentState.Enter(previousStatePath);
+        StringName previousStatePath = CurrentState.Name;
+        CurrentState.Exit();
+        CurrentState = GetNode<State>(statePath);
+        CurrentState.Enter(previousStatePath);
         // GD.Print("Entered " + _currentState.Name);
     }
     

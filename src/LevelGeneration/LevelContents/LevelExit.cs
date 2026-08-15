@@ -9,6 +9,7 @@ public partial class LevelExit : Area2D
 	public override void _Ready()
 	{
 		Hide();
+		Monitoring = false;
 		AreaEntered += OnAreaEntered;
 		GameplaySignalBus.Instance.LevelBossDiedEvent += OnLevelBossDiedEvent;
 	}
@@ -25,6 +26,7 @@ public partial class LevelExit : Area2D
 
 	private void OnLevelBossDiedEvent()
 	{
+		Monitoring = true;
 		Show();
 	}
 }

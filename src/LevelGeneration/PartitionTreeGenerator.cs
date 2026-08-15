@@ -17,23 +17,23 @@ public partial class PartitionTreeGenerator : Node2D
 	private readonly List<TreeNode> _nodes = [];
 	private readonly List<TreeNode> _leafNodes = [];
 
-	public override void _Draw()
-	{
-		DrawRect(new Rect2(new Vector2(0,0), _levelSize * LevelTileMap.TileSize), new (0,0,0));
-	
-		for (int i = 0; i < _leafNodes.Count; i++)
-		{
-			DrawRect(new Rect2(
-				_leafNodes[i].Position * LevelTileMap.TileSize, 
-				_leafNodes[i].Dimensions * LevelTileMap.TileSize), 
-				new Color(GD.Randf(), GD.Randf(), GD.Randf()
-				));
-			
-			DrawString(ThemeDB.FallbackFont, 
-				(_leafNodes[i].Position + _leafNodes[i].Dimensions / 2) * LevelTileMap.TileSize, 
-				_leafNodes[i].Dimensions.ToString());
-		}
-	}
+	// public override void _Draw()
+	// {
+	// 	DrawRect(new Rect2(new Vector2(0,0), _levelSize * LevelTileMap.TileSize), new (0,0,0));
+	//
+	// 	for (int i = 0; i < _leafNodes.Count; i++)
+	// 	{
+	// 		DrawRect(new Rect2(
+	// 			_leafNodes[i].Position * LevelTileMap.TileSize, 
+	// 			_leafNodes[i].Dimensions * LevelTileMap.TileSize), 
+	// 			new Color(GD.Randf(), GD.Randf(), GD.Randf()
+	// 			));
+	// 		
+	// 		DrawString(ThemeDB.FallbackFont, 
+	// 			(_leafNodes[i].Position + _leafNodes[i].Dimensions / 2) * LevelTileMap.TileSize, 
+	// 			_leafNodes[i].Dimensions.ToString());
+	// 	}
+	// }
 
 	public void GeneratePartitionTree(Vector2I levelSize, int minPartitionSize, int maxPartitionDivision)
 	{
@@ -47,7 +47,7 @@ public partial class PartitionTreeGenerator : Node2D
 		_root = new(new(0, 0), _levelSize, 0);
 		SplitRecursive(_root);
 		FindLeafNodes(_root);
-		QueueRedraw();
+		// QueueRedraw();
 	}
 
 	private void SplitRecursive(TreeNode node)

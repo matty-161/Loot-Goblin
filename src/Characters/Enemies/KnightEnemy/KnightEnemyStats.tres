@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://cqce1klbqte01"]
+
+[ext_resource type="Script" uid="uid://c3jqcgc6u6688" path="res://Characters/Enemies/EnemyStats.cs" id="1_t0mwr"]
+
+[resource]
+script = ExtResource("1_t0mwr")
+MaxHealth = 3.0
+Damage = 1
+AttackRange = 1.0
+MoveSpeed = 5.0
+IdleWaitTime = 3.0
+IdleChaseTriggerDistance = 3.0
+PatrolTargetBufferDistance = 0.1
+PatrolChaseTriggerDistance = 3.0
+ChaseQuitDistance = 4.0
+AttackCooldown = 1.0
+metadata/_custom_type_script = "uid://c3jqcgc6u6688"

@@ -8,6 +8,8 @@ public abstract partial class State : Node
 {
     public Action<string> Finished;
 
+    public abstract string StateName { get; set; }
+
     public virtual void Update(double delta)
     {
         

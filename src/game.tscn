@@ -7,8 +7,33 @@
 [ext_resource type="Script" uid="uid://2xuc5762q6rs" path="res://Menus/MainMenu.cs" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="4_7jktm"]
 [ext_resource type="Script" uid="uid://chqq7xwqowyyp" path="res://Systems/EntityManager.cs" id="7_hve3p"]
+[ext_resource type="Shader" uid="uid://utyovv2o6boo" path="res://Effects/background.gdshader" id="7_mfdv2"]
 [ext_resource type="Script" uid="uid://s5wxma6pf18s" path="res://Systems/LevelProgressionManager.cs" id="8_iotsf"]
+[ext_resource type="Script" uid="uid://berwficohqyja" path="res://Menus/HUD/HealthLabel.cs" id="9_mfdv2"]
 [ext_resource type="Script" uid="uid://bdhd6xprn1ln7" path="res://Menus/LevelTransition.cs" id="11_mfdv2"]
+
+[sub_resource type="Gradient" id="Gradient_hve3p"]
+colors = PackedColorArray(0.23, 0.23, 0.23, 0, 0.32639998, 0.34, 0.32639998, 0.827451)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_mfdv2"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_mfdv2"]
+width = 320
+height = 320
+noise = SubResource("FastNoiseLite_mfdv2")
+color_ramp = SubResource("Gradient_hve3p")
+seamless = true
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_iotsf"]
+shader = ExtResource("7_mfdv2")
+shader_parameter/scroll_speed = 0.005
+shader_parameter/angle_degrees = 103.286004906085
+shader_parameter/repeat_x = 20.0
+shader_parameter/repeat_y = 20.0
+shader_parameter/row_offset = 0.0
+shader_parameter/noise = SubResource("NoiseTexture2D_mfdv2")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_lc2xo"]
 
 [node name="Game" type="Node" unique_id=1125093093]
 script = ExtResource("1_vef74")
@@ -40,26 +65,47 @@ _levelProgressionManager = NodePath("../../../Systems/LevelProgressionManager")
 
 [node name="Effects" type="Node2D" parent="World" unique_id=798018412]
 
+[node name="Sprite2D" type="Sprite2D" parent="World/Effects" unique_id=795756156]
+z_index = -1000
+material = SubResource("ShaderMaterial_iotsf")
+position = Vector2(500, 500)
+scale = Vector2(1600, 1600)
+texture = SubResource("CanvasTexture_lc2xo")
+
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1640094315]
 layer = 10
 
 [node name="HUDRoot" type="Control" parent="HUDLayer" unique_id=1563786998]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-metadata/_edit_use_anchors_ = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TreasureLabel" type="Label" parent="HUDLayer/HUDRoot" unique_id=1196518641]
 layout_mode = 1
-offset_left = 6.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -48.0
 offset_top = 6.0
-offset_right = 26.0
+offset_right = -3.0
 offset_bottom = 15.0
+grow_horizontal = 0
 theme_override_font_sizes/font_size = 8
 text = "Loot: "
 script = ExtResource("4_7jktm")
-metadata/_edit_use_anchors_ = true
+
+[node name="HealthLabel" type="Label" parent="HUDLayer/HUDRoot" unique_id=1308339217]
+layout_mode = 0
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 8
+text = "HP: 3"
+script = ExtResource("9_mfdv2")
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1741614205]
 layer = 20
@@ -129,12 +175,9 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 1.0
-offset_right = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
-metadata/_edit_use_anchors_ = true
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=391513325]
 layer = 40

@@ -7,11 +7,14 @@ public partial class WeaponSlot : Node2D
 	[Export] private Dagger _weapon;
 
 	private bool _isAttacking;
+	
 
-	public override void _Ready()
+	public override void _EnterTree()
 	{
 		_weapon.AttackStartedEvent += OnAttackStartedEvent;
 		_weapon.AttackEndedEvent += OnAttackEndedEvent;
+		
+		_weapon.AddToGroup("player");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.

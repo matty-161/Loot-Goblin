@@ -49,6 +49,11 @@ folder_colors={
 "res://level-generation/": "green"
 }
 
+[global_group]
+
+enemies=""
+player=""
+
 [gui]
 
 theme/custom_font="uid://ceyrrw1gabg2k"
@@ -102,9 +107,11 @@ attack={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Loot"
 2d_physics/layer_4="Enemies"
-2d_physics/layer_5="Hitboxes"
-2d_physics/layer_6="Hurtboxes"
 2d_physics/layer_7="LevelExit"
+2d_physics/layer_8="PlayerHitbox"
+2d_physics/layer_9="PlayerHurtbox"
+2d_physics/layer_10="EnemyHitbox"
+2d_physics/layer_11="EnemyHurtbox"
 
 [physics]
 

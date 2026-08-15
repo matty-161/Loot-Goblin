@@ -5,16 +5,19 @@ namespace LootGoblin;
 [GlobalClass]
 public partial class EnemyIdle : EnemyState
 {
-    [ExportCategory("Idle Settings")]
-    [Export] private float _idleWaitTime;
-    [Export] private float _chaseTriggerDistance;
-
-    private float ChaseTriggerPixelDistance => _chaseTriggerDistance * LevelTileMap.TileSize;
-
     [ExportCategory("Node References")]
     [Export] private FourDirAnimator _animator;
-
+    
+    private float _chaseTriggerPixelDistance;
     private Timer _timer;
+    
+    public override string StateName { get; set; } = "Idle";
+
+    public override void _Ready()
+    {
+        _chaseTriggerPixelDistance = Stats.IdleChaseTriggerDistance * LevelTileMap.TileSize;
+        base._Ready();
+    }
 
     public override void Enter(string previousStatePath)
     {
@@ -24,7 +27,7 @@ public partial class EnemyIdle : EnemyState
 
     public override void PhysicsUpdate(double delta)
     {
-        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) < ChaseTriggerPixelDistance)
+        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) < _chaseTriggerPixelDistance)
         {
             Finished?.Invoke(Chase);
         }
@@ -41,7 +44,7 @@ public partial class EnemyIdle : EnemyState
         _timer.OneShot = true;
         AddChild(_timer);
         _timer.Timeout += IdleTimerTimeout;
-        _timer.WaitTime = _idleWaitTime;
+        _timer.WaitTime = Stats.IdleWaitTime;
         _timer.Start();
     }
     

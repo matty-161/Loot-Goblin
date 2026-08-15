@@ -41,31 +41,6 @@ public partial class FourDirAnimator : Node
                 if (_previousAnimation == "walk_down") return;
                 _sprite.Play("walk_down");
             }
-            
-            
-            // switch (_characterMotor.MoveDirection.Y)
-            // {
-            //     case > 0:
-            //         if (_previousAnimation == "walk_down") return;
-            //         _sprite.Play("walk_down");
-            //         break;
-            //     case < 0:
-            //         if (_previousAnimation == "walk_up") return;
-            //         _sprite.Play("walk_up");
-            //         break;
-            // }
-            //
-            // switch (_characterMotor.MoveDirection.X)
-            // {
-            //     case > 0:
-            //         if (_previousAnimation == "walk_right") return;
-            //         _sprite.Play("walk_right");
-            //         break;
-            //     case < 0:
-            //         if (_previousAnimation == "walk_left") return;
-            //         _sprite.Play("walk_left");
-            //         break;
-            // }
         }
         else
         {

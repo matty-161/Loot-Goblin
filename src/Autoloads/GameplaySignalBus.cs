@@ -21,4 +21,7 @@ public partial class GameplaySignalBus : Node
     public Action LevelTransitionFadeOutEvent;
     public Action LevelTransitionEvent;
     public Action<bool> LevelTransitionFadeInEvent;
+    
+    // player events
+    public Action<int> PlayerHealthChangedEvent;
 }

@@ -11,7 +11,6 @@ public partial class Dagger : Node2D
 	
 	[Export] private int _damage = 1;
 	
-	
 	private Sprite2D _sprite;
 	private Hitbox2D _hitbox;
 	
@@ -26,7 +25,9 @@ public partial class Dagger : Node2D
 		_hitbox.Damage = _damage;
 		_hitbox.Monitorable = false;
 		_hitbox.Monitoring = false;
+		
 	}
+	
 
 	private void Attack()
 	{

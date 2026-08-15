@@ -6,19 +6,24 @@ namespace LootGoblin;
 [GlobalClass]
 public partial class EnemyPatrol : EnemyState
 {
-    [ExportCategory("Patrol Settings")]
-    [Export] private float _patrolTargetBufferDistance;
-    [Export] private float _chaseTriggerDistance;
-    
-    private float PatrolTargetBufferDistance => _patrolTargetBufferDistance * LevelTileMap.TileSize;
-    private float ChaseTriggerPixelDistance => _chaseTriggerDistance * LevelTileMap.TileSize;
-
     [ExportCategory("Node References")]
     [Export] private NavigationAgent2D _agent;
 
+    private float _patrolTargetBufferDistance;
+    private float _chaseTriggerPixelDistance;
+    
     private Array<Vector2I> _patrolTargets = [];
     private int _targetIndex;
     
+    public override string StateName { get; set; } = "Patrol";
+
+    public override void _Ready()
+    {
+        _patrolTargetBufferDistance = Stats.PatrolTargetBufferDistance * LevelTileMap.TileSize;
+        _chaseTriggerPixelDistance = Stats.PatrolChaseTriggerDistance * LevelTileMap.TileSize;
+        base._Ready();
+    }
+
     public override void Enter(string previousStatePath)
     {
         _agent.SetTargetPosition(_patrolTargets[_targetIndex]);
@@ -29,7 +34,7 @@ public partial class EnemyPatrol : EnemyState
         // the agent can get stuck and repeatedly overshoot the target
         // so we use a buffer so it only has to get in a certain range of the target
         // if the enemy is in range of the target, enter idle state
-        if (_agent.DistanceToTarget() < PatrolTargetBufferDistance)
+        if (_agent.DistanceToTarget() < _patrolTargetBufferDistance)
         {
             NextDestination();
             Finished?.Invoke(Idle);
@@ -37,7 +42,7 @@ public partial class EnemyPatrol : EnemyState
         }
         
         // if the enemy is within chase range of the player, enter chase state
-        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) < ChaseTriggerPixelDistance)
+        if (Motor.GlobalPosition.DistanceTo(PlayerData.PlayerPosition) < _chaseTriggerPixelDistance)
         {
             Finished?.Invoke(Chase);
             return;
