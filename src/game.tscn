@@ -4,12 +4,12 @@
 [ext_resource type="Script" uid="uid://wx1hifekhryb" path="res://GameManager.cs" id="1_vef74"]
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/tilemap.tscn" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://dk0smpsl2qomi" path="res://Systems/LootManager.cs" id="2_fc0e3"]
-[ext_resource type="Script" uid="uid://2xuc5762q6rs" path="res://Menus/MainMenu.cs" id="3_feb5d"]
 [ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="4_7jktm"]
 [ext_resource type="Script" uid="uid://chqq7xwqowyyp" path="res://Systems/EntityManager.cs" id="7_hve3p"]
 [ext_resource type="Shader" uid="uid://utyovv2o6boo" path="res://Effects/background.gdshader" id="7_mfdv2"]
 [ext_resource type="Script" uid="uid://s5wxma6pf18s" path="res://Systems/LevelProgressionManager.cs" id="8_iotsf"]
 [ext_resource type="Script" uid="uid://berwficohqyja" path="res://Menus/HUD/HealthLabel.cs" id="9_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://wfjg5q7dux61" path="res://Menus/main_menu.tscn" id="10_iotsf"]
 [ext_resource type="PackedScene" uid="uid://be1dwiglgx2qd" path="res://Menus/game_over_screen.tscn" id="11_iotsf"]
 [ext_resource type="Script" uid="uid://bdhd6xprn1ln7" path="res://Menus/LevelTransition.cs" id="11_mfdv2"]
 
@@ -111,50 +111,8 @@ script = ExtResource("9_mfdv2")
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1741614205]
 layer = 20
 
-[node name="MainMenu" type="Control" parent="MenuLayer" unique_id=345926528 node_paths=PackedStringArray("_levelGenerationManager")]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("3_feb5d")
+[node name="MainMenu" parent="MenuLayer" unique_id=1835345181 node_paths=PackedStringArray("_levelGenerationManager") instance=ExtResource("10_iotsf")]
 _levelGenerationManager = NodePath("../../Systems/LevelGenerationManager")
-metadata/_edit_use_anchors_ = true
-
-[node name="VBoxContainer" type="VBoxContainer" parent="MenuLayer/MainMenu" unique_id=551474706]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -64.0
-offset_right = 35.0
-offset_bottom = 64.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="MenuLayer/MainMenu/VBoxContainer" unique_id=2001358918]
-layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Loot Goblin"
-
-[node name="PlayButton" type="Button" parent="MenuLayer/MainMenu/VBoxContainer" unique_id=1660161155]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Play"
-
-[node name="SettingsButton" type="Button" parent="MenuLayer/MainMenu/VBoxContainer" unique_id=632633234]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Settings"
-
-[node name="QuitButton" type="Button" parent="MenuLayer/MainMenu/VBoxContainer" unique_id=1849060577]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Quit"
 
 [node name="GameOverScreen" parent="MenuLayer" unique_id=331692519 instance=ExtResource("11_iotsf")]
 visible = false
