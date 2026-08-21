@@ -43,7 +43,6 @@ public partial class StateMachine : Node
         CurrentState.Exit();
         CurrentState = GetNode<State>(statePath);
         CurrentState.Enter(previousStatePath);
-        // GD.Print("Entered " + _currentState.Name);
     }
     
 }

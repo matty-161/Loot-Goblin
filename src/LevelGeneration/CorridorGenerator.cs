@@ -45,7 +45,6 @@ public partial class CorridorGenerator : Node
 		ConnectChildren(node);
 		TraverseTree(node.Left, depth);
 		TraverseTree(node.Right, depth);
-		
 	}
 
 	private void ConnectChildren(TreeNode node)

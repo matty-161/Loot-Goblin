@@ -32,7 +32,7 @@ public partial class EnemyPatrol : EnemyState
     public override void PhysicsUpdate(double delta)
     {
         // the agent can get stuck and repeatedly overshoot the target
-        // so we use a buffer so it only has to get in a certain range of the target
+        // so i use a buffer so it only has to get in a certain range of the target
         // if the enemy is in range of the target, enter idle state
         if (_agent.DistanceToTarget() < _patrolTargetBufferDistance)
         {

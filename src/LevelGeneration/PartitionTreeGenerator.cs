@@ -57,7 +57,6 @@ public partial class PartitionTreeGenerator : Node2D
 		SplitCell(node);
 		SplitRecursive(node.Left);
 		SplitRecursive(node.Right);
-		
 	}
 
 	private void SplitCell(TreeNode node)
@@ -67,7 +66,6 @@ public partial class PartitionTreeGenerator : Node2D
 			SplitCellVertical(node);
 			node.IsSplitVertical = true;
 		}
-
 		else
 		{
 			SplitCellHorizontal(node);

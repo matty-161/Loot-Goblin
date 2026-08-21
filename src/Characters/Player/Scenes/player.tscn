@@ -14,6 +14,9 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_rfo2l"]
 radius = 6.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_rg7kn"]
+radius = 8.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_52sos"]
 atlas = ExtResource("2_rg7kn")
 region = Rect2(0, 0, 16, 16)
@@ -69,8 +72,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_rg7kn"]
-radius = 8.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_55o84"]
+bg_color = Color(0.103743516, 0.103743546, 0.10374347, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2lklv"]
+bg_color = Color(0.9267113, 0.5976864, 3.85046e-07, 1)
+
+[sub_resource type="Theme" id="Theme_jfmy4"]
+ProgressBar/styles/background = SubResource("StyleBoxFlat_55o84")
+ProgressBar/styles/fill = SubResource("StyleBoxFlat_2lklv")
 
 [node name="Player" type="CharacterBody2D" unique_id=118906777 groups=["player"]]
 collision_layer = 2
@@ -80,6 +90,30 @@ script = ExtResource("1_utetp")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=200531166]
 shape = SubResource("CircleShape2D_rfo2l")
 
+[node name="Hurtbox2D" type="Area2D" parent="." unique_id=489999902]
+script = ExtResource("3_egfbo")
+metadata/_custom_type_script = "uid://dbsxq7dhwxfww"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox2D" unique_id=1430896622]
+shape = SubResource("CircleShape2D_rfo2l")
+
+[node name="LevelExitArea" type="Area2D" parent="." unique_id=99484229]
+collision_layer = 64
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExitArea" unique_id=1894803610]
+shape = SubResource("CircleShape2D_rfo2l")
+
+[node name="TreasureCollectionComponent" type="Area2D" parent="." unique_id=148509588 node_paths=PackedStringArray("_collectionPrompt", "_collectionBar")]
+collision_layer = 0
+collision_mask = 4
+script = ExtResource("3_52sos")
+_collectionPrompt = NodePath("../CollectionPrompt")
+_collectionBar = NodePath("../CollectionPrompt/CollectionProgressBar")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureCollectionComponent" unique_id=86428857]
+shape = SubResource("CircleShape2D_rg7kn")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=310300674]
 unique_name_in_owner = true
 position = Vector2(-1, 5)
@@ -88,22 +122,7 @@ animation = &"idle"
 frame_progress = 0.91222256
 offset = Vector2(0, -6)
 
-[node name="Hurtbox2D" type="Area2D" parent="." unique_id=489999902]
-script = ExtResource("3_egfbo")
-metadata/_custom_type_script = "uid://dbsxq7dhwxfww"
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox2D" unique_id=1430896622]
-shape = SubResource("CircleShape2D_rfo2l")
-
 [node name="Camera2D" type="Camera2D" parent="." unique_id=669672191]
-
-[node name="TreasureCollectionComponent" type="Area2D" parent="." unique_id=148509588]
-collision_layer = 0
-collision_mask = 4
-script = ExtResource("3_52sos")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureCollectionComponent" unique_id=86428857]
-shape = SubResource("CircleShape2D_rg7kn")
 
 [node name="WeaponSlot" type="Node2D" parent="." unique_id=284987682 node_paths=PackedStringArray("_weapon")]
 script = ExtResource("4_bw35f")
@@ -118,13 +137,6 @@ script = ExtResource("6_lkihu")
 script = ExtResource("7_egfbo")
 _sprite = NodePath("../AnimatedSprite2D")
 
-[node name="LevelExitArea" type="Area2D" parent="." unique_id=99484229]
-collision_layer = 64
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="LevelExitArea" unique_id=1894803610]
-shape = SubResource("CircleShape2D_rfo2l")
-
 [node name="PlayerData" type="Node" parent="." unique_id=1430533883 node_paths=PackedStringArray("_healthComponent")]
 script = ExtResource("8_lkihu")
 _healthComponent = NodePath("../HealthComponent")
@@ -134,3 +146,22 @@ script = ExtResource("10_07qib")
 Health = 3
 Hurtbox = NodePath("../Hurtbox2D")
 metadata/_custom_type_script = "uid://bli2kchxbqx7j"
+
+[node name="CollectionPrompt" type="VBoxContainer" parent="." unique_id=287232810]
+offset_left = -8.0
+offset_top = -30.0
+offset_right = 8.0
+metadata/_edit_group_ = true
+
+[node name="Label" type="Label" parent="CollectionPrompt" unique_id=767254227]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "E"
+horizontal_alignment = 1
+
+[node name="CollectionProgressBar" type="ProgressBar" parent="CollectionPrompt" unique_id=678335414]
+custom_minimum_size = Vector2(0, 2)
+layout_mode = 2
+theme = SubResource("Theme_jfmy4")
+theme_override_font_sizes/font_size = 1
+show_percentage = false

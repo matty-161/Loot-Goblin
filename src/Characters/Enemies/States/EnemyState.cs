@@ -25,5 +25,4 @@ public abstract partial class EnemyState : State
         Debug.Assert(Motor != null, "EnemyState must be used in a CharacterMotor scene");
     }
 
-
 }

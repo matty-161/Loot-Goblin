@@ -46,7 +46,7 @@ public partial class LevelGenerationTest : Node
     {
         // setup csv stuff
         string directory = "Testing/Tests/";
-        string testFileName = "generation_test_v5.csv";
+        string testFileName = "generation_test_vX.csv";
         using StreamWriter writer = new(directory + testFileName);
         
         using CsvWriter csv = new(writer, CultureInfo.InvariantCulture);

@@ -25,7 +25,6 @@ public partial class InteriorGenerator : Node
     [Export] private PackedScene _debugPatrolTarget;
     
     
-
     private Node2D _entitiesRoot;
 
     public void GenerateInteriors(
@@ -116,7 +115,7 @@ public partial class InteriorGenerator : Node
                     _entitiesRoot.AddChild(coin);
                     coin.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     
-                    GenerateTreasureRoomEnemies(room, 1);
+                    GenerateTreasureRoomEnemies(room, 2);
                     
                     break;
                 default:
@@ -161,12 +160,12 @@ public partial class InteriorGenerator : Node
             startPos *= LevelTileMap.TileSize;
             endPos *= LevelTileMap.TileSize;
 
-            Sprite2D debugTarget1 = _debugPatrolTarget.Instantiate<Sprite2D>();
-            _entitiesRoot.AddChild(debugTarget1);
-            debugTarget1.Position = startPos;
-            Sprite2D debugTarget2 = _debugPatrolTarget.Instantiate<Sprite2D>();
-            _entitiesRoot.AddChild(debugTarget2);
-            debugTarget2.Position = endPos;
+            // Sprite2D debugTarget1 = _debugPatrolTarget.Instantiate<Sprite2D>();
+            // _entitiesRoot.AddChild(debugTarget1);
+            // debugTarget1.Position = startPos;
+            // Sprite2D debugTarget2 = _debugPatrolTarget.Instantiate<Sprite2D>();
+            // _entitiesRoot.AddChild(debugTarget2);
+            // debugTarget2.Position = endPos;
             
             
             CharacterBody2D knight = _knightEnemyScene.Instantiate<CharacterBody2D>();
