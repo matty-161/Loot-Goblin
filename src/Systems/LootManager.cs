@@ -13,23 +13,29 @@ public partial class LootManager : Node
         set
         {
             _lootTotal = value;
-            GameplaySignalBus.Instance.LootChangedEvent?.Invoke(_lootTotal);
+            GameEventManager.LootChangedEvent?.Invoke(_lootTotal);
         }
     }
 
     public override void _Ready()
     {
-        GameplaySignalBus.Instance.LootCollectedEvent += OnLootCollectedEvent;
+        GameEventManager.LootCollectedEvent += OnLootCollectedEvent;
+        GameEventManager.FinalLevelCompleteEvent += OnFinalLevelComplete;
     }
 
     public override void _ExitTree()
     {
-        GameplaySignalBus.Instance.LootCollectedEvent -= OnLootCollectedEvent;
+        GameEventManager.LootCollectedEvent -= OnLootCollectedEvent;
     }
     
     private void OnLootCollectedEvent(int amount)
     {
         LootTotal += amount;
+    }
+
+    private void OnFinalLevelComplete()
+    {
+        SaveManager.Instance.SaveScore(LootTotal);
     }
 
 }

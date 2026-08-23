@@ -8,10 +8,12 @@
 [ext_resource type="Script" uid="uid://chqq7xwqowyyp" path="res://Systems/EntityManager.cs" id="7_hve3p"]
 [ext_resource type="Shader" uid="uid://utyovv2o6boo" path="res://Effects/background.gdshader" id="7_mfdv2"]
 [ext_resource type="Script" uid="uid://s5wxma6pf18s" path="res://Systems/LevelProgressionManager.cs" id="8_iotsf"]
+[ext_resource type="Texture2D" uid="uid://b16abj1ewh5uh" path="res://LevelGeneration/Assets/gold_coin.png" id="9_lc2xo"]
 [ext_resource type="Script" uid="uid://berwficohqyja" path="res://Menus/HUD/HealthLabel.cs" id="9_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://wfjg5q7dux61" path="res://Menus/main_menu.tscn" id="10_iotsf"]
 [ext_resource type="PackedScene" uid="uid://be1dwiglgx2qd" path="res://Menus/game_over_screen.tscn" id="11_iotsf"]
 [ext_resource type="Script" uid="uid://bdhd6xprn1ln7" path="res://Menus/LevelTransition.cs" id="11_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://d0heu2iyuy8iw" path="res://Menus/game_completion_screen.tscn" id="13_215e1"]
 
 [sub_resource type="Gradient" id="Gradient_hve3p"]
 colors = PackedColorArray(0.23, 0.23, 0.23, 0, 0.32639998, 0.34, 0.32639998, 0.827451)
@@ -46,6 +48,7 @@ _levelTileMap = NodePath("../../World/Level/LevelTileMap")
 _entitiesRoot = NodePath("../../World/Entities")
 
 [node name="LootManager" type="Node" parent="Systems" unique_id=129810786]
+process_mode = 3
 script = ExtResource("2_fc0e3")
 
 [node name="EntityManager" type="Node" parent="Systems" unique_id=437819140 node_paths=PackedStringArray("_entityRoot")]
@@ -53,6 +56,7 @@ script = ExtResource("7_hve3p")
 _entityRoot = NodePath("../../World/Entities")
 
 [node name="LevelProgressionManager" type="Node" parent="Systems" unique_id=914954809]
+process_mode = 3
 script = ExtResource("8_iotsf")
 
 [node name="World" type="Node2D" parent="." unique_id=1023422311]
@@ -85,20 +89,6 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TreasureLabel" type="Label" parent="HUDLayer/HUDRoot" unique_id=1196518641]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -48.0
-offset_top = 6.0
-offset_right = -3.0
-offset_bottom = 15.0
-grow_horizontal = 0
-theme_override_font_sizes/font_size = 8
-text = "Loot: "
-script = ExtResource("4_7jktm")
-
 [node name="HealthLabel" type="Label" parent="HUDLayer/HUDRoot" unique_id=1308339217]
 layout_mode = 0
 offset_left = 6.0
@@ -109,6 +99,28 @@ theme_override_font_sizes/font_size = 8
 text = "HP: 3"
 script = ExtResource("9_mfdv2")
 
+[node name="HBoxContainer" type="HBoxContainer" parent="HUDLayer/HUDRoot" unique_id=1530974601]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -42.0
+offset_top = 6.0
+offset_right = -4.0
+offset_bottom = 15.0
+grow_horizontal = 0
+
+[node name="TextureRect" type="TextureRect" parent="HUDLayer/HUDRoot/HBoxContainer" unique_id=2012292939]
+layout_mode = 2
+texture = ExtResource("9_lc2xo")
+expand_mode = 2
+
+[node name="TreasureLabel" type="Label" parent="HUDLayer/HUDRoot/HBoxContainer" unique_id=1196518641]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0"
+script = ExtResource("4_7jktm")
+
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1741614205]
 layer = 20
 
@@ -118,10 +130,15 @@ _levelGenerationManager = NodePath("../../Systems/LevelGenerationManager")
 [node name="GameOverScreen" parent="MenuLayer" unique_id=331692519 instance=ExtResource("11_iotsf")]
 visible = false
 
+[node name="GameCompletionScreen" parent="MenuLayer" unique_id=1084706380 instance=ExtResource("13_215e1")]
+visible = false
+
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=855070657]
+process_mode = 3
 layer = 30
 
 [node name="LevelTransition" type="Control" parent="TransitionLayer" unique_id=1911308760 node_paths=PackedStringArray("_colorRect")]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

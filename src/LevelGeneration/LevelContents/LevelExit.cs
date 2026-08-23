@@ -11,17 +11,17 @@ public partial class LevelExit : Area2D
 		Hide();
 		Monitoring = false;
 		AreaEntered += OnAreaEntered;
-		GameplaySignalBus.Instance.LevelBossDiedEvent += OnLevelBossDiedEvent;
+		GameEventManager.LevelBossDiedEvent += OnLevelBossDiedEvent;
 	}
 
 	public override void _ExitTree()
 	{
-		GameplaySignalBus.Instance.LevelBossDiedEvent -= OnLevelBossDiedEvent;
+		GameEventManager.LevelBossDiedEvent -= OnLevelBossDiedEvent;
 	}
 
 	private void OnAreaEntered(Area2D area)
 	{
-		GameplaySignalBus.Instance.LevelTransitionFadeOutEvent?.Invoke();
+		GameEventManager.LevelTransitionFadeOutEvent?.Invoke();
 	}
 
 	private void OnLevelBossDiedEvent()

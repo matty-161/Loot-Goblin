@@ -8,12 +8,12 @@ public partial class EntityManager : Node
     
     public override void _Ready()
     {
-        GameplaySignalBus.Instance.LevelTransitionEvent += ClearEntities;
+        GameEventManager.LevelTransitionEvent += ClearEntities;
     }
 
     public override void _ExitTree()
     {
-        GameplaySignalBus.Instance.LevelTransitionEvent -= ClearEntities;
+        GameEventManager.LevelTransitionEvent -= ClearEntities;
     }
 
     private void ClearEntities()

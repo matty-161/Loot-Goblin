@@ -7,9 +7,10 @@ public partial class LevelTransition : Control
 	[Export] private int _duration = 1;
 	[Export] private ColorRect _colorRect;
 
+	[ExportCategory("Node References")]
+	[Export] private LevelProgressionManager _levelProgressionManager;
+	
 	private Timer _timer;
-	
-	
 
 	private Tween _tween;
 	
@@ -17,12 +18,12 @@ public partial class LevelTransition : Control
 	public override void _Ready()
 	{
 		Hide();
-		GameplaySignalBus.Instance.LevelTransitionFadeOutEvent += OnFadeOut;
+		GameEventManager.LevelTransitionFadeOutEvent += OnFadeOut;
 	}
 
 	public override void _ExitTree()
 	{
-		GameplaySignalBus.Instance.LevelTransitionFadeOutEvent -= OnFadeOut;
+		GameEventManager.LevelTransitionFadeOutEvent -= OnFadeOut;
 	}
 
 	private void OnFadeOut()
@@ -38,7 +39,7 @@ public partial class LevelTransition : Control
 
 	private void StartTimer()
 	{
-		GameplaySignalBus.Instance.LevelTransitionEvent?.Invoke();
+		GameEventManager.LevelTransitionEvent?.Invoke();
 		_timer?.QueueFree();
 		_timer = new Timer();
 		AddChild(_timer);
@@ -50,7 +51,7 @@ public partial class LevelTransition : Control
 	private void OnTimerTimeout()
 	{
 		_timer.Timeout -= OnTimerTimeout;
-		GameplaySignalBus.Instance.LevelTransitionFadeInEvent?.Invoke(false);
+		GameEventManager.LevelTransitionFadeInEvent?.Invoke(false);
 		_tween?.Kill();
 		_tween = GetTree().CreateTween();
 		_tween.TweenProperty(_colorRect, "modulate", Colors.Transparent, .5f);

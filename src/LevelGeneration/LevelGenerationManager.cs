@@ -24,19 +24,20 @@ public partial class LevelGenerationManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        GameplaySignalBus.Instance.LevelTransitionEvent += ClearLevel;
-        GameplaySignalBus.Instance.LevelTransitionFadeInEvent += GenerateLevel;
+        GameEventManager.LevelTransitionEvent += ClearLevel;
+        GameEventManager.NextLevelEvent += GenerateLevel;
     }
 
     public override void _ExitTree()
     {
-        GameplaySignalBus.Instance.LevelTransitionEvent -= ClearLevel;
-        GameplaySignalBus.Instance.LevelTransitionFadeInEvent -= GenerateLevel;
+        GameEventManager.LevelTransitionEvent -= ClearLevel;
+        GameEventManager.NextLevelEvent -= GenerateLevel;
     }
 
-    public void GenerateLevel(bool isTest = false)
+    public void GenerateLevel()
     {
-        GameManager.IsTest = isTest;
+        _levelTileMap.ChangeTerrain();
+        
         _partitionTreeGenerator.GeneratePartitionTree(_levelSize, _minPartitionSize, _maxPartitionDivision);
         _roomGenerator.GenerateRooms(_levelTileMap, _partitionTreeGenerator);
         _corridorGenerator.GenerateCorridors(_levelTileMap, _partitionTreeGenerator, _roomGenerator);

@@ -42,7 +42,7 @@ public partial class LootCollectionComponent : Area2D
 
 			if (CollectionProgress >= _collectionTime)
 			{
-				GameplaySignalBus.Instance.LootCollectedEvent?.Invoke(_collectable.LootResource.Amount);
+				GameEventManager.LootCollectedEvent?.Invoke(_collectable.LootResource.Amount);
 				_collectable.QueueFree();
 				_collectable = null;
 				CollectionProgress = 0;

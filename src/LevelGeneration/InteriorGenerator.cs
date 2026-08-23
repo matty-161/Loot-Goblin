@@ -115,7 +115,7 @@ public partial class InteriorGenerator : Node
                     _entitiesRoot.AddChild(coin);
                     coin.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     
-                    GenerateTreasureRoomEnemies(room, 2);
+                    GenerateTreasureRoomEnemies(room, 1);
                     
                     break;
                 default:

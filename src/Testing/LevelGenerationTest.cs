@@ -24,6 +24,7 @@ public partial class LevelGenerationTest : Node
 
     public override void _Ready()
     {
+        GameManager.IsTest = true;
         _generateOnceButton.Pressed += GenerateOnce;
         _testButton.Pressed += RunTests;
         _iterationsEdit.DebugTextChanged += OnDebugTextChanged;
@@ -39,7 +40,7 @@ public partial class LevelGenerationTest : Node
     private void GenerateOnce()
     {
         // generate the level
-        _generationManager.GenerateLevel(true);
+        _generationManager.GenerateLevel();
     }
 
     private async void RunTests()
@@ -55,8 +56,9 @@ public partial class LevelGenerationTest : Node
         // do tests
         for (int i = 0; i < _iterationsCount; i++)
         {
+            
             // generate the level
-            _generationManager.GenerateLevel(true);
+            _generationManager.GenerateLevel();
             
             // wait for nav server to wake up
             await ToSignal(GetTree().CreateTimer(.25), Timer.SignalName.Timeout);

@@ -15,7 +15,7 @@ public partial class LevelTileMap : TileMapLayer
 
 	public override void _Ready()
 	{
-		GameplaySignalBus.Instance.LevelTransitionEvent += ChangeTerrain;
+		// GameEventManager.LevelTransitionEvent += ChangeTerrain;
 	}
 	
 	public void PlaceRoom(Room room)
@@ -43,9 +43,9 @@ public partial class LevelTileMap : TileMapLayer
 		NotifyRuntimeTileDataUpdate();
 	}
 
-	private void ChangeTerrain()
+	public void ChangeTerrain()
 	{
-		// subtract 1 from CurrentLevel as CurrentLevel starts at 1, but the terrain index starts at 0
+		// SetDeferred("_terrainIndex", _levelProgressionManager.CurrentLevel);
 		_terrainIndex = _levelProgressionManager.CurrentLevel; 
 	}
 }

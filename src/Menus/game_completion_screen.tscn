@@ -1,0 +1,92 @@
+[gd_scene format=3 uid="uid://d0heu2iyuy8iw"]
+
+[ext_resource type="Script" uid="uid://crsqgrow4ppyy" path="res://Menus/GameCompletionScreen.cs" id="1_v8lca"]
+[ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="1_whfnr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_v8lca"]
+bg_color = Color(0, 0, 0, 0.7529412)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_v8lca"]
+
+[node name="GameCompletionScreen" type="Control" unique_id=1084706380]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v8lca")
+
+[node name="Panel" type="Panel" parent="." unique_id=1073527597]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_v8lca")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=271792528]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.5
+offset_top = -56.5
+offset_right = 68.5
+offset_bottom = 56.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="GameOverLabel" type="Label" parent="VBoxContainer" unique_id=1078358156]
+layout_mode = 2
+text = "Escape Successful!"
+horizontal_alignment = 1
+
+[node name="GameOverSub" type="Label" parent="VBoxContainer" unique_id=1820098690]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "Gobbo successfully escaped with thier loot"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=1316517531]
+layout_mode = 2
+theme_override_constants/separation = 9
+theme_override_styles/separator = SubResource("StyleBoxEmpty_v8lca")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer" unique_id=160909068]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/VBoxContainer2" unique_id=860057008]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Label" type="Label" parent="VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=680456554]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "Loot: "
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1369050857]
+layout_mode = 2
+theme_override_font_sizes/font_size = 13
+text = "67"
+script = ExtResource("1_whfnr")
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1501153976]
+layout_mode = 2
+theme_override_constants/separation = 17
+theme_override_styles/separator = SubResource("StyleBoxEmpty_v8lca")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=924813785]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="ReturnToMenuButton" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1070623802]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "main menu"

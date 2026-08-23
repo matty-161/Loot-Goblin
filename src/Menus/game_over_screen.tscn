@@ -1,6 +1,10 @@
 [gd_scene format=3 uid="uid://be1dwiglgx2qd"]
 
 [ext_resource type="Script" uid="uid://c415j5p4l0wir" path="res://Menus/GameOverScreen.cs" id="1_eyuld"]
+[ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="2_1lxip"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lxip"]
+bg_color = Color(0, 0, 0, 0.7529412)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jfmy4"]
 
@@ -21,6 +25,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_1lxip")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1786131917]
 layout_mode = 1
@@ -69,6 +74,7 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "67"
+script = ExtResource("2_1lxip")
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=243963747]
 layout_mode = 2

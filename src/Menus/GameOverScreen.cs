@@ -15,7 +15,7 @@ public partial class GameOverScreen : Control
 
         _mainMenuButton.Pressed += OnMainMenuButtonPressed;
 
-        GameplaySignalBus.Instance.PlayerDied += Show;
+        GameEventManager.PlayerDied += Show;
     }
 
     private void OnMainMenuButtonPressed()

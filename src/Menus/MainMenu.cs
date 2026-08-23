@@ -13,6 +13,8 @@ public partial class MainMenu : Control
 	private Button _playButton;
 	private Button _settingsButton;
 	private Button _quitButton;
+
+	private Label _highScoreLabel;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -28,6 +30,10 @@ public partial class MainMenu : Control
 		_playButton = GetNode<Button>("%PlayButton");
 		_settingsButton = GetNode<Button>("%SettingsButton");
 		_quitButton = GetNode<Button>("%QuitButton");
+
+		_highScoreLabel = GetNode<Label>("%HighScore");
+		// SetDeferred(_highScoreLabel.Text, SaveManager.Instance.GetHighScore().ToString());
+		_highScoreLabel.Text = "High Score: " + SaveManager.Instance.GetHighScore().ToString();
 		
 		_playButton.Pressed += StartGame;
 		_settingsButton.Pressed += OpenSettings;
@@ -42,7 +48,7 @@ public partial class MainMenu : Control
 	private void StartGame()
 	{
 		GD.Print("Game started");
-		_levelGenerationManager.GenerateLevel(false);
+		_levelGenerationManager.GenerateLevel();
 		Hide();
 	}
 
