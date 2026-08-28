@@ -65,20 +65,45 @@ public partial class FourDirAnimator : Node
 
     public void PlayAttackAnimation()
     {
-        switch (_previousAnimation)
+        Vector2 playerPos = PlayerData.PlayerPosition;
+        Vector2 thisPos = _characterMotor.Position;
+
+        if (thisPos.DirectionTo(playerPos).Dot(Vector2.Right) > .707)
         {
-            case "walk_right":
-                _sprite.Play("attack_right");
-                break;
-            case "walk_left":
-                _sprite.Play("attack_left");
-                break;
-            case "walk_down":
-                _sprite.Play("attack_down");
-                break;
-            case "walk_up":
-                _sprite.Play("attack_up");
-                break;
+            if (_previousAnimation == "attack_right") return;
+            _sprite.Play("attack_right");
         }
+        else if (thisPos.DirectionTo(playerPos).Dot(Vector2.Left) > .707)
+        {
+            if (_previousAnimation == "attack_left") return;
+            _sprite.Play("attack_left");
+        }
+        else if (thisPos.DirectionTo(playerPos).Dot(Vector2.Up) > .707)
+        {
+            if (_previousAnimation == "attack_up") return;
+            _sprite.Play("attack_up");
+        }
+        else
+        {
+            if (_previousAnimation == "attack_down") return;
+            _sprite.Play("attack_down");
+        }
+        
+        // old attack animation version
+        // switch (_previousAnimation)
+        // {
+        //     case "walk_right":
+        //         _sprite.Play("attack_right");
+        //         break;
+        //     case "walk_left":
+        //         _sprite.Play("attack_left");
+        //         break;
+        //     case "walk_down":
+        //         _sprite.Play("attack_down");
+        //         break;
+        //     case "walk_up":
+        //         _sprite.Play("attack_up");
+        //         break;
+        // }
     }
 }
