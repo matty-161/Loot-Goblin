@@ -884,8 +884,7 @@ radius = 6.0
 radius = 7.0
 
 [node name="KnightEnemy" type="CharacterBody2D" unique_id=1838745711 groups=["enemies"]]
-collision_layer = 9
-collision_mask = 10
+collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_04u5q")
 _speed = 5.0
@@ -911,6 +910,7 @@ position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_jfmy4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1305881634]
+debug_enabled = true
 
 [node name="HealthComponent" type="Node" parent="." unique_id=1065966687 node_paths=PackedStringArray("Hurtbox")]
 script = ExtResource("4_6g87q")

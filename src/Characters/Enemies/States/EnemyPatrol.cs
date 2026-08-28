@@ -48,10 +48,11 @@ public partial class EnemyPatrol : EnemyState
             return;
         }
 
-        if (_agent.IsNavigationFinished())
-        {
-            return;
-        }
+        // if (_agent.IsNavigationFinished())
+        // {
+        //     GD.Print("navigation finished");
+        //     return;
+        // }
 
         Vector2 nextPathDir = Motor.GlobalPosition.DirectionTo(_agent.GetNextPathPosition());
         Motor.MoveDirection = nextPathDir;

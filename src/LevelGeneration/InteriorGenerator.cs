@@ -115,7 +115,7 @@ public partial class InteriorGenerator : Node
                     _entitiesRoot.AddChild(coin);
                     coin.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     
-                    GenerateTreasureRoomEnemies(room, 1);
+                    GenerateTreasureRoomEnemies(room, 4);
                     
                     break;
                 default:
@@ -143,7 +143,7 @@ public partial class InteriorGenerator : Node
                     break;
                 case 1: // patrol bottom
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 4;
-                    startPos += new Vector2I(startPos.X, startPos.Y + roomSize.Y / 2);
+                    startPos += new Vector2I(0, roomSize.Y / 2);
                     endPos = new(startPos.X + roomSize.X / 2, startPos.Y);
                     break;
                 case 2: // patrol left
@@ -152,7 +152,9 @@ public partial class InteriorGenerator : Node
                     break;
                 default: // patrol right
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 3;
-                    startPos += new Vector2I(startPos.X + roomSize.X / 3, roomSize.Y);
+                    // startPos += new Vector2I((int)(roomSize.X * 0.66f), 0);
+                    Vector2I relStartPos = startPos - room.PositionTopLeft;
+                    startPos += new Vector2I((int)((roomSize.X - relStartPos.X) - (0.17f * roomSize.X)), 0);
                     endPos = new(startPos.X, startPos.Y + roomSize.Y / 3 * 2);
                     break;
             }

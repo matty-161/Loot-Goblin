@@ -40,10 +40,17 @@ public partial class EnemyIdle : EnemyState
 
     private void SetupTimer()
     {
-        _timer = new();
-        _timer.OneShot = true;
-        AddChild(_timer);
-        _timer.Timeout += IdleTimerTimeout;
+        if (_timer == null)
+        {
+            _timer = new();
+            _timer.OneShot = true;
+            AddChild(_timer);
+            _timer.Timeout += IdleTimerTimeout;
+        }
+        else
+        {
+            _timer.Stop();
+        }
         _timer.WaitTime = Stats.IdleWaitTime;
         _timer.Start();
     }

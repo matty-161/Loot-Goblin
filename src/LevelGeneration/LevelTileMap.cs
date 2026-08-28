@@ -45,7 +45,14 @@ public partial class LevelTileMap : TileMapLayer
 
 	public void ChangeTerrain()
 	{
-		// SetDeferred("_terrainIndex", _levelProgressionManager.CurrentLevel);
-		_terrainIndex = _levelProgressionManager.CurrentLevel; 
+		try
+		{
+			_terrainIndex = _levelProgressionManager.CurrentLevel;
+		}
+		catch(Exception err)
+		{
+			GD.PrintErr("Could not set terrain index, default value set to 1");
+			_terrainIndex = 1;
+		}
 	}
 }
