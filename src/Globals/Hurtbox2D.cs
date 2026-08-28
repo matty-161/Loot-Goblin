@@ -36,9 +36,8 @@ public partial class Hurtbox2D : Area2D
 
 	private void OnAreaEntered(Area2D area)
 	{
-		if (area is Hitbox2D hitbox)
-		{
-			TakeDamageEvent?.Invoke(hitbox.Damage);
-		}
+		if (area is not Hitbox2D hitbox) return;
+		if (!hitbox.CanDamage) return;
+		TakeDamageEvent?.Invoke(hitbox.Damage);
 	}
 }

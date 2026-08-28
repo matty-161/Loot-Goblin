@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://b1gs23gujkrsb"]
+
+[ext_resource type="Script" uid="uid://berwficohqyja" path="res://Menus/HUD/HealthLabel.cs" id="1_y57we"]
+
+[node name="HealthLabel" type="Label" unique_id=1245156498]
+offset_left = 6.0
+offset_top = 6.0
+offset_right = 32.0
+offset_bottom = 15.0
+theme_override_font_sizes/font_size = 8
+text = "HP: 3"
+script = ExtResource("1_y57we")

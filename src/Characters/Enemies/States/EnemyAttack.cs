@@ -44,6 +44,7 @@ public partial class EnemyAttack : EnemyState
     {
         _attackDisengagePixelRange = Stats.AttackRange * LevelTileMap.TileSize;
         _hitbox.Damage = Stats.Damage;
+
         
         base._Ready();
     }
@@ -75,8 +76,10 @@ public partial class EnemyAttack : EnemyState
 
     private void AttackPlayer()
     {
-        // TODO add attack animations
+        _hitbox.CanDamage = true;
+        
         _animator.PlayAttackAnimation();
+        
 
         switch (_animatedSprite.Animation)
         {

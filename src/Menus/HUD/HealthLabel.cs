@@ -13,7 +13,7 @@ public partial class HealthLabel : Label
 
 	private void OnPlayerHealthChanged(int newHealth)
 	{
-		Text = "Health: " + newHealth;
+		Text = "HP: " + newHealth;
 	}
 	
 }

@@ -25,7 +25,7 @@ public partial class Dagger : Node2D
 		_hitbox.Damage = _damage;
 		_hitbox.Monitorable = false;
 		_hitbox.Monitoring = false;
-		
+
 	}
 	
 
@@ -35,6 +35,9 @@ public partial class Dagger : Node2D
 		_sprite.Hide();
 		_tween?.Kill();
 		Rotation = 0;
+
+		_hitbox.CanDamage = true;
+		
 		_tween = GetTree().CreateTween();
 		_tween.SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
 		_tween.TweenProperty(_sprite, "visible", true, 0); // make sprite visible
@@ -71,5 +74,11 @@ public partial class Dagger : Node2D
 	public void SetWeaponSlotRotation(float rotation)
 	{
 		_weaponSlotRotation = rotation;
+	}
+
+	private void OnHitboxHitSomething()
+	{
+		_hitbox.Monitorable = false;
+		_hitbox.Monitoring = false;
 	}
 }

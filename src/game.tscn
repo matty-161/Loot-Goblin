@@ -7,9 +7,9 @@
 [ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="4_7jktm"]
 [ext_resource type="Script" uid="uid://chqq7xwqowyyp" path="res://Systems/EntityManager.cs" id="7_hve3p"]
 [ext_resource type="Shader" uid="uid://utyovv2o6boo" path="res://Effects/background.gdshader" id="7_mfdv2"]
+[ext_resource type="PackedScene" uid="uid://b1gs23gujkrsb" path="res://Menus/HUD/health_label.tscn" id="8_215e1"]
 [ext_resource type="Script" uid="uid://s5wxma6pf18s" path="res://Systems/LevelProgressionManager.cs" id="8_iotsf"]
 [ext_resource type="Texture2D" uid="uid://b16abj1ewh5uh" path="res://LevelGeneration/Assets/gold_coin.png" id="9_lc2xo"]
-[ext_resource type="Script" uid="uid://berwficohqyja" path="res://Menus/HUD/HealthLabel.cs" id="9_mfdv2"]
 [ext_resource type="PackedScene" uid="uid://wfjg5q7dux61" path="res://Menus/main_menu.tscn" id="10_iotsf"]
 [ext_resource type="PackedScene" uid="uid://be1dwiglgx2qd" path="res://Menus/game_over_screen.tscn" id="11_iotsf"]
 [ext_resource type="Script" uid="uid://bdhd6xprn1ln7" path="res://Menus/LevelTransition.cs" id="11_mfdv2"]
@@ -89,15 +89,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="HealthLabel" type="Label" parent="HUDLayer/HUDRoot" unique_id=1308339217]
+[node name="HealthLabel" parent="HUDLayer/HUDRoot" unique_id=1245156498 instance=ExtResource("8_215e1")]
 layout_mode = 0
-offset_left = 6.0
-offset_top = 6.0
-offset_right = 32.0
-offset_bottom = 15.0
-theme_override_font_sizes/font_size = 8
-text = "HP: 3"
-script = ExtResource("9_mfdv2")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="HUDLayer/HUDRoot" unique_id=1530974601]
 layout_mode = 1
