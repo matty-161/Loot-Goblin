@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="EnemyStats" format=3 uid="uid://bclosse2a67l1"]
+
+[ext_resource type="Script" uid="uid://c3jqcgc6u6688" path="res://Characters/Enemies/EnemyStats.cs" id="1_bpqd1"]
+
+[resource]
+script = ExtResource("1_bpqd1")
+MaxHealth = 10.0
+Damage = 1
+AttackRange = 2.0
+MoveSpeed = 3.0
+metadata/_custom_type_script = "uid://c3jqcgc6u6688"

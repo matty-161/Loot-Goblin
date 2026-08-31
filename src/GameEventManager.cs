@@ -9,6 +9,8 @@ public static class GameEventManager
     public static Action<int> LootCollectedEvent;
     
     // level events
+    public static Action PlayerEnteredBossRoomEvent;
+    
     public static Action LevelBossDiedEvent;
     public static Action LevelTransitionFadeOutEvent;
     public static Action LevelTransitionEvent;
