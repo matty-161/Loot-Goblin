@@ -36,6 +36,7 @@ public partial class LevelGenerationManager : Node
 
     public void GenerateLevel()
     {
+        _levelTileMap.Clear();
         _levelTileMap.ChangeTerrain();
         
         _partitionTreeGenerator.GeneratePartitionTree(_levelSize, _minPartitionSize, _maxPartitionDivision);

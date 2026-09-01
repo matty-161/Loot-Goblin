@@ -41,7 +41,8 @@ public partial class Hitbox2D : Area2D
 		if (hurtbox.Owner.IsInGroup("player") && Owner.IsInGroup("enemies") ||
 		    hurtbox.Owner.IsInGroup("enemies") && Owner.IsInGroup("player"))
 		{
-			CanDamage = false;
+			// CanDamage = false;
+			SetDeferred("CanDamage", false);
 		}
 	}
 }

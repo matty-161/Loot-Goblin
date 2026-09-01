@@ -16,7 +16,7 @@ public partial class LevelTileMap : TileMapLayer
 	public override void _Ready()
 	{
 		// GameEventManager.LevelTransitionEvent += ChangeTerrain;
-		Clear();
+		// Clear();
 	}
 	
 	public void PlaceRoom(Room room)

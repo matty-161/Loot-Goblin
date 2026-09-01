@@ -31,13 +31,12 @@ public partial class Dagger : Node2D
 
 	private void Attack()
 	{
+		_hitbox.CanDamage = true;
+		
 		AttackStartedEvent?.Invoke();
 		_sprite.Hide();
 		_tween?.Kill();
 		Rotation = 0;
-
-		_hitbox.CanDamage = true;
-		
 		_tween = GetTree().CreateTween();
 		_tween.SetEase(Tween.EaseType.Out).SetTrans(Tween.TransitionType.Back);
 		_tween.TweenProperty(_sprite, "visible", true, 0); // make sprite visible

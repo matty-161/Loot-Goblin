@@ -901,10 +901,8 @@ shape = SubResource("CircleShape2D_g2ina")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=858180376]
 sprite_frames = SubResource("SpriteFrames_jfmy4")
-animation = &"attack_left"
+animation = &"attack_up"
 autoplay = "idle_down"
-frame = 5
-frame_progress = 0.36648548
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668983031]
 position = Vector2(0, 1)
@@ -963,7 +961,7 @@ script = ExtResource("13_w6wdo")
 _stateMachine = NodePath("../StateMachine")
 
 [node name="Hitbox2D" type="Area2D" parent="." unique_id=1501009680]
-position = Vector2(0, -4)
+position = Vector2(-16, 3)
 collision_layer = 0
 collision_mask = 0
 monitoring = false
@@ -976,13 +974,13 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_3kjcw")
 
 [node name="TopHitboxLoc" type="Marker2D" parent="." unique_id=869705686]
-position = Vector2(0, -4)
+position = Vector2(4, -11)
 
 [node name="RightHitboxLoc" type="Marker2D" parent="." unique_id=1972948314]
-position = Vector2(8, 3)
+position = Vector2(17, 4)
 
 [node name="BottomHitboxLoc" type="Marker2D" parent="." unique_id=789173499]
-position = Vector2(0, 9)
+position = Vector2(-3, 16)
 
 [node name="LeftHitboxLoc" type="Marker2D" parent="." unique_id=670774500]
-position = Vector2(-6, 4)
+position = Vector2(-16, 3)

@@ -7,7 +7,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2ina"]
 size = Vector2(4.2426414, 12.020817)
 
-[node name="Dagger" type="Node2D" unique_id=267982652]
+[node name="Dagger" type="Node2D" unique_id=267982652 groups=["player"]]
 script = ExtResource("1_cnibw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=66697222]
