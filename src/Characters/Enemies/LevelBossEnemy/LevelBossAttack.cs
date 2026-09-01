@@ -3,6 +3,7 @@ using Godot.Collections;
 
 namespace LootGoblin;
 
+[GlobalClass]
 public partial class LevelBossAttack: LevelBossState
 {
     public override string StateName { get; set; } = "LevelBossAttack";
@@ -48,7 +49,7 @@ public partial class LevelBossAttack: LevelBossState
         base._Ready();
     }
 
-    public void Enter(string previousStatePath)
+    public override void Enter(string previousStatePath)
     {
         _canAttack = true;
         Motor.MoveDirection = Vector2.Zero;

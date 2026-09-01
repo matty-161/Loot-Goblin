@@ -1,4 +1,5 @@
 using System;
+using Godot;
 
 namespace LootGoblin;
 
@@ -9,6 +10,7 @@ public static class GameEventManager
     public static Action<int> LootCollectedEvent;
     
     // level events
+    public static Action<int, Node2D> LevelBossGenerated;
     public static Action PlayerEnteredBossRoomEvent;
     
     public static Action LevelBossDiedEvent;

@@ -3,6 +3,7 @@ using System;
 
 namespace LootGoblin;
 
+[GlobalClass]
 public partial class LevelBossIdle : LevelBossState
 {
     public override string StateName { get; set; } = "LevelBossIdle";

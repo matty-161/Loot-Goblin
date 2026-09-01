@@ -53,16 +53,37 @@ public partial class InteriorGenerator : Node
         List<Room> rooms = _roomGenerator.GetRooms();
         List<Room> roomsCopy = new List<Room>(rooms);
         
+        // spawn room
         // randomly choose room to be spawn room, then remove from list so it can't be overridden
         int spawnIndex = (int)(GD.Randi() % roomsCopy.Count);
         roomsCopy[spawnIndex].Type = Room.RoomType.Spawn;
         roomsCopy.RemoveAt(spawnIndex);
         
-        // randomly choose room to be boss room, then remove from list so it can't be overridden
-        int bossIndex = (int)(GD.Randi() % roomsCopy.Count);
+        // boss room
+        // choose room furthest from the spawn room to be the boss room
+        Vector2I spawnRoomPosition = (rooms[spawnIndex].PositionTopLeft + rooms[spawnIndex].PositionBotRight) / 2;
+        int furthestRoomIndex = 0;
+        int furthestDistance = 0;
+        for (int i = 0; i < roomsCopy.Count; i++)
+        {
+            Vector2I roomPos = (roomsCopy[i].PositionTopLeft + roomsCopy[i].PositionBotRight) / 2;
+            if (roomPos.DistanceTo(spawnRoomPosition) > furthestDistance)
+            {
+                furthestDistance = (int)roomPos.DistanceTo(spawnRoomPosition);
+                furthestRoomIndex = i;
+            }
+        }
+
+        int bossIndex = furthestRoomIndex;
         roomsCopy[bossIndex].Type = Room.RoomType.Boss;
         roomsCopy.RemoveAt(bossIndex);
         
+        // randomly choose room to be boss room, then remove from list so it can't be overridden
+        // int bossIndex = (int)(GD.Randi() % roomsCopy.Count);
+        // roomsCopy[bossIndex].Type = Room.RoomType.Boss;
+        // roomsCopy.RemoveAt(bossIndex);
+        
+        // treasure rooms
         // make the rest of the rooms treasure rooms
         foreach (Room room in roomsCopy)
         {
@@ -105,6 +126,10 @@ public partial class InteriorGenerator : Node
                     CharacterBody2D boss = _bossScene.Instantiate<CharacterBody2D>();
                     _entitiesRoot.AddChild(boss);
                     boss.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
+
+                    // send room radius and boss reference to GameManager
+                    Vector2I roomSize = room.PositionBotRight - room.PositionTopLeft;
+                    GameEventManager.LevelBossGenerated?.Invoke(Mathf.Min(roomSize.X, roomSize.Y) / 2, boss);
                     
                     LevelExit exit = _levelExitScene.Instantiate<LevelExit>();
                     _entitiesRoot.AddChild(exit);

@@ -2,6 +2,7 @@ using Godot;
 
 namespace LootGoblin;
 
+[GlobalClass]
 public partial class LevelBossChase : LevelBossState
 {
     public override string StateName { get; set; } = "LevelBossChase";

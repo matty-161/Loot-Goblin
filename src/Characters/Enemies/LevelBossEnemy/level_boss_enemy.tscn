@@ -5,14 +5,14 @@
 [ext_resource type="Texture2D" uid="uid://bibrokcyx8bey" path="res://Characters/Enemies/Assets/Free Pixel Knight/Spritesheet_without_Shadows.png" id="3_5f4dq"]
 [ext_resource type="Script" uid="uid://bli2kchxbqx7j" path="res://Characters/HealthComponent.cs" id="4_7dmgv"]
 [ext_resource type="Script" uid="uid://bt17wmo0u77vc" path="res://Globals/StateMachine.cs" id="5_43nui"]
-[ext_resource type="Script" uid="uid://dhos4kaqisefu" path="res://Characters/Enemies/States/EnemyIdle.cs" id="6_o2dya"]
-[ext_resource type="Resource" uid="uid://cqce1klbqte01" path="res://Characters/Enemies/KnightEnemy/KnightEnemyStats.tres" id="7_isxct"]
-[ext_resource type="Script" uid="uid://d02hpicd5ja1c" path="res://Characters/Enemies/States/EnemyChase.cs" id="8_wtakb"]
-[ext_resource type="Script" uid="uid://b48m4i0voo51m" path="res://Characters/Enemies/States/EnemyPatrol.cs" id="9_b0iqq"]
-[ext_resource type="Script" uid="uid://cswquj80dli6o" path="res://Characters/Enemies/States/EnemyAttack.cs" id="10_ubsf3"]
+[ext_resource type="Script" uid="uid://clfsd4jn8837v" path="res://Characters/Enemies/LevelBossEnemy/LevelBossIdle.cs" id="6_3rcue"]
+[ext_resource type="Resource" uid="uid://bclosse2a67l1" path="res://Characters/Enemies/LevelBossEnemy/LevelBossEnemyStats.tres" id="7_12j5l"]
+[ext_resource type="Script" uid="uid://dsj0t61v6j4tl" path="res://Characters/Enemies/LevelBossEnemy/LevelBossAttack.cs" id="8_2cg0f"]
+[ext_resource type="Script" uid="uid://dfq4hxh1dsx8g" path="res://Characters/Enemies/LevelBossEnemy/LevelBossChase.cs" id="8_12j5l"]
 [ext_resource type="Script" uid="uid://c1qv70i3aqsqc" path="res://Characters/FourDirAnimator.cs" id="11_fsd4w"]
 [ext_resource type="FontFile" uid="uid://dulwqmd4b75tn" path="res://Menus/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="12_ghocd"]
 [ext_resource type="Script" uid="uid://dmmb41j6m6yv4" path="res://Characters/Enemies/DebugStateLabel.cs" id="13_w6wdo"]
+[ext_resource type="Script" uid="uid://bxongo3q27sci" path="res://Characters/Enemies/BossComponent.cs" id="14_2cg0f"]
 [ext_resource type="Script" uid="uid://bxa87pd7xbbjs" path="res://Globals/Hitbox2D.cs" id="14_sx5cw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2ina"]
@@ -917,33 +917,27 @@ Hurtbox = NodePath("../Hurtbox2D")
 
 [node name="StateMachine" type="Node" parent="." unique_id=951709413 node_paths=PackedStringArray("_initialState")]
 script = ExtResource("5_43nui")
-_initialState = NodePath("EnemyIdle")
+_initialState = NodePath("LevelBossIdle")
 
-[node name="EnemyIdle" type="Node" parent="StateMachine" unique_id=215077889 node_paths=PackedStringArray("_animator")]
-script = ExtResource("6_o2dya")
-_animator = NodePath("../../FourDirAnimator")
-metadata/_custom_type_script = "uid://dhos4kaqisefu"
+[node name="LevelBossIdle" type="Node" parent="StateMachine" unique_id=963842277]
+script = ExtResource("6_3rcue")
+Stats = ExtResource("7_12j5l")
+metadata/_custom_type_script = "uid://clfsd4jn8837v"
 
-[node name="EnemyChase" type="Node" parent="StateMachine" unique_id=331479299 node_paths=PackedStringArray("_agent")]
-script = ExtResource("8_wtakb")
+[node name="LevelBossChase" type="Node" parent="StateMachine" unique_id=977447863 node_paths=PackedStringArray("_agent")]
+script = ExtResource("8_12j5l")
 _agent = NodePath("../../NavigationAgent2D")
-Stats = ExtResource("7_isxct")
-metadata/_custom_type_script = "uid://d02hpicd5ja1c"
+Stats = ExtResource("7_12j5l")
+metadata/_custom_type_script = "uid://dfq4hxh1dsx8g"
 
-[node name="EnemyPatrol" type="Node" parent="StateMachine" unique_id=807951459 node_paths=PackedStringArray("_agent")]
-script = ExtResource("9_b0iqq")
-_agent = NodePath("../../NavigationAgent2D")
-Stats = ExtResource("7_isxct")
-metadata/_custom_type_script = "uid://b48m4i0voo51m"
-
-[node name="EnemyAttack" type="Node" parent="StateMachine" unique_id=466370944 node_paths=PackedStringArray("_animator", "_hitbox", "_animatedSprite", "_hitboxLocations")]
-script = ExtResource("10_ubsf3")
+[node name="LevelBossAttack" type="Node" parent="StateMachine" unique_id=236179148 node_paths=PackedStringArray("_animator", "_hitbox", "_animatedSprite", "_hitboxLocations")]
+script = ExtResource("8_2cg0f")
 _animator = NodePath("../../FourDirAnimator")
 _hitbox = NodePath("../../Hitbox2D")
 _animatedSprite = NodePath("../../AnimatedSprite2D")
 _hitboxLocations = [NodePath("../../TopHitboxLoc"), NodePath("../../RightHitboxLoc"), NodePath("../../BottomHitboxLoc"), NodePath("../../LeftHitboxLoc")]
-Stats = ExtResource("7_isxct")
-metadata/_custom_type_script = "uid://cswquj80dli6o"
+Stats = ExtResource("7_12j5l")
+metadata/_custom_type_script = "uid://dsj0t61v6j4tl"
 
 [node name="FourDirAnimator" type="Node" parent="." unique_id=1144578697 node_paths=PackedStringArray("_sprite")]
 script = ExtResource("11_fsd4w")
@@ -984,3 +978,7 @@ position = Vector2(-3, 16)
 
 [node name="LeftHitboxLoc" type="Marker2D" parent="." unique_id=670774500]
 position = Vector2(-16, 3)
+
+[node name="BossComponent" type="Node" parent="." unique_id=1126880208]
+script = ExtResource("14_2cg0f")
+metadata/_custom_type_script = "uid://bxongo3q27sci"

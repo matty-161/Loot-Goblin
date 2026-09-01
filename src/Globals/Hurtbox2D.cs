@@ -40,6 +40,5 @@ public partial class Hurtbox2D : Area2D
 		if (area is not Hitbox2D hitbox) return;
 		if (!hitbox.CanDamage) return;
 		TakeDamageEvent?.Invoke(hitbox.Damage);
-		GD.Print("oof");
 	}
 }

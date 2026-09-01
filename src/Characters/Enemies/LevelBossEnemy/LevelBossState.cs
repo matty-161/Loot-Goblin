@@ -13,6 +13,6 @@ public abstract partial class LevelBossState : State, IEnemyState
 
     public override void _Ready()
     {
-        Motor.GetOwner<CharacterMotor>();
+        Motor = GetOwner<CharacterMotor>();
     }
 }
