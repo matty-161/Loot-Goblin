@@ -10,6 +10,9 @@ public static class GameEventManager
     public static Action<int> LootCollectedEvent;
     
     // level events
+    public static Action GameStarted;
+    public static Action GameEnded;
+    
     public static Action<int, Node2D> LevelBossGenerated;
     public static Action PlayerEnteredBossRoomEvent;
     

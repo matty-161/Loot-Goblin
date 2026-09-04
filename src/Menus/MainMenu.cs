@@ -49,6 +49,8 @@ public partial class MainMenu : Control
 	private void StartGame()
 	{
 		GD.Print("Game started");
+		GameEventManager.GameStarted?.Invoke();
+		
 		_levelGenerationManager.GenerateLevel();
 		Hide();
 	}

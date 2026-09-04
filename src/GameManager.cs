@@ -38,11 +38,13 @@ public partial class GameManager : Node
 
     private void OnPlayerDied()
     {
+        GameEventManager.GameEnded?.Invoke();
         GetTree().SetPause(true);
     }
 
     private void OnFinalLevelComplete()
     {
+        GameEventManager.GameEnded?.Invoke();
         // GetTree().SetPause(true);
     }
     
