@@ -1,0 +1,103 @@
+[gd_scene format=3 uid="uid://byac0u3v3xsvx"]
+
+[ext_resource type="Texture2D" uid="uid://xpqx34ypjsyd" path="res://Items/Assets/heart.png" id="1_fe1v2"]
+[ext_resource type="Script" uid="uid://dj57am0xnlr3s" path="res://Menus/HUD/HealthBar.cs" id="2_cmx84"]
+[ext_resource type="Texture2D" uid="uid://b16abj1ewh5uh" path="res://LevelGeneration/Assets/gold_coin.png" id="2_fe1v2"]
+[ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="3_cmx84"]
+[ext_resource type="Script" uid="uid://ti0nxj81imn8" path="res://Menus/HUD/DifficultyTimerLabel.cs" id="4_50c2l"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fe1v2"]
+content_margin_left = 2.0
+content_margin_top = 2.0
+content_margin_right = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.64705884, 0.13333334, 0.13333334, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+corner_detail = 6
+
+[node name="HUDRoot" type="Control" unique_id=1074478187]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=1982431403]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -315.0
+offset_top = 6.0
+offset_right = -248.0
+offset_bottom = 18.0
+grow_horizontal = 0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer2" unique_id=1163054295]
+layout_mode = 2
+texture = ExtResource("1_fe1v2")
+expand_mode = 2
+
+[node name="HealthBar" type="CenterContainer" parent="HBoxContainer2" unique_id=1829980823 node_paths=PackedStringArray("_progressBar", "_label")]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_cmx84")
+_progressBar = NodePath("ProgressBar")
+_label = NodePath("Label")
+
+[node name="ProgressBar" type="ProgressBar" parent="HBoxContainer2/HealthBar" unique_id=670623420]
+custom_minimum_size = Vector2(50, 8)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_styles/fill = SubResource("StyleBoxFlat_fe1v2")
+value = 18.83
+show_percentage = false
+
+[node name="Label" type="Label" parent="HBoxContainer2/HealthBar" unique_id=1245156498]
+layout_mode = 2
+theme_override_font_sizes/font_size = 5
+text = "1/10"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=271914942]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -315.0
+offset_top = 23.0
+offset_right = -277.0
+offset_bottom = 35.0
+grow_horizontal = 0
+metadata/_edit_group_ = true
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer" unique_id=207296123]
+layout_mode = 2
+texture = ExtResource("2_fe1v2")
+expand_mode = 2
+
+[node name="TreasureLabel" type="Label" parent="HBoxContainer" unique_id=228853796]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "0"
+script = ExtResource("3_cmx84")
+
+[node name="DifficultyTimerLabel" type="Label" parent="." unique_id=874290708]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -10.0
+offset_top = 6.0
+offset_right = 10.0
+offset_bottom = 18.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 8
+text = "T: 0"
+script = ExtResource("4_50c2l")

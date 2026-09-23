@@ -11,7 +11,7 @@ public abstract partial class EnemyState : State, IEnemyState
     protected const string Attack = "EnemyAttack";
 
     public CharacterMotor Motor { get; private set; }
-    [Export] public EnemyStats Stats { get; set; }
+    [Export] public EnemyStatsComponent Stats { get; set; }
 
     public override void _Ready()
     {

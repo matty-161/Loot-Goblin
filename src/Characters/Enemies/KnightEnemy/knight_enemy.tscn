@@ -6,7 +6,6 @@
 [ext_resource type="Script" uid="uid://bli2kchxbqx7j" path="res://Characters/HealthComponent.cs" id="4_6g87q"]
 [ext_resource type="Script" uid="uid://bt17wmo0u77vc" path="res://Globals/StateMachine.cs" id="5_to3vk"]
 [ext_resource type="Script" uid="uid://dhos4kaqisefu" path="res://Characters/Enemies/States/EnemyIdle.cs" id="6_gbqob"]
-[ext_resource type="Resource" uid="uid://cqce1klbqte01" path="res://Characters/Enemies/KnightEnemy/KnightEnemyStats.tres" id="7_o6hi0"]
 [ext_resource type="Script" uid="uid://d02hpicd5ja1c" path="res://Characters/Enemies/States/EnemyChase.cs" id="8_rkgyu"]
 [ext_resource type="Script" uid="uid://b48m4i0voo51m" path="res://Characters/Enemies/States/EnemyPatrol.cs" id="9_8qpto"]
 [ext_resource type="Script" uid="uid://cswquj80dli6o" path="res://Characters/Enemies/States/EnemyAttack.cs" id="10_bq7im"]
@@ -14,6 +13,7 @@
 [ext_resource type="FontFile" uid="uid://dulwqmd4b75tn" path="res://Menus/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="12_i6u0a"]
 [ext_resource type="Script" uid="uid://dmmb41j6m6yv4" path="res://Characters/Enemies/DebugStateLabel.cs" id="13_sht8h"]
 [ext_resource type="Script" uid="uid://bxa87pd7xbbjs" path="res://Globals/Hitbox2D.cs" id="14_gdj0d"]
+[ext_resource type="Script" uid="uid://c7w8xff7eiame" path="res://Characters/Enemies/EnemyStatsComponent.cs" id="15_o7mlk"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2ina"]
 radius = 6.0827627
@@ -911,40 +911,40 @@ shape = SubResource("CircleShape2D_jfmy4")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=1305881634]
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1065966687 node_paths=PackedStringArray("Hurtbox")]
+[node name="HealthComponent" type="Node" parent="." unique_id=1065966687 node_paths=PackedStringArray("_statsComponent", "Hurtbox")]
 script = ExtResource("4_6g87q")
-Health = 3
+_statsComponent = NodePath("../EnemyStatsComponent")
 Hurtbox = NodePath("../Hurtbox2D")
 
 [node name="StateMachine" type="Node" parent="." unique_id=951709413 node_paths=PackedStringArray("_initialState")]
 script = ExtResource("5_to3vk")
 _initialState = NodePath("EnemyIdle")
 
-[node name="EnemyIdle" type="Node" parent="StateMachine" unique_id=215077889 node_paths=PackedStringArray("_animator")]
+[node name="EnemyIdle" type="Node" parent="StateMachine" unique_id=215077889 node_paths=PackedStringArray("_animator", "Stats")]
 script = ExtResource("6_gbqob")
 _animator = NodePath("../../FourDirAnimator")
-Stats = ExtResource("7_o6hi0")
+Stats = NodePath("../../EnemyStatsComponent")
 metadata/_custom_type_script = "uid://dhos4kaqisefu"
 
-[node name="EnemyChase" type="Node" parent="StateMachine" unique_id=331479299 node_paths=PackedStringArray("_agent")]
+[node name="EnemyChase" type="Node" parent="StateMachine" unique_id=331479299 node_paths=PackedStringArray("_agent", "Stats")]
 script = ExtResource("8_rkgyu")
 _agent = NodePath("../../NavigationAgent2D")
-Stats = ExtResource("7_o6hi0")
+Stats = NodePath("../../EnemyStatsComponent")
 metadata/_custom_type_script = "uid://d02hpicd5ja1c"
 
-[node name="EnemyPatrol" type="Node" parent="StateMachine" unique_id=807951459 node_paths=PackedStringArray("_agent")]
+[node name="EnemyPatrol" type="Node" parent="StateMachine" unique_id=807951459 node_paths=PackedStringArray("_agent", "Stats")]
 script = ExtResource("9_8qpto")
 _agent = NodePath("../../NavigationAgent2D")
-Stats = ExtResource("7_o6hi0")
+Stats = NodePath("../../EnemyStatsComponent")
 metadata/_custom_type_script = "uid://b48m4i0voo51m"
 
-[node name="EnemyAttack" type="Node" parent="StateMachine" unique_id=466370944 node_paths=PackedStringArray("_animator", "_hitbox", "_animatedSprite", "_hitboxLocations")]
+[node name="EnemyAttack" type="Node" parent="StateMachine" unique_id=466370944 node_paths=PackedStringArray("_animator", "_hitbox", "_animatedSprite", "_hitboxLocations", "Stats")]
 script = ExtResource("10_bq7im")
 _animator = NodePath("../../FourDirAnimator")
 _hitbox = NodePath("../../Hitbox2D")
 _animatedSprite = NodePath("../../AnimatedSprite2D")
 _hitboxLocations = [NodePath("../../TopHitboxLoc"), NodePath("../../RightHitboxLoc"), NodePath("../../BottomHitboxLoc"), NodePath("../../LeftHitboxLoc")]
-Stats = ExtResource("7_o6hi0")
+Stats = NodePath("../../EnemyStatsComponent")
 metadata/_custom_type_script = "uid://cswquj80dli6o"
 
 [node name="FourDirAnimator" type="Node" parent="." unique_id=1144578697 node_paths=PackedStringArray("_sprite")]
@@ -986,3 +986,17 @@ position = Vector2(0, 9)
 
 [node name="LeftHitboxLoc" type="Marker2D" parent="." unique_id=670774500]
 position = Vector2(-6, 4)
+
+[node name="EnemyStatsComponent" type="Node" parent="." unique_id=902249735]
+script = ExtResource("15_o7mlk")
+Damage = 1
+AttackRange = 1.0
+MoveSpeed = 5.0
+IdleWaitTime = 3.0
+IdleChaseTriggerDistance = 3.0
+PatrolTargetBufferDistance = 0.1
+PatrolChaseTriggerDistance = 3.0
+ChaseQuitDistance = 4.0
+AttackCooldown = 1.0
+MaxHealth = 3
+metadata/_custom_type_script = "uid://c7w8xff7eiame"

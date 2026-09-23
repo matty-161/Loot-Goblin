@@ -9,7 +9,7 @@ public abstract partial class LevelBossState : State, IEnemyState
     protected const string Attack = "LevelBossAttack";
     
     public CharacterMotor Motor { get; private set; }
-    [Export] public EnemyStats Stats { get; set; }
+    [Export] public EnemyStatsComponent Stats { get; set; }
 
     public override void _Ready()
     {

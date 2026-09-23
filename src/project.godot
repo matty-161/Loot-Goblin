@@ -23,8 +23,8 @@ SaveManager="*uid://y6ywwpav2bco"
 
 window/size/viewport_width=320
 window/size/viewport_height=180
-window/size/window_width_override=1920
-window/size/window_height_override=1080
+window/size/window_width_override=1600
+window/size/window_height_override=900
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"

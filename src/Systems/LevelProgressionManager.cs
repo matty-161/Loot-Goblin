@@ -6,8 +6,8 @@ public partial class LevelProgressionManager : Node
 {
     private int _currentLevel = 1;
     
-    public int CurrentLevel 
-    { 
+    public int CurrentLevel
+    {
         get => _currentLevel;
         private set
         {

@@ -26,6 +26,7 @@ public static class GameEventManager
     public static Action FinalLevelCompleteEvent;
     
     // player events
+    public static Action<int> PlayerMaxHealthSetEvent;
     public static Action<int> PlayerHealthChangedEvent;
     public static Action PlayerDied;
 }

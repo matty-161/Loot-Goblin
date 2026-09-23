@@ -4,17 +4,14 @@
 [ext_resource type="Script" uid="uid://wx1hifekhryb" path="res://GameManager.cs" id="1_vef74"]
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/tilemap.tscn" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://dk0smpsl2qomi" path="res://Systems/LootManager.cs" id="2_fc0e3"]
-[ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="4_7jktm"]
 [ext_resource type="Script" uid="uid://bikitpibak0d3" path="res://Systems/DifficultyManager.cs" id="6_7sc4i"]
 [ext_resource type="Script" uid="uid://chqq7xwqowyyp" path="res://Systems/EntityManager.cs" id="7_hve3p"]
 [ext_resource type="Shader" uid="uid://utyovv2o6boo" path="res://Effects/background.gdshader" id="7_mfdv2"]
-[ext_resource type="PackedScene" uid="uid://b1gs23gujkrsb" path="res://Menus/HUD/health_label.tscn" id="8_215e1"]
 [ext_resource type="Script" uid="uid://s5wxma6pf18s" path="res://Systems/LevelProgressionManager.cs" id="8_iotsf"]
-[ext_resource type="Texture2D" uid="uid://b16abj1ewh5uh" path="res://LevelGeneration/Assets/gold_coin.png" id="9_lc2xo"]
+[ext_resource type="PackedScene" uid="uid://byac0u3v3xsvx" path="res://Menus/HUD/hud_root.tscn" id="9_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://wfjg5q7dux61" path="res://Menus/main_menu.tscn" id="10_iotsf"]
 [ext_resource type="PackedScene" uid="uid://be1dwiglgx2qd" path="res://Menus/game_over_screen.tscn" id="11_iotsf"]
 [ext_resource type="Script" uid="uid://bdhd6xprn1ln7" path="res://Menus/LevelTransition.cs" id="11_mfdv2"]
-[ext_resource type="Script" uid="uid://ti0nxj81imn8" path="res://Menus/HUD/DifficultyTimerLabel.cs" id="12_80cx4"]
 [ext_resource type="PackedScene" uid="uid://d0heu2iyuy8iw" path="res://Menus/game_completion_screen.tscn" id="13_215e1"]
 
 [sub_resource type="Gradient" id="Gradient_hve3p"]
@@ -83,61 +80,14 @@ scale = Vector2(1600, 1600)
 texture = SubResource("CanvasTexture_lc2xo")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="World" unique_id=1643400677]
-color = Color(0.8627451, 0.8627451, 0.8627451, 1)
+color = Color(0.8346145, 0.83461416, 0.8346145, 1)
 
 [node name="HUDLayer" type="CanvasLayer" parent="." unique_id=1640094315]
 layer = 10
 
-[node name="HUDRoot" type="Control" parent="HUDLayer" unique_id=1563786998]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
+[node name="HUDRoot" parent="HUDLayer" unique_id=1074478187 instance=ExtResource("9_lc2xo")]
 
-[node name="HealthLabel" parent="HUDLayer/HUDRoot" unique_id=1245156498 instance=ExtResource("8_215e1")]
-layout_mode = 0
-offset_left = 7.23
-offset_right = 31.23
-offset_bottom = 18.0
-
-[node name="HBoxContainer" type="HBoxContainer" parent="HUDLayer/HUDRoot" unique_id=1530974601]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -42.0
-offset_top = 6.0
-offset_right = -4.0
-offset_bottom = 15.0
-grow_horizontal = 0
-
-[node name="TextureRect" type="TextureRect" parent="HUDLayer/HUDRoot/HBoxContainer" unique_id=2012292939]
-layout_mode = 2
-texture = ExtResource("9_lc2xo")
-expand_mode = 2
-
-[node name="TreasureLabel" type="Label" parent="HUDLayer/HUDRoot/HBoxContainer" unique_id=1196518641]
-layout_mode = 2
-theme_override_font_sizes/font_size = 8
-text = "0"
-script = ExtResource("4_7jktm")
-
-[node name="DifficultyTimerLabel" type="Label" parent="HUDLayer/HUDRoot" unique_id=1629661450 node_paths=PackedStringArray("_difficultyManager")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -10.0
-offset_top = 6.0
-offset_right = 10.0
-offset_bottom = 18.0
-grow_horizontal = 2
-theme_override_font_sizes/font_size = 8
-text = "T: 0"
-script = ExtResource("12_80cx4")
+[node name="DifficultyTimerLabel" parent="HUDLayer/HUDRoot" index="2" unique_id=874290708 node_paths=PackedStringArray("_difficultyManager")]
 _difficultyManager = NodePath("../../../Systems/DifficultyManager")
 
 [node name="MenuLayer" type="CanvasLayer" parent="." unique_id=1741614205]
@@ -181,3 +131,5 @@ color = Color(0, 0, 0, 1)
 
 [node name="DebugLayer" type="CanvasLayer" parent="." unique_id=391513325]
 layer = 40
+
+[editable path="HUDLayer/HUDRoot"]

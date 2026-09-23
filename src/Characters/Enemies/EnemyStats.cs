@@ -7,7 +7,7 @@ namespace LootGoblin;
 public partial class EnemyStats : Resource
 {
     [ExportGroup("Combat")]
-    [Export] public float MaxHealth;
+    [Export] public int MaxHealth;
     [Export] public int Damage;
     [Export] public float AttackRange;
 

@@ -6,7 +6,6 @@
     <RootNamespace>LootGoblin</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Folder Include="Characters\" />
     <Folder Include="Testing\Tests\" />
   </ItemGroup>
   <ItemGroup>

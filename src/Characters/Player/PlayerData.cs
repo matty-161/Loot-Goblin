@@ -10,6 +10,18 @@ public partial class PlayerData : Node
 
     public static Vector2 PlayerPosition;
 
+    private static int _maxHealth;
+
+    public static int MaxHealth
+    {
+        get => _maxHealth;
+        set
+        {
+            _maxHealth = value;
+            GameEventManager.PlayerMaxHealthSetEvent?.Invoke(value);
+        }
+    }
+
     public override void _Ready()
     {
         _playerMotor = GetParent<CharacterMotor>();

@@ -9,6 +9,8 @@ public partial class DifficultyManager : Node
 
     public bool TimerIsRunning { get; set; }
 
+    public static double DifficultyScale = 1;
+
     public override void _Ready()
     {
         GameEventManager.GameStarted += OnGameStarted;
@@ -20,6 +22,7 @@ public partial class DifficultyManager : Node
         if (TimerIsRunning)
         {
             RunTime += delta;
+            DifficultyScale = 1 + RunTime % 60; // difficulty calculation
         }
     }
     

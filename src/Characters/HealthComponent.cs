@@ -6,16 +6,19 @@ namespace LootGoblin;
 [GlobalClass]
 public partial class HealthComponent : Node
 {
+    [Export] private StatsComponent _statsComponent;
+    
     public Action<int> HealthChangedEvent;
+    
+    public int MaxHealth { get; set; }
 
     private int _health;
     
-    [Export]
     public int Health
     {
         get => _health;
         private set
-        {
+        { 
             HealthChangedEvent?.Invoke(value);
             _health = value;
         }
@@ -26,6 +29,14 @@ public partial class HealthComponent : Node
     public override void _Ready()
     {
         Hurtbox.TakeDamageEvent += TakeDamage;
+        
+        MaxHealth = _statsComponent.MaxHealth;
+        
+        Health = MaxHealth;
+        if (Owner.IsInGroup("player"))
+        {
+            PlayerData.MaxHealth = MaxHealth;
+        }
     }
 
     public override void _ExitTree()
