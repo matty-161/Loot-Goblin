@@ -21,6 +21,15 @@ public partial class StateMachine : Node
         // CurrentState.Enter("");
     }
 
+    public override void _ExitTree()
+    {
+        foreach (Node node in GetChildren())
+        {
+            State stateNode = (State)node;
+            stateNode.Finished -= TransitionToState;
+        }
+    }
+
     public override void _Process(double delta)
     {
         CurrentState.Update(delta);
