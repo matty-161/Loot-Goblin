@@ -1,18 +1,18 @@
 [gd_scene format=3 uid="uid://cpod8kcdxhpqm"]
 
 [ext_resource type="Script" uid="uid://dicljt51ev2a1" path="res://Weapons/Dagger.cs" id="1_cnibw"]
-[ext_resource type="Texture2D" uid="uid://1dknx1k8k8xs" path="res://Weapons/Assets/dagger.png" id="2_dv40y"]
+[ext_resource type="Texture2D" uid="uid://cb1c1f4otcbkx" path="res://Weapons/Assets/dagger_v2.png" id="2_dv40y"]
 [ext_resource type="Script" uid="uid://bxa87pd7xbbjs" path="res://Globals/Hitbox2D.cs" id="3_dv40y"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g2ina"]
-size = Vector2(4.2426414, 12.020817)
+size = Vector2(4.2426414, 7.7781773)
 
 [node name="Dagger" type="Node2D" unique_id=267982652 groups=["player"]]
 script = ExtResource("1_cnibw")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=66697222]
 unique_name_in_owner = true
-position = Vector2(14, -14)
+position = Vector2(7, -7)
 texture = ExtResource("2_dv40y")
 
 [node name="Hitbox2D" type="Area2D" parent="Sprite2D" unique_id=333717990]
@@ -22,7 +22,7 @@ metadata/_custom_type_script = "uid://bxa87pd7xbbjs"
 metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Hitbox2D" unique_id=498533669]
-position = Vector2(2.75, -2.7499998)
+position = Vector2(1.250001, -1.250001)
 rotation = 0.7853982
 scale = Vector2(0.9999999, 0.9999999)
 shape = SubResource("RectangleShape2D_g2ina")

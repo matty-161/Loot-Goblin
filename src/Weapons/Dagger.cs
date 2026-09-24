@@ -10,12 +10,15 @@ public partial class Dagger : Node2D
 	public Action AttackEndedEvent;
 	
 	[Export] private int _damage = 1;
+	[Export] private AttackCooldown _attackCooldown;
 	
 	private Sprite2D _sprite;
 	private Hitbox2D _hitbox;
 	
 	private Tween _tween;
 	private float _weaponSlotRotation;
+
+	private bool OnCooldown { get; set; } = false;
 
 	public override void _Ready()
 	{
@@ -26,12 +29,18 @@ public partial class Dagger : Node2D
 		_hitbox.Monitorable = false;
 		_hitbox.Monitoring = false;
 
+		_attackCooldown.Timeout += OnAttackCooldownTimeout;
 	}
-	
+
+	private void OnAttackCooldownTimeout()
+	{
+		OnCooldown = false;
+	}
 
 	private void Attack()
 	{
 		_hitbox.CanDamage = true;
+		OnCooldown = true;
 		
 		AttackStartedEvent?.Invoke();
 		_sprite.Hide();
@@ -58,15 +67,20 @@ public partial class Dagger : Node2D
 		_tween.TweenProperty(_hitbox, "monitorable", false, 0); // disable hitbox monitorable
 		_tween.TweenProperty(_hitbox, "monitoring", false, 0); // disable hitbox monitoring
 		
+		_tween.TweenCallback(Callable.From(() => {_attackCooldown.Start();}));
+		// _tween.TweenProperty(this, "OnCooldown", true, 0);
+		
 		if (AttackEndedEvent != null)
 			_tween.TweenCallback(Callable.From(AttackEndedEvent.Invoke));
+	
 	}
 
 	public override void _UnhandledInput(InputEvent @event)
 	{
 		if (@event.IsActionPressed("attack"))
 		{
-			Attack();
+			if (!OnCooldown)
+				Attack();
 		}
 	}
 

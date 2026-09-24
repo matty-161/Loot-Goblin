@@ -876,7 +876,7 @@ shape = SubResource("CircleShape2D_g2ina")
 sprite_frames = SubResource("SpriteFrames_jfmy4")
 animation = &"attack_up"
 autoplay = "idle_down"
-frame_progress = 0.54085976
+frame_progress = 0.25590768
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668983031]
 position = Vector2(0, 1)
@@ -967,8 +967,8 @@ AttackRange = 1.0
 IdleWaitTime = 3.0
 IdleChaseTriggerDistance = 3.0
 PatrolTargetBufferDistance = 0.1
-PatrolChaseTriggerDistance = 3.0
-ChaseQuitDistance = 4.0
+PatrolChaseTriggerDistance = 5.0
+ChaseQuitDistance = 6.0
 AttackCooldown = 1.0
 HealthDropChance = 0.25
 MaxHealth = 3

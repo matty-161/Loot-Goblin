@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cpod8kcdxhpqm" path="res://Weapons/Scenes/dagger.tscn" id="4_omv0o"]
 [ext_resource type="Script" uid="uid://bkbb402ove7jq" path="res://Characters/Player/PlayerInput.cs" id="6_lkihu"]
 [ext_resource type="Script" uid="uid://drshyu5huekkv" path="res://Characters/TwoDirAnimator.cs" id="7_egfbo"]
+[ext_resource type="Script" uid="uid://cml6qyk2vs84f" path="res://Characters/Player/AttackCooldown.cs" id="8_l7q51"]
 [ext_resource type="Script" uid="uid://br8673cdv5rt2" path="res://Characters/Player/PlayerData.cs" id="8_lkihu"]
 [ext_resource type="Script" uid="uid://bli2kchxbqx7j" path="res://Characters/HealthComponent.cs" id="10_07qib"]
 [ext_resource type="Script" uid="uid://c5wxkwl334uvr" path="res://Characters/Player/PlayerStatsComponent.cs" id="11_o60e6"]
@@ -140,7 +141,12 @@ offset = Vector2(0, -6)
 script = ExtResource("4_bw35f")
 _weapon = NodePath("Dagger")
 
-[node name="Dagger" parent="WeaponSlot" unique_id=267982652 instance=ExtResource("4_omv0o")]
+[node name="Dagger" parent="WeaponSlot" unique_id=267982652 node_paths=PackedStringArray("_attackCooldown") instance=ExtResource("4_omv0o")]
+_attackCooldown = NodePath("../AttackCooldown")
+
+[node name="AttackCooldown" type="Timer" parent="WeaponSlot" unique_id=816744702 node_paths=PackedStringArray("_statsComponent")]
+script = ExtResource("8_l7q51")
+_statsComponent = NodePath("../../PlayerStatsComponent")
 
 [node name="PlayerInput" type="Node" parent="." unique_id=1946154021]
 script = ExtResource("6_lkihu")
@@ -180,5 +186,6 @@ show_percentage = false
 
 [node name="PlayerStatsComponent" type="Node" parent="." unique_id=240652607]
 script = ExtResource("11_o60e6")
+AttackCooldown = 0.5
 MaxHealth = 10
 MoveSpeed = 8.0

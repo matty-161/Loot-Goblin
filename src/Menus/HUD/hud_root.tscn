@@ -5,6 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://b16abj1ewh5uh" path="res://LevelGeneration/Assets/gold_coin.png" id="2_fe1v2"]
 [ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="3_cmx84"]
 [ext_resource type="Script" uid="uid://ti0nxj81imn8" path="res://Menus/HUD/DifficultyTimerLabel.cs" id="4_50c2l"]
+[ext_resource type="Script" uid="uid://iv5csnvrxg3i" path="res://Menus/HUD/DifficultyScaleLabel.cs" id="6_cmx84"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_fe1v2"]
 content_margin_left = 2.0
@@ -101,3 +102,17 @@ grow_horizontal = 2
 theme_override_font_sizes/font_size = 8
 text = "T: 0"
 script = ExtResource("4_50c2l")
+
+[node name="DifficultScaleLabel" type="Label" parent="." unique_id=644668479]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -37.0
+offset_top = 5.0
+offset_right = -4.0
+offset_bottom = 17.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 8
+text = "D: "
+script = ExtResource("6_cmx84")
