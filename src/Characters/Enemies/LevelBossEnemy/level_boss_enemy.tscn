@@ -18,10 +18,6 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2ina"]
 radius = 6.0827627
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2cg0f"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(0, 960, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_ou247"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(48, 960, 48, 48)
@@ -41,10 +37,6 @@ region = Rect2(192, 960, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1set"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(240, 960, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n7jga"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(0, 1104, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bd2bs"]
 atlas = ExtResource("3_5f4dq")
@@ -66,10 +58,6 @@ region = Rect2(192, 1104, 48, 48)
 atlas = ExtResource("3_5f4dq")
 region = Rect2(240, 1104, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_grjh3"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(0, 1056, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_etb0r"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(48, 1056, 48, 48)
@@ -89,10 +77,6 @@ region = Rect2(192, 1056, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_sna4r"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(240, 1056, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bdhum"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(0, 1008, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hiu21"]
 atlas = ExtResource("3_5f4dq")
@@ -453,10 +437,7 @@ region = Rect2(240, 240, 48, 48)
 [sub_resource type="SpriteFrames" id="SpriteFrames_jfmy4"]
 animations = [{
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_2cg0f")
-}, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_ou247")
 }, {
 "duration": 1.0,
@@ -468,7 +449,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lbfl8")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_n1set")
 }],
 "loop": 1,
@@ -476,10 +457,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n7jga")
-}, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_bd2bs")
 }, {
 "duration": 1.0,
@@ -491,7 +469,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rywfu")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_b5lru")
 }],
 "loop": 1,
@@ -499,10 +477,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_grjh3")
-}, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_etb0r")
 }, {
 "duration": 1.0,
@@ -514,7 +489,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3cnyj")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_sna4r")
 }],
 "loop": 1,
@@ -522,10 +497,7 @@ animations = [{
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_bdhum")
-}, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_hiu21")
 }, {
 "duration": 1.0,
@@ -537,7 +509,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7m0wy")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_1wyd0")
 }],
 "loop": 1,
@@ -883,11 +855,11 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3kjcw"]
 radius = 7.0
 
-[node name="LevelBossEnemy" type="CharacterBody2D" unique_id=1838745711 groups=["enemies"]]
+[node name="LevelBossEnemy" type="CharacterBody2D" unique_id=1838745711 node_paths=PackedStringArray("_statsComponent") groups=["enemies"]]
 collision_layer = 0
 motion_mode = 1
 script = ExtResource("1_0rdr5")
-_speed = 5.0
+_statsComponent = NodePath("EnemyStatsComponent")
 
 [node name="Hurtbox2D" type="Area2D" parent="." unique_id=793916943]
 collision_layer = 0
@@ -903,6 +875,7 @@ shape = SubResource("CircleShape2D_g2ina")
 sprite_frames = SubResource("SpriteFrames_jfmy4")
 animation = &"attack_up"
 autoplay = "idle_down"
+frame_progress = 0.2837066
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668983031]
 position = Vector2(0, 1)
@@ -987,7 +960,7 @@ metadata/_custom_type_script = "uid://bxongo3q27sci"
 script = ExtResource("14_ou247")
 Damage = 2
 AttackRange = 1.5
-MoveSpeed = 3.0
 AttackCooldown = 1.0
 MaxHealth = 6
+MoveSpeed = 7.0
 metadata/_custom_type_script = "uid://c7w8xff7eiame"

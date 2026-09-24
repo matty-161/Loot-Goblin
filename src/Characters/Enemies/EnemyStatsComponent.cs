@@ -12,8 +12,6 @@ public partial class EnemyStatsComponent : StatsComponent
     
     [Export] public int Damage { get; private set; }
     [Export] public float AttackRange { get; private set; }
-    // movement
-    [Export] public float MoveSpeed { get; private set; }
     // idle state
     [Export] public float IdleWaitTime { get; private set; }
     [Export] public float IdleChaseTriggerDistance { get; private set; }

@@ -120,11 +120,11 @@ public partial class EnemyAttack : EnemyState
             return;
         }
         
-        if (_animatedSprite.Frame == 4)
+        if (_animatedSprite.Frame == 3)
         {
             IsAttacking = true;
         }
-        else if (_animatedSprite.Frame == 5)
+        else if (_animatedSprite.Frame == 4)
         {
             IsAttacking = false;
         }

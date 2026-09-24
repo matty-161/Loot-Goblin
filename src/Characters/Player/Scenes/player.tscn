@@ -84,10 +84,11 @@ bg_color = Color(0.9267113, 0.5976864, 3.85046e-07, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_55o84")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_2lklv")
 
-[node name="Player" type="CharacterBody2D" unique_id=118906777 groups=["player"]]
+[node name="Player" type="CharacterBody2D" unique_id=118906777 node_paths=PackedStringArray("_statsComponent") groups=["player"]]
 collision_layer = 2
 motion_mode = 1
 script = ExtResource("1_utetp")
+_statsComponent = NodePath("PlayerStatsComponent")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=200531166]
 shape = SubResource("CircleShape2D_rfo2l")
@@ -180,3 +181,4 @@ show_percentage = false
 [node name="PlayerStatsComponent" type="Node" parent="." unique_id=240652607]
 script = ExtResource("11_o60e6")
 MaxHealth = 10
+MoveSpeed = 8.0
