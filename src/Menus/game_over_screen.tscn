@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://be1dwiglgx2qd"]
 
 [ext_resource type="Script" uid="uid://c415j5p4l0wir" path="res://Menus/GameOverScreen.cs" id="1_eyuld"]
-[ext_resource type="Script" uid="uid://ddwhtyox7ccss" path="res://Menus/HUD/LootLabel.cs" id="2_1lxip"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1lxip"]
 bg_color = Color(0, 0, 0, 0.7529412)
@@ -70,11 +69,11 @@ theme_override_font_sizes/font_size = 13
 text = "Loot: "
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1407003991]
+[node name="LootLabel" type="Label" parent="VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1407003991]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 13
 text = "67"
-script = ExtResource("2_1lxip")
 
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=243963747]
 layout_mode = 2

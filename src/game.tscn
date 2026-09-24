@@ -103,8 +103,9 @@ layer = 20
 visible = false
 _levelGenerationManager = NodePath("../../Systems/LevelGenerationManager")
 
-[node name="GameOverScreen" parent="MenuLayer" unique_id=331692519 instance=ExtResource("11_iotsf")]
+[node name="GameOverScreen" parent="MenuLayer" unique_id=331692519 node_paths=PackedStringArray("_lootManager") instance=ExtResource("11_iotsf")]
 visible = false
+_lootManager = NodePath("../../Systems/LootManager")
 
 [node name="GameCompletionScreen" parent="MenuLayer" unique_id=1084706380 instance=ExtResource("13_215e1")]
 visible = false
