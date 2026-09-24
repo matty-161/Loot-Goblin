@@ -24,6 +24,9 @@ public partial class EnemyStatsComponent : StatsComponent
     [Export] public float ChaseQuitDistance { get; private set; }
     // attack state
     [Export] public float AttackCooldown { get; private set; }
+    
+    // drop chances
+    [Export] public float HealthDropChance { get; private set; }
 
 
     public override void _Ready()

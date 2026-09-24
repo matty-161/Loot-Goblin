@@ -8,6 +8,9 @@ public partial class GameManager : Node
     public static bool IsTest { get; set; } = false;
     [Export] public int FinalLevel;
 
+    [Export] private Node2D EntitiesRoot;
+    [Export] private PackedScene _healthDropScn;
+
     
     private float _bossRoomPixelRadius;
     private Node2D _levelBoss;
@@ -17,6 +20,7 @@ public partial class GameManager : Node
         GameEventManager.PlayerDied += OnPlayerDied;
         GameEventManager.FinalLevelCompleteEvent += OnFinalLevelComplete;
         GameEventManager.LevelBossGenerated += OnLevelBossGenerated;
+        GameEventManager.DropHealthEvent += OnDropHealth;
     }
     
     public override void _Process(double delta)
@@ -46,6 +50,18 @@ public partial class GameManager : Node
     {
         GameEventManager.GameEnded?.Invoke();
         // GetTree().SetPause(true);
+    }
+
+    private void OnDropHealth(Vector2 position)
+    {
+        CallDeferred("DropHealth", position);
+    }
+    
+    private void DropHealth(Vector2 position)
+    {
+        HealthDrop healthDrop = _healthDropScn.Instantiate<HealthDrop>();
+        EntitiesRoot.AddChild(healthDrop);
+        healthDrop.Position = position;
     }
     
     

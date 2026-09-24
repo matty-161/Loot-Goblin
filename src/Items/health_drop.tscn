@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://blt2hk5huh0ux"]
+
+[ext_resource type="Texture2D" uid="uid://xpqx34ypjsyd" path="res://Items/Assets/heart.png" id="1_16ue1"]
+[ext_resource type="Script" uid="uid://bmhkcluobjykt" path="res://Items/HealthDrop.cs" id="1_f8ocv"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jfmy4"]
+radius = 6.0
+
+[node name="HealthDrop" type="Area2D" unique_id=577037422]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("1_f8ocv")
+HealAmount = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1958863642]
+shape = SubResource("CircleShape2D_jfmy4")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1077815291]
+texture = ExtResource("1_16ue1")

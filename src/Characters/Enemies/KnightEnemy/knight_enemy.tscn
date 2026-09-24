@@ -14,6 +14,7 @@
 [ext_resource type="Script" uid="uid://dmmb41j6m6yv4" path="res://Characters/Enemies/DebugStateLabel.cs" id="13_sht8h"]
 [ext_resource type="Script" uid="uid://bxa87pd7xbbjs" path="res://Globals/Hitbox2D.cs" id="14_gdj0d"]
 [ext_resource type="Script" uid="uid://c7w8xff7eiame" path="res://Characters/Enemies/EnemyStatsComponent.cs" id="15_o7mlk"]
+[ext_resource type="Script" uid="uid://cbhfugkrjetii" path="res://Characters/Enemies/EnemyDropsComponent.cs" id="15_uotn6"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2ina"]
 radius = 6.0827627
@@ -998,5 +999,11 @@ PatrolTargetBufferDistance = 0.1
 PatrolChaseTriggerDistance = 3.0
 ChaseQuitDistance = 4.0
 AttackCooldown = 1.0
+HealthDropChance = 0.25
 MaxHealth = 3
 metadata/_custom_type_script = "uid://c7w8xff7eiame"
+
+[node name="EnemyDropsComponent" type="Node" parent="." unique_id=1535454394 node_paths=PackedStringArray("_healthComponent", "_statsComponent")]
+script = ExtResource("15_uotn6")
+_healthComponent = NodePath("../HealthComponent")
+_statsComponent = NodePath("../EnemyStatsComponent")

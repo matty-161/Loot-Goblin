@@ -9,6 +9,7 @@ public partial class MainMenu : Control
 
 	private Control _mainMenuContainer;
 	private SettingsContainer _settingsContainer;
+	private Control _hudRoot;
 
 	private Button _playButton;
 	private Button _settingsButton;
@@ -22,9 +23,11 @@ public partial class MainMenu : Control
 		Show();
 		_mainMenuContainer = GetNode<Control>("%MainMenuContainer");
 		_settingsContainer = GetNode<SettingsContainer>("%SettingsContainer");
+		_hudRoot = GetNode<Control>("%HUDRoot");
 		
 		_mainMenuContainer.Show();
 		_settingsContainer.Hide();
+		_hudRoot.Hide();
 
 		_settingsContainer.BackButtonPressed += OnSettingsBackButtonPressed;
 		
@@ -50,6 +53,7 @@ public partial class MainMenu : Control
 	{
 		GD.Print("Game started");
 		GameEventManager.GameStarted?.Invoke();
+		_hudRoot.Show();
 		
 		_levelGenerationManager.GenerateLevel();
 		Hide();

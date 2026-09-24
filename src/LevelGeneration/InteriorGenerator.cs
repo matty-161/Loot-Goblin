@@ -140,7 +140,7 @@ public partial class InteriorGenerator : Node
                     _entitiesRoot.AddChild(coin);
                     coin.Position = (room.PositionTopLeft + room.PositionBotRight) / 2 * LevelTileMap.TileSize;
                     
-                    GenerateTreasureRoomEnemies(room, 4);
+                    GenerateTreasureRoomEnemies(room, CalculateEnemyAmount());
                     
                     break;
                 default:
@@ -203,6 +203,15 @@ public partial class InteriorGenerator : Node
             patrolComponent.AddPatrolTarget(endPos);
 
         }
+    }
+
+    private int CalculateEnemyAmount()
+    {
+        int diff = Mathf.Min((int)DifficultyManager.DifficultyScale, 4); // difficulty scale, max 4
+        
+        int randDiff = GD.RandRange(diff - 1, diff); // random from diff -1 to diff
+
+        return Mathf.Max(randDiff, 1); // diff, min 1
     }
     
 }

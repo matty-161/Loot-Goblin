@@ -5,6 +5,8 @@ namespace LootGoblin;
 
 public partial class DifficultyManager : Node
 {
+    [Export] private LevelProgressionManager _levelProgressionManager;
+    
     public double RunTime { get; set; }
 
     public bool TimerIsRunning { get; set; }
@@ -17,12 +19,19 @@ public partial class DifficultyManager : Node
         GameEventManager.GameEnded += OnGameEnded;
     }
 
+    public override void _ExitTree()
+    {
+        GameEventManager.GameStarted -= OnGameStarted;
+        GameEventManager.GameEnded -= OnGameEnded;
+    }
+
     public override void _Process(double delta)
     {
         if (TimerIsRunning)
         {
             RunTime += delta;
-            DifficultyScale = 1 + RunTime % 60; // difficulty calculation
+            DifficultyScale = (1 + Math.Round(RunTime / 60.0) * 0.4) * 
+                              Math.Pow(1.1, _levelProgressionManager.CurrentLevel); // difficulty calculation
         }
     }
     

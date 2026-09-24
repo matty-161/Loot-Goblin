@@ -9,6 +9,7 @@ public partial class HealthComponent : Node
     [Export] private StatsComponent _statsComponent;
     
     public Action<int> HealthChangedEvent;
+    public Action DiedEvent;
     
     public int MaxHealth { get; set; }
 
@@ -18,9 +19,17 @@ public partial class HealthComponent : Node
     {
         get => _health;
         private set
-        { 
-            HealthChangedEvent?.Invoke(value);
-            _health = value;
+        {
+            if (value > MaxHealth)
+            {
+                HealthChangedEvent?.Invoke(MaxHealth);
+                _health = MaxHealth;
+            }
+            else
+            {
+                HealthChangedEvent?.Invoke(value);
+                _health = value;
+            }
         }
     }
 	
@@ -29,6 +38,7 @@ public partial class HealthComponent : Node
     public override void _Ready()
     {
         Hurtbox.TakeDamageEvent += TakeDamage;
+        DiedEvent += OnDeath;
         
         MaxHealth = _statsComponent.MaxHealth;
         
@@ -47,7 +57,12 @@ public partial class HealthComponent : Node
     private void TakeDamage(int amount)
     {
         Health -= amount;
-        if (Health <= 0) OnDeath();
+        if (Health <= 0) DiedEvent?.Invoke();
+    }
+
+    public void Heal(int amount)
+    {
+        Health += amount;
     }
 
     private void OnDeath()

@@ -112,6 +112,7 @@ interact={
 2d_physics/layer_2="Player"
 2d_physics/layer_3="Loot"
 2d_physics/layer_4="Enemies"
+2d_physics/layer_5="HealthDrops"
 2d_physics/layer_7="LevelExit"
 2d_physics/layer_8="PlayerHitbox"
 2d_physics/layer_9="PlayerHurtbox"

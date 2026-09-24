@@ -2,6 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://bckrlmbkfl5ds" path="res://LevelGeneration/level_generation_manager.tscn" id="1_80nbo"]
 [ext_resource type="Script" uid="uid://wx1hifekhryb" path="res://GameManager.cs" id="1_vef74"]
+[ext_resource type="PackedScene" uid="uid://blt2hk5huh0ux" path="res://Items/health_drop.tscn" id="2_215e1"]
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/tilemap.tscn" id="2_e2o6t"]
 [ext_resource type="Script" uid="uid://dk0smpsl2qomi" path="res://Systems/LootManager.cs" id="2_fc0e3"]
 [ext_resource type="Script" uid="uid://bikitpibak0d3" path="res://Systems/DifficultyManager.cs" id="6_7sc4i"]
@@ -37,8 +38,10 @@ shader_parameter/noise = SubResource("NoiseTexture2D_mfdv2")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_lc2xo"]
 
-[node name="Game" type="Node" unique_id=1125093093]
+[node name="Game" type="Node" unique_id=1125093093 node_paths=PackedStringArray("EntitiesRoot")]
 script = ExtResource("1_vef74")
+EntitiesRoot = NodePath("World/Entities")
+_healthDropScn = ExtResource("2_215e1")
 
 [node name="Systems" type="Node" parent="." unique_id=511504243]
 
@@ -58,8 +61,9 @@ _entityRoot = NodePath("../../World/Entities")
 process_mode = 3
 script = ExtResource("8_iotsf")
 
-[node name="DifficultyManager" type="Node" parent="Systems" unique_id=711530821]
+[node name="DifficultyManager" type="Node" parent="Systems" unique_id=711530821 node_paths=PackedStringArray("_levelProgressionManager")]
 script = ExtResource("6_7sc4i")
+_levelProgressionManager = NodePath("../LevelProgressionManager")
 
 [node name="World" type="Node2D" parent="." unique_id=1023422311]
 
@@ -86,6 +90,8 @@ color = Color(0.8346145, 0.83461416, 0.8346145, 1)
 layer = 10
 
 [node name="HUDRoot" parent="HUDLayer" unique_id=1074478187 instance=ExtResource("9_lc2xo")]
+unique_name_in_owner = true
+visible = false
 
 [node name="DifficultyTimerLabel" parent="HUDLayer/HUDRoot" index="2" unique_id=874290708 node_paths=PackedStringArray("_difficultyManager")]
 _difficultyManager = NodePath("../../../Systems/DifficultyManager")

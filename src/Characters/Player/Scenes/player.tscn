@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://c4u7dv88x1exk" path="res://Characters/Player/LootCollectionComponent.cs" id="3_52sos"]
 [ext_resource type="Script" uid="uid://dbsxq7dhwxfww" path="res://Globals/Hurtbox2D.cs" id="3_egfbo"]
 [ext_resource type="Script" uid="uid://b2ugtxlkkh7sf" path="res://Characters/Player/WeaponSlot.cs" id="4_bw35f"]
+[ext_resource type="Script" uid="uid://4ttcklpg07ft" path="res://Characters/Player/HealthCollectionComponent.cs" id="4_hylpr"]
 [ext_resource type="PackedScene" uid="uid://cpod8kcdxhpqm" path="res://Weapons/Scenes/dagger.tscn" id="4_omv0o"]
 [ext_resource type="Script" uid="uid://bkbb402ove7jq" path="res://Characters/Player/PlayerInput.cs" id="6_lkihu"]
 [ext_resource type="Script" uid="uid://drshyu5huekkv" path="res://Characters/TwoDirAnimator.cs" id="7_egfbo"]
@@ -113,6 +114,15 @@ _collectionPrompt = NodePath("../CollectionPrompt")
 _collectionBar = NodePath("../CollectionPrompt/CollectionProgressBar")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TreasureCollectionComponent" unique_id=86428857]
+shape = SubResource("CircleShape2D_rg7kn")
+
+[node name="HealthCollectionComponent" type="Area2D" parent="." unique_id=30031395 node_paths=PackedStringArray("_healthComponent")]
+collision_layer = 0
+collision_mask = 16
+script = ExtResource("4_hylpr")
+_healthComponent = NodePath("../HealthComponent")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HealthCollectionComponent" unique_id=1001012345]
 shape = SubResource("CircleShape2D_rg7kn")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=310300674]

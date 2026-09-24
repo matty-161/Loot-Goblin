@@ -29,4 +29,7 @@ public static class GameEventManager
     public static Action<int> PlayerMaxHealthSetEvent;
     public static Action<int> PlayerHealthChangedEvent;
     public static Action PlayerDied;
+    
+    // item drop events
+    public static Action<Vector2> DropHealthEvent;
 }

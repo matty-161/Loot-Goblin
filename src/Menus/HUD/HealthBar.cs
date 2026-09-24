@@ -15,6 +15,12 @@ public partial class HealthBar : CenterContainer
 		GameEventManager.PlayerMaxHealthSetEvent += SetValues;
 	}
 
+	public override void _ExitTree()
+	{
+		GameEventManager.PlayerHealthChangedEvent -= OnPlayerHealthChanged;
+		GameEventManager.PlayerMaxHealthSetEvent -= SetValues;
+	}
+
 	private void SetValues(int maxHealth)
 	{
 		_progressBar.MaxValue = maxHealth;

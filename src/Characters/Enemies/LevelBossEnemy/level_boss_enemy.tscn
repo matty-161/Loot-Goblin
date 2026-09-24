@@ -986,7 +986,8 @@ metadata/_custom_type_script = "uid://bxongo3q27sci"
 [node name="EnemyStatsComponent" type="Node" parent="." unique_id=1368120909]
 script = ExtResource("14_ou247")
 Damage = 2
-AttackRange = 2.0
+AttackRange = 1.5
 MoveSpeed = 3.0
 AttackCooldown = 1.0
+MaxHealth = 6
 metadata/_custom_type_script = "uid://c7w8xff7eiame"
