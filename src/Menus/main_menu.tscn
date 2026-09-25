@@ -15,48 +15,122 @@ grow_vertical = 2
 script = ExtResource("1_jf8mj")
 metadata/_edit_use_anchors_ = true
 
-[node name="MainMenuContainer" type="VBoxContainer" parent="." unique_id=451231831]
+[node name="MainMenuContainer" type="Control" parent="." unique_id=1694373406]
 unique_name_in_owner = true
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -35.0
-offset_top = -64.0
-offset_right = 35.0
-offset_bottom = 64.0
-grow_horizontal = 2
+offset_left = 17.0
+offset_top = -73.0
+offset_right = 149.0
+offset_bottom = 62.0
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="MainMenuContainer" unique_id=134538718]
+[node name="MainMenuVBox" type="VBoxContainer" parent="MainMenuContainer" unique_id=451231831]
+layout_mode = 0
+offset_right = 132.0
+offset_bottom = 117.0
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="MainMenuContainer/MainMenuVBox" unique_id=134538718]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 20
 text = "Loot Goblin"
 
-[node name="HighScore" type="Label" parent="MainMenuContainer" unique_id=1539658841]
+[node name="HighScore" type="Label" parent="MainMenuContainer/MainMenuVBox" unique_id=1539658841]
 unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 14
+theme_override_font_sizes/font_size = 10
 text = "High Score: "
-horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PlayButton" type="Button" parent="MainMenuContainer" unique_id=838278067]
+[node name="PlayButton" type="Button" parent="MainMenuContainer/MainMenuVBox" unique_id=838278067]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Play"
+alignment = 0
 
-[node name="SettingsButton" type="Button" parent="MainMenuContainer" unique_id=1451715427]
+[node name="SettingsButton" type="Button" parent="MainMenuContainer/MainMenuVBox" unique_id=1451715427]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Settings"
+alignment = 0
 
-[node name="QuitButton" type="Button" parent="MainMenuContainer" unique_id=2026467080]
+[node name="QuitButton" type="Button" parent="MainMenuContainer/MainMenuVBox" unique_id=2026467080]
 unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 8
 text = "Quit"
+alignment = 0
+
+[node name="ControlsContainer" type="VBoxContainer" parent="MainMenuContainer" unique_id=514154031]
+layout_mode = 0
+offset_left = 157.0
+offset_top = 46.0
+offset_right = 289.0
+offset_bottom = 99.0
+
+[node name="Label" type="Label" parent="MainMenuContainer/ControlsContainer" unique_id=998198895]
+layout_mode = 2
+theme_override_font_sizes/font_size = 10
+text = "Controls"
+horizontal_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MainMenuContainer/ControlsContainer" unique_id=817931347]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="MainMenuContainer/ControlsContainer/HBoxContainer" unique_id=1644644148]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Movement:"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="MainMenuContainer/ControlsContainer/HBoxContainer" unique_id=326174532]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 6
+text = "WASD"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MainMenuContainer/ControlsContainer" unique_id=1641270663]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="MainMenuContainer/ControlsContainer/HBoxContainer2" unique_id=1847277214]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Attack:"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="MainMenuContainer/ControlsContainer/HBoxContainer2" unique_id=345490505]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 6
+text = "Left click"
+horizontal_alignment = 1
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="MainMenuContainer/ControlsContainer" unique_id=280013075]
+layout_mode = 2
+alignment = 1
+
+[node name="Label2" type="Label" parent="MainMenuContainer/ControlsContainer/HBoxContainer3" unique_id=768573028]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 6
+text = "Loot:"
+horizontal_alignment = 2
+
+[node name="Label3" type="Label" parent="MainMenuContainer/ControlsContainer/HBoxContainer3" unique_id=693318391]
+layout_mode = 2
+size_flags_horizontal = 2
+theme_override_font_sizes/font_size = 6
+text = "Hold E"
+horizontal_alignment = 1
 
 [node name="SettingsContainer" type="VBoxContainer" parent="." unique_id=1866127269]
 unique_name_in_owner = true

@@ -165,21 +165,15 @@ public partial class InteriorGenerator : Node
                 case 0: // patrol top
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 4;
                     endPos = new(startPos.X + roomSize.X / 2, startPos.Y);
-                    
-                    // startPos.Y += 1; // add one to prevent starting in wall
                     break;
                 case 1: // patrol bottom
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 4;
                     startPos += new Vector2I(0, roomSize.Y / 2);
                     endPos = new(startPos.X + roomSize.X / 2, startPos.Y);
-                    
-                    // startPos.Y += 1; // add one to prevent starting in wall
                     break;
                 case 2: // patrol left
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 3;
                     endPos = new(startPos.X, startPos.Y + roomSize.Y / 3 * 2);
-                    
-                    // startPos.X += 1; // add one to prevent starting in wall
                     break;
                 default: // patrol right
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 3;
@@ -187,8 +181,6 @@ public partial class InteriorGenerator : Node
                     Vector2I relStartPos = startPos - room.PositionTopLeft;
                     startPos += new Vector2I((int)((roomSize.X - relStartPos.X) - (0.17f * roomSize.X)), 0);
                     endPos = new(startPos.X, startPos.Y + roomSize.Y / 3 * 2);
-                    
-                    // startPos.X += 1; // add one to prevent starting in wall
                     break;
             }
 
