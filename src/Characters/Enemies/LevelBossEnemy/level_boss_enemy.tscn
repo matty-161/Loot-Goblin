@@ -21,6 +21,7 @@
 radius = 6.0827627
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_blcst"]
+resource_local_to_scene = true
 shader = ExtResource("3_blcst")
 shader_parameter/enabled = false
 shader_parameter/progress = 0.0
@@ -861,7 +862,7 @@ animations = [{
 radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_3kjcw"]
-radius = 7.0
+radius = 11.0
 
 [sub_resource type="Animation" id="Animation_0gkm1"]
 length = 0.001
@@ -946,7 +947,7 @@ material = SubResource("ShaderMaterial_blcst")
 sprite_frames = SubResource("SpriteFrames_jfmy4")
 animation = &"attack_down"
 autoplay = "idle_down"
-frame_progress = 0.3968673
+frame_progress = 0.0033159405
 script = ExtResource("4_ou247")
 _healthComponent = NodePath("../HealthComponent")
 _animationPlayer = NodePath("../AnimationPlayer")
@@ -1004,7 +1005,7 @@ script = ExtResource("13_w6wdo")
 _stateMachine = NodePath("../StateMachine")
 
 [node name="Hitbox2D" type="Area2D" parent="." unique_id=1501009680]
-position = Vector2(-16, 3)
+position = Vector2(-3, 12)
 collision_layer = 0
 collision_mask = 0
 monitoring = false
@@ -1017,16 +1018,16 @@ metadata/_edit_group_ = true
 shape = SubResource("CircleShape2D_3kjcw")
 
 [node name="TopHitboxLoc" type="Marker2D" parent="." unique_id=869705686]
-position = Vector2(4, -11)
+position = Vector2(4, -7)
 
 [node name="RightHitboxLoc" type="Marker2D" parent="." unique_id=1972948314]
-position = Vector2(17, 4)
+position = Vector2(13, 4)
 
 [node name="BottomHitboxLoc" type="Marker2D" parent="." unique_id=789173499]
-position = Vector2(-3, 16)
+position = Vector2(-3, 12)
 
 [node name="LeftHitboxLoc" type="Marker2D" parent="." unique_id=670774500]
-position = Vector2(-16, 3)
+position = Vector2(-12, 3)
 
 [node name="BossComponent" type="Node" parent="." unique_id=1126880208]
 script = ExtResource("14_2cg0f")
@@ -1037,6 +1038,7 @@ script = ExtResource("14_ou247")
 Damage = 2
 AttackRange = 1.5
 AttackCooldown = 1.0
+HealthDropChance = 1.0
 MaxHealth = 6
 MoveSpeed = 7.0
 metadata/_custom_type_script = "uid://c7w8xff7eiame"

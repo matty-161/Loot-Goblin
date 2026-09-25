@@ -58,6 +58,7 @@ public partial class LevelBossAttack: LevelBossState
 
     public override void Exit()
     {
+        IsAttacking = false;
         _animatedSprite.FrameChanged -= OnFrameChanged;
     }
 

@@ -58,6 +58,7 @@ public partial class EnemyAttack : EnemyState
 
     public override void Exit()
     {
+        IsAttacking = false;
         _animatedSprite.FrameChanged -= OnFrameChanged;
     }
 
