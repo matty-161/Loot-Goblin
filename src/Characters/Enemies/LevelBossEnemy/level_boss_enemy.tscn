@@ -3,7 +3,9 @@
 [ext_resource type="Script" uid="uid://bnp7n1mim41sl" path="res://Characters/CharacterMotor.cs" id="1_0rdr5"]
 [ext_resource type="Script" uid="uid://dbsxq7dhwxfww" path="res://Globals/Hurtbox2D.cs" id="2_caouv"]
 [ext_resource type="Texture2D" uid="uid://bibrokcyx8bey" path="res://Characters/Enemies/Assets/Free Pixel Knight/Spritesheet_without_Shadows.png" id="3_5f4dq"]
+[ext_resource type="Shader" uid="uid://hohlduw3lfq1" path="res://Characters/character_hitflash.gdshader" id="3_blcst"]
 [ext_resource type="Script" uid="uid://bli2kchxbqx7j" path="res://Characters/HealthComponent.cs" id="4_7dmgv"]
+[ext_resource type="Script" uid="uid://ljs7ni76jcy8" path="res://Characters/CharacterSprite.cs" id="4_ou247"]
 [ext_resource type="Script" uid="uid://bt17wmo0u77vc" path="res://Globals/StateMachine.cs" id="5_43nui"]
 [ext_resource type="Script" uid="uid://clfsd4jn8837v" path="res://Characters/Enemies/LevelBossEnemy/LevelBossIdle.cs" id="6_3rcue"]
 [ext_resource type="Script" uid="uid://dsj0t61v6j4tl" path="res://Characters/Enemies/LevelBossEnemy/LevelBossAttack.cs" id="8_2cg0f"]
@@ -17,6 +19,12 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2ina"]
 radius = 6.0827627
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_blcst"]
+shader = ExtResource("3_blcst")
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
+shader_parameter/shock_color = Color(1, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ou247"]
 atlas = ExtResource("3_5f4dq")
@@ -440,10 +448,10 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_ou247")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_blcst")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_h06ia")
 }, {
 "duration": 1.0,
@@ -460,10 +468,10 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_bd2bs")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_dy7o8")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_u074p")
 }, {
 "duration": 1.0,
@@ -480,10 +488,10 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_etb0r")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_x28eu")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_fi5cr")
 }, {
 "duration": 1.0,
@@ -500,10 +508,10 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_hiu21")
 }, {
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_hd3v2")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_yl71i")
 }, {
 "duration": 1.0,
@@ -855,6 +863,68 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3kjcw"]
 radius = 7.0
 
+[sub_resource type="Animation" id="Animation_0gkm1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c68kh"]
+resource_name = "hitflash"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ou247"]
+_data = {
+&"RESET": SubResource("Animation_0gkm1"),
+&"hitflash": SubResource("Animation_c68kh")
+}
+
 [node name="LevelBossEnemy" type="CharacterBody2D" unique_id=1838745711 node_paths=PackedStringArray("_statsComponent") groups=["enemies"]]
 collision_layer = 0
 motion_mode = 1
@@ -871,11 +941,16 @@ metadata/_custom_type_script = "uid://dbsxq7dhwxfww"
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_g2ina")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=858180376]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1652179067 node_paths=PackedStringArray("_healthComponent", "_animationPlayer")]
+material = SubResource("ShaderMaterial_blcst")
 sprite_frames = SubResource("SpriteFrames_jfmy4")
-animation = &"attack_up"
+animation = &"attack_down"
 autoplay = "idle_down"
-frame_progress = 0.2837066
+frame_progress = 0.3968673
+script = ExtResource("4_ou247")
+_healthComponent = NodePath("../HealthComponent")
+_animationPlayer = NodePath("../AnimationPlayer")
+metadata/_custom_type_script = "uid://ljs7ni76jcy8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668983031]
 position = Vector2(0, 1)
@@ -917,6 +992,7 @@ script = ExtResource("11_fsd4w")
 _sprite = NodePath("../AnimatedSprite2D")
 
 [node name="DebugStateLabel" type="Label" parent="." unique_id=1616547312 node_paths=PackedStringArray("_stateMachine")]
+visible = false
 offset_left = -11.0
 offset_top = -14.0
 offset_right = 11.0
@@ -964,3 +1040,6 @@ AttackCooldown = 1.0
 MaxHealth = 6
 MoveSpeed = 7.0
 metadata/_custom_type_script = "uid://c7w8xff7eiame"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1321567799]
+libraries/ = SubResource("AnimationLibrary_ou247")

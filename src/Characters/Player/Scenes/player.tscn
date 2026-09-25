@@ -7,7 +7,9 @@
 [ext_resource type="Script" uid="uid://b2ugtxlkkh7sf" path="res://Characters/Player/WeaponSlot.cs" id="4_bw35f"]
 [ext_resource type="Script" uid="uid://4ttcklpg07ft" path="res://Characters/Player/HealthCollectionComponent.cs" id="4_hylpr"]
 [ext_resource type="PackedScene" uid="uid://cpod8kcdxhpqm" path="res://Weapons/Scenes/dagger.tscn" id="4_omv0o"]
+[ext_resource type="Shader" uid="uid://hohlduw3lfq1" path="res://Characters/character_hitflash.gdshader" id="5_fepv4"]
 [ext_resource type="Script" uid="uid://bkbb402ove7jq" path="res://Characters/Player/PlayerInput.cs" id="6_lkihu"]
+[ext_resource type="Script" uid="uid://ljs7ni76jcy8" path="res://Characters/CharacterSprite.cs" id="7_0gkm1"]
 [ext_resource type="Script" uid="uid://drshyu5huekkv" path="res://Characters/TwoDirAnimator.cs" id="7_egfbo"]
 [ext_resource type="Script" uid="uid://cml6qyk2vs84f" path="res://Characters/Player/AttackCooldown.cs" id="8_l7q51"]
 [ext_resource type="Script" uid="uid://br8673cdv5rt2" path="res://Characters/Player/PlayerData.cs" id="8_lkihu"]
@@ -19,6 +21,13 @@ radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rg7kn"]
 radius = 8.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_l7q51"]
+resource_local_to_scene = true
+shader = ExtResource("5_fepv4")
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
+shader_parameter/shock_color = Color(1, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_52sos"]
 atlas = ExtResource("2_rg7kn")
@@ -85,6 +94,68 @@ bg_color = Color(0.9267113, 0.5976864, 3.85046e-07, 1)
 ProgressBar/styles/background = SubResource("StyleBoxFlat_55o84")
 ProgressBar/styles/fill = SubResource("StyleBoxFlat_2lklv")
 
+[sub_resource type="Animation" id="Animation_0gkm1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c68kh"]
+resource_name = "hitflash"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0stdk"]
+_data = {
+&"RESET": SubResource("Animation_0gkm1"),
+&"hitflash": SubResource("Animation_c68kh")
+}
+
 [node name="Player" type="CharacterBody2D" unique_id=118906777 node_paths=PackedStringArray("_statsComponent") groups=["player"]]
 collision_layer = 2
 motion_mode = 1
@@ -127,13 +198,18 @@ _healthComponent = NodePath("../HealthComponent")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HealthCollectionComponent" unique_id=1001012345]
 shape = SubResource("CircleShape2D_rg7kn")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=310300674]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=431210571 node_paths=PackedStringArray("_healthComponent", "_animationPlayer")]
 unique_name_in_owner = true
+material = SubResource("ShaderMaterial_l7q51")
 position = Vector2(-1, 5)
 sprite_frames = SubResource("SpriteFrames_ukgph")
 animation = &"idle"
 frame_progress = 0.91222256
 offset = Vector2(0, -6)
+script = ExtResource("7_0gkm1")
+_healthComponent = NodePath("../HealthComponent")
+_animationPlayer = NodePath("../AnimationPlayer")
+metadata/_custom_type_script = "uid://ljs7ni76jcy8"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=669672191]
 
@@ -166,6 +242,7 @@ Hurtbox = NodePath("../Hurtbox2D")
 metadata/_custom_type_script = "uid://bli2kchxbqx7j"
 
 [node name="CollectionPrompt" type="VBoxContainer" parent="." unique_id=287232810]
+z_index = 35
 offset_left = -8.0
 offset_top = -30.0
 offset_right = 8.0
@@ -189,3 +266,6 @@ script = ExtResource("11_o60e6")
 AttackCooldown = 0.5
 MaxHealth = 10
 MoveSpeed = 8.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1197236752]
+libraries/ = SubResource("AnimationLibrary_0stdk")

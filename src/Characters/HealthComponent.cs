@@ -6,6 +6,8 @@ namespace LootGoblin;
 [GlobalClass]
 public partial class HealthComponent : Node
 {
+    public Action TookDamage;
+    
     [Export] private StatsComponent _statsComponent;
     
     public Action<int> HealthChangedEvent;
@@ -56,6 +58,7 @@ public partial class HealthComponent : Node
 
     private void TakeDamage(int amount)
     {
+        TookDamage?.Invoke();
         Health -= amount;
         if (Health <= 0) DiedEvent?.Invoke();
     }

@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bnp7n1mim41sl" path="res://Characters/CharacterMotor.cs" id="1_04u5q"]
 [ext_resource type="Script" uid="uid://dbsxq7dhwxfww" path="res://Globals/Hurtbox2D.cs" id="2_o7mlk"]
+[ext_resource type="Shader" uid="uid://hohlduw3lfq1" path="res://Characters/character_hitflash.gdshader" id="3_6g87q"]
 [ext_resource type="Texture2D" uid="uid://bibrokcyx8bey" path="res://Characters/Enemies/Assets/Free Pixel Knight/Spritesheet_without_Shadows.png" id="3_uotn6"]
 [ext_resource type="Script" uid="uid://bli2kchxbqx7j" path="res://Characters/HealthComponent.cs" id="4_6g87q"]
+[ext_resource type="Script" uid="uid://ljs7ni76jcy8" path="res://Characters/CharacterSprite.cs" id="4_uotn6"]
 [ext_resource type="Script" uid="uid://bt17wmo0u77vc" path="res://Globals/StateMachine.cs" id="5_to3vk"]
 [ext_resource type="Script" uid="uid://dhos4kaqisefu" path="res://Characters/Enemies/States/EnemyIdle.cs" id="6_gbqob"]
 [ext_resource type="Script" uid="uid://d02hpicd5ja1c" path="res://Characters/Enemies/States/EnemyChase.cs" id="8_rkgyu"]
@@ -18,6 +20,13 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2ina"]
 radius = 6.0827627
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0gkm1"]
+resource_local_to_scene = true
+shader = ExtResource("3_6g87q")
+shader_parameter/enabled = false
+shader_parameter/progress = 0.0
+shader_parameter/shock_color = Color(1, 0, 0, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uv0jd"]
 atlas = ExtResource("3_uotn6")
@@ -441,7 +450,7 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_uv0jd")
 }, {
-"duration": 0.5,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_ef3i3")
 }, {
 "duration": 0.5,
@@ -450,7 +459,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_scrg4")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_fslb1")
 }],
 "loop": 1,
@@ -461,7 +470,7 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_ro6j3")
 }, {
-"duration": 0.5,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_46uox")
 }, {
 "duration": 0.5,
@@ -470,7 +479,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4h1yb")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_p4i44")
 }],
 "loop": 1,
@@ -481,7 +490,7 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_2vc7r")
 }, {
-"duration": 0.5,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_mx77j")
 }, {
 "duration": 0.5,
@@ -490,7 +499,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_gw76h")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_aibni")
 }],
 "loop": 1,
@@ -501,7 +510,7 @@ animations = [{
 "duration": 0.5,
 "texture": SubResource("AtlasTexture_x2hri")
 }, {
-"duration": 0.5,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_2ymjk")
 }, {
 "duration": 0.5,
@@ -510,7 +519,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qp4mw")
 }, {
-"duration": 1.0,
+"duration": 0.5,
 "texture": SubResource("AtlasTexture_2fjwn")
 }],
 "loop": 1,
@@ -856,6 +865,68 @@ radius = 6.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_3kjcw"]
 radius = 7.0
 
+[sub_resource type="Animation" id="Animation_0gkm1"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_c68kh"]
+resource_name = "hitflash"
+length = 0.2
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/enabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0009999999, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_to3vk"]
+_data = {
+&"RESET": SubResource("Animation_0gkm1"),
+&"hitflash": SubResource("Animation_c68kh")
+}
+
 [node name="KnightEnemy" type="CharacterBody2D" unique_id=1838745711 node_paths=PackedStringArray("_statsComponent") groups=["enemies"]]
 collision_layer = 0
 motion_mode = 1
@@ -872,11 +943,16 @@ metadata/_custom_type_script = "uid://dbsxq7dhwxfww"
 position = Vector2(0, 1)
 shape = SubResource("CircleShape2D_g2ina")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=858180376]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=944573698 node_paths=PackedStringArray("_healthComponent", "_animationPlayer")]
+material = SubResource("ShaderMaterial_0gkm1")
 sprite_frames = SubResource("SpriteFrames_jfmy4")
 animation = &"attack_up"
 autoplay = "idle_down"
-frame_progress = 0.25590768
+frame_progress = 0.1534014
+script = ExtResource("4_uotn6")
+_healthComponent = NodePath("../HealthComponent")
+_animationPlayer = NodePath("../AnimationPlayer")
+metadata/_custom_type_script = "uid://ljs7ni76jcy8"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1668983031]
 position = Vector2(0, 1)
@@ -924,7 +1000,8 @@ metadata/_custom_type_script = "uid://cswquj80dli6o"
 script = ExtResource("11_3404a")
 _sprite = NodePath("../AnimatedSprite2D")
 
-[node name="DebugStateLabel" type="Label" parent="." unique_id=1616547312 node_paths=PackedStringArray("_stateMachine")]
+[node name="DebugStateLabel" type="Label" parent="." unique_id=1616547312 node_paths=PackedStringArray("_stateMachine") groups=["debug"]]
+visible = false
 offset_left = -11.0
 offset_top = -14.0
 offset_right = 11.0
@@ -979,3 +1056,6 @@ metadata/_custom_type_script = "uid://c7w8xff7eiame"
 script = ExtResource("15_uotn6")
 _healthComponent = NodePath("../HealthComponent")
 _statsComponent = NodePath("../EnemyStatsComponent")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=786274725]
+libraries/ = SubResource("AnimationLibrary_to3vk")

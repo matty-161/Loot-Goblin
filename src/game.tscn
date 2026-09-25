@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bikitpibak0d3" path="res://Systems/DifficultyManager.cs" id="6_7sc4i"]
 [ext_resource type="Script" uid="uid://chqq7xwqowyyp" path="res://Systems/EntityManager.cs" id="7_hve3p"]
 [ext_resource type="Shader" uid="uid://utyovv2o6boo" path="res://Effects/background.gdshader" id="7_mfdv2"]
+[ext_resource type="Script" uid="uid://cgmglegwm8fvu" path="res://Testing/DebugDetails.cs" id="8_7sc4i"]
 [ext_resource type="Script" uid="uid://s5wxma6pf18s" path="res://Systems/LevelProgressionManager.cs" id="8_iotsf"]
 [ext_resource type="PackedScene" uid="uid://byac0u3v3xsvx" path="res://Menus/HUD/hud_root.tscn" id="9_lc2xo"]
 [ext_resource type="PackedScene" uid="uid://wfjg5q7dux61" path="res://Menus/main_menu.tscn" id="10_iotsf"]
@@ -64,6 +65,9 @@ script = ExtResource("8_iotsf")
 [node name="DifficultyManager" type="Node" parent="Systems" unique_id=711530821 node_paths=PackedStringArray("_levelProgressionManager")]
 script = ExtResource("6_7sc4i")
 _levelProgressionManager = NodePath("../LevelProgressionManager")
+
+[node name="DebugDetails" type="Node" parent="Systems" unique_id=1910819281]
+script = ExtResource("8_7sc4i")
 
 [node name="World" type="Node2D" parent="." unique_id=1023422311]
 
