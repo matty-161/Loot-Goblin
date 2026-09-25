@@ -165,15 +165,21 @@ public partial class InteriorGenerator : Node
                 case 0: // patrol top
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 4;
                     endPos = new(startPos.X + roomSize.X / 2, startPos.Y);
+                    
+                    // startPos.Y += 1; // add one to prevent starting in wall
                     break;
                 case 1: // patrol bottom
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 4;
                     startPos += new Vector2I(0, roomSize.Y / 2);
                     endPos = new(startPos.X + roomSize.X / 2, startPos.Y);
+                    
+                    // startPos.Y += 1; // add one to prevent starting in wall
                     break;
                 case 2: // patrol left
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 3;
                     endPos = new(startPos.X, startPos.Y + roomSize.Y / 3 * 2);
+                    
+                    // startPos.X += 1; // add one to prevent starting in wall
                     break;
                 default: // patrol right
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 3;
@@ -181,18 +187,24 @@ public partial class InteriorGenerator : Node
                     Vector2I relStartPos = startPos - room.PositionTopLeft;
                     startPos += new Vector2I((int)((roomSize.X - relStartPos.X) - (0.17f * roomSize.X)), 0);
                     endPos = new(startPos.X, startPos.Y + roomSize.Y / 3 * 2);
+                    
+                    // startPos.X += 1; // add one to prevent starting in wall
                     break;
             }
 
             startPos *= LevelTileMap.TileSize;
             endPos *= LevelTileMap.TileSize;
 
-            // Sprite2D debugTarget1 = _debugPatrolTarget.Instantiate<Sprite2D>();
-            // _entitiesRoot.AddChild(debugTarget1);
-            // debugTarget1.Position = startPos;
-            // Sprite2D debugTarget2 = _debugPatrolTarget.Instantiate<Sprite2D>();
-            // _entitiesRoot.AddChild(debugTarget2);
-            // debugTarget2.Position = endPos;
+            Sprite2D debugTarget1 = _debugPatrolTarget.Instantiate<Sprite2D>();
+            _entitiesRoot.AddChild(debugTarget1);
+            debugTarget1.Position = startPos;
+            debugTarget1.AddToGroup("debug");
+            debugTarget1.Hide();
+            Sprite2D debugTarget2 = _debugPatrolTarget.Instantiate<Sprite2D>();
+            _entitiesRoot.AddChild(debugTarget2);
+            debugTarget2.Position = endPos;
+            debugTarget2.AddToGroup("debug");
+            debugTarget2.Hide();
             
             
             CharacterBody2D knight = _knightEnemyScene.Instantiate<CharacterBody2D>();

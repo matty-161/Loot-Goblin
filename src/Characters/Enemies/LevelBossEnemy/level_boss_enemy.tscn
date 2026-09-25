@@ -16,6 +16,7 @@
 [ext_resource type="Script" uid="uid://bxongo3q27sci" path="res://Characters/Enemies/BossComponent.cs" id="14_2cg0f"]
 [ext_resource type="Script" uid="uid://c7w8xff7eiame" path="res://Characters/Enemies/EnemyStatsComponent.cs" id="14_ou247"]
 [ext_resource type="Script" uid="uid://bxa87pd7xbbjs" path="res://Globals/Hitbox2D.cs" id="14_sx5cw"]
+[ext_resource type="Script" uid="uid://cbhfugkrjetii" path="res://Characters/Enemies/EnemyDropsComponent.cs" id="17_h06ia"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_g2ina"]
 radius = 6.0827627
@@ -947,7 +948,7 @@ material = SubResource("ShaderMaterial_blcst")
 sprite_frames = SubResource("SpriteFrames_jfmy4")
 animation = &"attack_down"
 autoplay = "idle_down"
-frame_progress = 0.0033159405
+frame_progress = 0.17584184
 script = ExtResource("4_ou247")
 _healthComponent = NodePath("../HealthComponent")
 _animationPlayer = NodePath("../AnimationPlayer")
@@ -1045,3 +1046,9 @@ metadata/_custom_type_script = "uid://c7w8xff7eiame"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1321567799]
 libraries/ = SubResource("AnimationLibrary_ou247")
+
+[node name="EnemyDropsComponent" type="Node" parent="." unique_id=1133920206 node_paths=PackedStringArray("_healthComponent", "_statsComponent")]
+script = ExtResource("17_h06ia")
+_healthComponent = NodePath("../HealthComponent")
+_statsComponent = NodePath("../EnemyStatsComponent")
+metadata/_custom_type_script = "uid://cbhfugkrjetii"

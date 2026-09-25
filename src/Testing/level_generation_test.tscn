@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7noqkhhu2baf" path="res://LevelGeneration/tilemap.tscn" id="2_meshr"]
 [ext_resource type="Script" uid="uid://wx1hifekhryb" path="res://GameManager.cs" id="2_qhhdi"]
 [ext_resource type="FontFile" uid="uid://dulwqmd4b75tn" path="res://Menus/Fonts/JetBrainsMono-VariableFont_wght.ttf" id="3_cq72j"]
+[ext_resource type="Script" uid="uid://cgmglegwm8fvu" path="res://Testing/DebugDetails.cs" id="4_5tmhw"]
 [ext_resource type="PackedScene" uid="uid://cytylylmxd12d" path="res://LevelGeneration/observer_camera.tscn" id="4_cq72j"]
 [ext_resource type="Script" uid="uid://c5x4h1e6a5qjk" path="res://Testing/DebugLineEdit.cs" id="7_5efeg"]
 
@@ -28,6 +29,9 @@ script = ExtResource("2_qhhdi")
 [node name="LevelGenerationManager" parent="Game/Systems" unique_id=487379704 node_paths=PackedStringArray("_levelTileMap", "_entitiesRoot") instance=ExtResource("1_n2538")]
 _levelTileMap = NodePath("../../World/Level/LevelTileMap")
 _entitiesRoot = NodePath("../../World/Entities")
+
+[node name="DebugDetails" type="Node" parent="Game/Systems" unique_id=1985020361]
+script = ExtResource("4_5tmhw")
 
 [node name="World" type="Node2D" parent="Game" unique_id=1023422311]
 

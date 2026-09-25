@@ -47,6 +47,7 @@ _healthDropScn = ExtResource("2_215e1")
 [node name="Systems" type="Node" parent="." unique_id=511504243]
 
 [node name="LevelGenerationManager" parent="Systems" unique_id=487379704 node_paths=PackedStringArray("_levelTileMap", "_entitiesRoot") instance=ExtResource("1_80nbo")]
+_minPartitionSize = 14
 _levelTileMap = NodePath("../../World/Level/LevelTileMap")
 _entitiesRoot = NodePath("../../World/Entities")
 
@@ -111,8 +112,9 @@ _levelGenerationManager = NodePath("../../Systems/LevelGenerationManager")
 visible = false
 _lootManager = NodePath("../../Systems/LootManager")
 
-[node name="GameCompletionScreen" parent="MenuLayer" unique_id=1084706380 instance=ExtResource("13_215e1")]
+[node name="GameCompletionScreen" parent="MenuLayer" unique_id=1084706380 node_paths=PackedStringArray("_lootManager") instance=ExtResource("13_215e1")]
 visible = false
+_lootManager = NodePath("../../Systems/LootManager")
 
 [node name="TransitionLayer" type="CanvasLayer" parent="." unique_id=855070657]
 process_mode = 3

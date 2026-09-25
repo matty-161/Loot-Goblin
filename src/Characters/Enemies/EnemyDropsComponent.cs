@@ -2,6 +2,7 @@ using Godot;
 using System;
 using LootGoblin;
 
+[GlobalClass]
 public partial class EnemyDropsComponent : Node
 {
     [Export] private HealthComponent _healthComponent;
