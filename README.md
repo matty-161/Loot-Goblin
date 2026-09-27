@@ -4,6 +4,8 @@
 
 Loot Goblin is a procedurally generated roguelike with time-based difficulty scaling.
 
+Build available in the releases section.
+
 
 ### Assets used in this project
 
