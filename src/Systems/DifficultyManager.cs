@@ -15,6 +15,8 @@ public partial class DifficultyManager : Node
 
     public override void _Ready()
     {
+        DifficultyScale = 1;
+        RunTime = 0;
         GameEventManager.GameStarted += OnGameStarted;
         GameEventManager.GameEnded += OnGameEnded;
     }
@@ -48,6 +50,7 @@ public partial class DifficultyManager : Node
 
     private void ResetTimer()
     {
+        DifficultyScale = 1;
         RunTime = 0.0;
     }
 }

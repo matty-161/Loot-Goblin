@@ -28,10 +28,6 @@ shader_parameter/enabled = false
 shader_parameter/progress = 0.0
 shader_parameter/shock_color = Color(1, 0, 0, 1)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ou247"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(48, 960, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_blcst"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(96, 960, 48, 48)
@@ -43,14 +39,6 @@ region = Rect2(144, 960, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_lbfl8"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(192, 960, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n1set"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(240, 960, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bd2bs"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(48, 1104, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dy7o8"]
 atlas = ExtResource("3_5f4dq")
@@ -64,14 +52,6 @@ region = Rect2(144, 1104, 48, 48)
 atlas = ExtResource("3_5f4dq")
 region = Rect2(192, 1104, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_b5lru"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(240, 1104, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_etb0r"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(48, 1056, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_x28eu"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(96, 1056, 48, 48)
@@ -84,14 +64,6 @@ region = Rect2(144, 1056, 48, 48)
 atlas = ExtResource("3_5f4dq")
 region = Rect2(192, 1056, 48, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_sna4r"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(240, 1056, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_hiu21"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(48, 1008, 48, 48)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_hd3v2"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(96, 1008, 48, 48)
@@ -103,10 +75,6 @@ region = Rect2(144, 1008, 48, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_7m0wy"]
 atlas = ExtResource("3_5f4dq")
 region = Rect2(192, 1008, 48, 48)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_1wyd0"]
-atlas = ExtResource("3_5f4dq")
-region = Rect2(240, 1008, 48, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b3l13"]
 atlas = ExtResource("3_5f4dq")
@@ -447,9 +415,6 @@ region = Rect2(240, 240, 48, 48)
 [sub_resource type="SpriteFrames" id="SpriteFrames_jfmy4"]
 animations = [{
 "frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_ou247")
-}, {
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_blcst")
 }, {
@@ -458,18 +423,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_lbfl8")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_n1set")
 }],
 "loop": 1,
 "name": &"attack_down",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_bd2bs")
-}, {
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_dy7o8")
 }, {
@@ -478,18 +437,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_rywfu")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_b5lru")
 }],
 "loop": 1,
 "name": &"attack_left",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_etb0r")
-}, {
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_x28eu")
 }, {
@@ -498,18 +451,12 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3cnyj")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_sna4r")
 }],
 "loop": 1,
 "name": &"attack_right",
 "speed": 5.0
 }, {
 "frames": [{
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_hiu21")
-}, {
 "duration": 2.0,
 "texture": SubResource("AtlasTexture_hd3v2")
 }, {
@@ -518,9 +465,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_7m0wy")
-}, {
-"duration": 0.5,
-"texture": SubResource("AtlasTexture_1wyd0")
 }],
 "loop": 1,
 "name": &"attack_up",
@@ -946,9 +890,10 @@ shape = SubResource("CircleShape2D_g2ina")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1652179067 node_paths=PackedStringArray("_healthComponent", "_animationPlayer")]
 material = SubResource("ShaderMaterial_blcst")
 sprite_frames = SubResource("SpriteFrames_jfmy4")
-animation = &"attack_down"
+animation = &"attack_up"
 autoplay = "idle_down"
-frame_progress = 0.17584184
+frame = 1
+frame_progress = 0.70889026
 script = ExtResource("4_ou247")
 _healthComponent = NodePath("../HealthComponent")
 _animationPlayer = NodePath("../AnimationPlayer")
@@ -1038,10 +983,10 @@ metadata/_custom_type_script = "uid://bxongo3q27sci"
 script = ExtResource("14_ou247")
 Damage = 2
 AttackRange = 1.5
-AttackCooldown = 1.0
 HealthDropChance = 1.0
 MaxHealth = 6
-MoveSpeed = 7.0
+AttackCooldown = 1.0
+MoveSpeed = 6.0
 metadata/_custom_type_script = "uid://c7w8xff7eiame"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1321567799]

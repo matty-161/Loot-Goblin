@@ -47,7 +47,6 @@ _healthDropScn = ExtResource("2_215e1")
 [node name="Systems" type="Node" parent="." unique_id=511504243]
 
 [node name="LevelGenerationManager" parent="Systems" unique_id=487379704 node_paths=PackedStringArray("_levelTileMap", "_entitiesRoot") instance=ExtResource("1_80nbo")]
-_minPartitionSize = 14
 _levelTileMap = NodePath("../../World/Level/LevelTileMap")
 _entitiesRoot = NodePath("../../World/Entities")
 

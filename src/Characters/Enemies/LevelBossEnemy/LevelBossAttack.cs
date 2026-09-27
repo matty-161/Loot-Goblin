@@ -119,11 +119,11 @@ public partial class LevelBossAttack: LevelBossState
             return;
         }
         
-        if (_animatedSprite.Frame == 3)
+        if (_animatedSprite.Frame == 2)
         {
             IsAttacking = true;
         }
-        else if (_animatedSprite.Frame == 4)
+        else if (_animatedSprite.Frame == 3)
         {
             IsAttacking = false;
         }

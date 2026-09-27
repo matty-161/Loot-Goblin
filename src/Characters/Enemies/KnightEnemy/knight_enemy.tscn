@@ -1046,10 +1046,10 @@ IdleChaseTriggerDistance = 3.0
 PatrolTargetBufferDistance = 1.0
 PatrolChaseTriggerDistance = 5.0
 ChaseQuitDistance = 6.0
-AttackCooldown = 1.0
 HealthDropChance = 0.25
 MaxHealth = 3
-MoveSpeed = 6.0
+AttackCooldown = 1.0
+MoveSpeed = 4.0
 metadata/_custom_type_script = "uid://c7w8xff7eiame"
 
 [node name="EnemyDropsComponent" type="Node" parent="." unique_id=1535454394 node_paths=PackedStringArray("_healthComponent", "_statsComponent")]

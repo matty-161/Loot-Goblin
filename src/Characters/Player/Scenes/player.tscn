@@ -263,9 +263,9 @@ show_percentage = false
 
 [node name="PlayerStatsComponent" type="Node" parent="." unique_id=240652607]
 script = ExtResource("11_o60e6")
-AttackCooldown = 0.5
 MaxHealth = 10
-MoveSpeed = 8.0
+AttackCooldown = 0.5
+MoveSpeed = 7.0
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1197236752]
 libraries/ = SubResource("AnimationLibrary_0stdk")

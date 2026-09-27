@@ -177,7 +177,6 @@ public partial class InteriorGenerator : Node
                     break;
                 default: // patrol right
                     startPos = (room.PositionTopLeft + room.PositionBotRight) / 2 - roomSize / 3;
-                    // startPos += new Vector2I((int)(roomSize.X * 0.66f), 0);
                     Vector2I relStartPos = startPos - room.PositionTopLeft;
                     startPos += new Vector2I((int)((roomSize.X - relStartPos.X) - (0.17f * roomSize.X)), 0);
                     endPos = new(startPos.X, startPos.Y + roomSize.Y / 3 * 2);
